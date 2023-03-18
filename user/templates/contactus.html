@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if val == 1%}
+<center>
+  <div class="toast show align-items-center text-bg-primary" role="alert" aria-live="assertive" aria-atomic="true" style="width:800px;margin-top:15px;">
+    <div class="d-flex">
+      <div class="toast-body">
+        Success!! Your Message has been sent.
+      </div>
+      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+</center>
+{% endif %}
+
+  <br>
+  <form action='/contactus' method='post'>
+    {% csrf_token %}
+  <div class="mb-3 row" style="margin-left:200px;">
+    <label class="col-sm-2 col-form-label">Username</label>
+    <div class="col-sm-10" style="margin-top:6px;">
+        <strong>{{uname}}</strong>
+    </div>
+    <label class="col-sm-2 col-form-label">Student Name</label>
+    <div class="col-sm-10" style="margin-top:6px;">
+      <strong>{{name}}</strong>
+    </div>
+  </div>
+    <div class="mb-3" style="margin-left:210px;">
+    <label for="exampleFormControlTextarea1" class="form-label"><b>Enter Your Message</b></label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" name="text" rows="3" style="width:700px;height:200px;border:2px solid black;">Start Wrirting From Here.....</textarea>
+  </div>
+  <div class="col-auto" style="margin-left:530px;">
+    <input type="submit" class="btn btn-primary mb-3">
+  </div>
+</form>
+
+{% comment %} {{text}} {% endcomment %}
+  {% endblock%}

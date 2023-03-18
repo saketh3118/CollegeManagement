@@ -1,0 +1,363 @@
+{% extends 'base.html' %}
+{% block content %}
+<p style="margin-top:10px; display:inline-block">
+    <strong>
+        Student Name: {{name}} <br>
+        Roll No: {{uname}} 
+    </strong>
+      </p>
+      
+      
+      <center>
+        <hr class="border-2" style="margin:0px;padding:0px;color:black;">
+      <b><p style="font-size:120%;margin:0px;">Assignment Questions</p></b>
+      <hr class="border-2" style="margin:0px;padding:0px;">
+    </center>
+      <details style="padding-left:10px;">
+            <summary><strong>Subject</strong></summary>
+        <div class="container">
+           <div class="row" style="margin-left:160px;">
+             <div class="col-10" style="border:2px solid black;">.col-9</div>
+             <div class="col-5" style="border:2px solid black;">.col-4<br>Since 9 + 4 = 13 &gt; 12, this 4-column-wide div gets wrapped onto a new line as one contiguous unit.</div>
+             <div class="col-5" style="border:2px solid black;">.col-6<br>Subsequent columns continue along the new line.</div>
+           </div>
+         </div>
+        </details>
+
+
+        <br><br>
+        <center>
+            <hr class="border-2" style="margin:0px;padding:0px;color:black;">
+          <b><p style="font-size:120%;margin:0px;">Time Table</p></b>
+          <hr class="border-2" style="margin:0px;padding:0px;"> <br>
+        </center>
+        <strong style="margin-left:69vw;">Effective from: {{date}}</strong>
+        <table class="table table-secondary table-hover">
+            <tr>
+                <th>Day</th><th>I</th><th>II</th><th rowspan="7">Break</th><th>III</th><th>IV</th><th rowspan="7">Lunch</th><th>V</th><th>VI</th><th>VII</th>
+            </tr>
+            {% for x in tt%}
+            <tr>
+                <td>{{x.Day}}</td><td>{{x.C1}}</td><td>{{x.C2}}</td><td>{{x.C3}}</td><td>{{x.C4}}</td><td>{{x.C5}}</td><td>{{x.C6}}</td><td>{{x.C7}}</td>
+            </tr> 
+            {% endfor %}
+          </table>
+          <br>
+          <br>
+
+
+       <center>
+            <hr class="border-2" style="margin:0px;padding:0px;color:black;">
+          <b><p style="font-size:120%;margin:0px;">Exam Results</p></b>
+          <hr class="border-2" style="margin:0px;padding:0px;">
+
+         <br>
+          <div class="progress-stacked" style="width:75%;height:25px;margin-bottom:10px;">
+            <div class="progress" role="progressbar" aria-label="Segment one" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: {{v1}}%;height:25px;">
+              <div class="progress-bar bg-danger"></div>
+            </div>
+            <div class="progress" role="progressbar" aria-label="Segment two" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width:{{v2}}%;height:25px;">
+              <div class="progress-bar bg-secondary"></div>
+            </div>
+            <div class="progress" role="progressbar" aria-label="Segment three" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width:{{v3}}%;height:25px;">
+              <div class="progress-bar bg-info"></div>
+            </div>
+          </div>
+          <p style="display:inline-block;position:relative;bottom:38px;font-size:20px;color:black;margin:0px;padding:0px;"><i><b>CGPA: {{avg}}</b></i></p>
+  <p>
+    <button class="btn btn-primary"type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample" style="width:1000px;">
+      <strong>B.Tech I-I Semester Results</strong>
+    </button>
+  </p>
+      <div class="collapse collapse-horizontal" id="collapseWidthExample">
+          <div class="card card-body" style="width:1000px;">
+            <table class="table table-hover">
+                <tr>
+                    <th>S.No</th>
+                    <th>Subject</th>
+                    <th>Credits</th>
+                    <th>GPA</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>LANM</td>
+                    <td>4</td>
+                    <td>{{s.LANM}}</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>EC</td>
+                    <td>4</td>
+                    <td>{{s.EC}}</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>BEEE</td>
+                    <td>3</td>
+                    <td>{{s.BEEE}}</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>PPS</td>
+                    <td>3</td>
+                    <td>{{s.PPS}}</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>PPS LAB</td>
+                    <td>3</td>
+                    <td>{{s.PPS_LAB}}</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>EC LAB</td>
+                    <td>1.5</td>
+                    <td>{{s.EC_LAB}}</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>BEEE LAB</td>
+                    <td>1</td>
+                    <td>{{s.BEEE_LAB}}</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>IT WORKSHOP</td>
+                    <td>1.5</td>
+                    <td>{{s.IT_WORKSHOP}}</td>
+                </tr>
+              </table>
+              <strong>
+              <p>SGPA : {{sum1}}</p>
+              </strong>
+        </div>
+    </div>
+<p style="margin-top:10px;">
+    <button class="btn btn-primary"type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample2" aria-expanded="false" aria-controls="collapseWidthExample2" style="width:1000px;">
+      <strong>B.Tech I-II Semester Results</strong>
+    </button>
+  </p>
+      <div class="collapse collapse-horizontal" id="collapseWidthExample2">
+          <div class="card card-body" style="width:1000px;">
+            <table class="table table-hover">
+                <tr>
+                    <th>S.No</th>
+                    <th>Subject</th>
+                    <th>Credits</th>
+                    <th>GPA</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>ENG</td>
+                    <td>3</td>
+                    <td>{{s.ENG}}</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>P&S</td>
+                    <td>3</td>
+                    <td>{{s.PandS}}</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>SCP</td>
+                    <td>3</td>
+                    <td>{{s.SCP}}</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>PYTHON</td>
+                    <td>4</td>
+                    <td>{{s.PYTHON}}</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>EG</td>
+                    <td>4</td>
+                    <td>{{s.EG}}</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>ENG LAB</td>
+                    <td>1</td>
+                    <td>{{s.ENG_LAB}}</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>SCP LAB</td>
+                    <td>1</td>
+                    <td>{{s.SCP_LAB}}</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>PYTHON LAB</td>
+                    <td>2</td>
+                    <td>{{s.PYTHON_LAB}}</td>
+                </tr>
+              </table>
+              <strong>
+              <p>SGPA : {{sum2}}</p>
+              </strong>
+        </div>
+    </div>
+
+    
+<p style="margin-top:10px;">
+    <button class="btn btn-primary"type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample3" aria-expanded="false" aria-controls="collapseWidthExample3" style="width:1000px;">
+      <strong>B.Tech II-I Semester Results</strong>
+    </button>
+  </p>
+      <div class="collapse collapse-horizontal" id="collapseWidthExample3">
+          <div class="card card-body" style="width:1000px;">
+            <table class="table table-hover">
+                <tr>
+                    <th>S.No</th>
+                    <th>Subject</th>
+                    <th>Credits</th>
+                    <th>GPA</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>DM</td>
+                    <td>3</td>
+                    <td>{{s.DM}}</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>COA</td>
+                    <td>3</td>
+                    <td>{{s.COA}}</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>DS</td>
+                    <td>3</td>
+                    <td>{{s.DS}}</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>JAVA</td>
+                    <td>3</td>
+                    <td>{{s.JAVA}}</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>OS</td>
+                    <td>3</td>
+                    <td>{{s.OS}}</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>DS LAB</td>
+                    <td>1.5</td>
+                    <td>{{s.DS_LAB}}</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>JAVA LAB</td>
+                    <td>1.5</td>
+                    <td>{{s.JAVA_LAB}}</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>OS LAB</td>
+                    <td>2</td>
+                    <td>{{s.OS_LAB}}</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>GS</td>
+                    <td>0</td>
+                    <td>{{s.GS}}</td>
+                </tr>
+              </table>
+              <strong>
+              <p>SGPA : {{sum3}}</p>
+              </strong>
+        </div>
+    </div>
+
+
+    
+<p style="margin-top:10px;">
+    <button class="btn btn-primary"type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample4" aria-expanded="false" aria-controls="collapseWidthExample4" style="width:1000px;">
+      <strong>B.Tech II-II Semester Results</strong>
+    </button>
+  </p>
+      <div class="collapse collapse-horizontal" id="collapseWidthExample4">
+          <div class="card card-body" style="width:1000px;">
+            <table class="table table-hover">
+                <tr>
+                    <th>S.No</th>
+                    <th>Subject</th>
+                    <th>Credits</th>
+                    <th>GPA</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>ASOT</td>
+                    <td>3</td>
+                    <td>{{s.ASOT}}</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>DBMS</td>
+                    <td>3</td>
+                    <td>{{s.DBMS}}</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>WT</td>
+                    <td>3</td>
+                    <td>{{s.WT}}</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>DAA</td>
+                    <td>3</td>
+                    <td>{{s.DAA}}</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>CC</td>
+                    <td>3</td>
+                    <td>{{s.CC}}</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>DBMS LAB</td>
+                    <td>2</td>
+                    <td>{{s.DBMS_LAB}}</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>WT LAB</td>
+                    <td>1.5</td>
+                    <td>{{s.WT_LAB}}</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>DAA LAB</td>
+                    <td>1.5</td>
+                    <td>{{s.DAA_LAB}}</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>ES</td>
+                    <td>0</td>
+                    <td>{{s.ES}}</td>
+                </tr>
+              </table>
+              <strong>
+              <p>SGPA : {{sum4}}</p>
+              </strong>
+        </div>
+    </div>
+</center>
+
+
+
+
+
+
+{% endblock %}
