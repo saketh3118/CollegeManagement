@@ -5,6 +5,8 @@ class LoginDetails(models.Model):
     username=models.CharField(max_length=20,primary_key=True)
     password=models.CharField(max_length=20)
     name=models.CharField(max_length=50,default="")
+    usertype=models.CharField(max_length=30,default="usertype")
+    dept=models.CharField(max_length=30,default="department")
     def __str__(self):
         return self.username
 class Semester(models.Model):
@@ -91,3 +93,13 @@ class TimeTable(models.Model):
     C7=models.CharField(max_length=20,default="sports")
     def __str__(self):
         return str(self.Year)+"   "+self.Dept+"   "+self.Day
+class Assignments(models.Model):
+    sub=models.CharField(max_length=30,default="sub",primary_key=True)
+    mid=models.CharField(max_length=200,default="mid")
+    q1=models.CharField(max_length=200,default="text")
+    q2=models.CharField(max_length=200,default="text")
+    q3=models.CharField(max_length=200,default="text")
+    q4=models.CharField(max_length=200,default="text")
+    q5=models.CharField(max_length=200,default="text")
+    def __str__(self):
+        return self.sub+" "+self.mid

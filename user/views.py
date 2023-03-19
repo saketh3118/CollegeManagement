@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 import user
-from user.models import LoginDetails,Semester,Attendance,Queries,TimeTable
+from user.models import LoginDetails,Semester,Attendance,Queries,TimeTable,Assignments
 # Create your views here.
 def home(request):
     if request.method=='POST':
@@ -11,14 +11,10 @@ def home(request):
         except :
             return render(request,'home.html')
         if(lg.username==username and lg.password==password):
-            uname=request.session.get('uname')
-            name=request.session.get('name')
-            if uname is None:
-                uname=lg.username
-            if name is None:
-                name=lg.name
-            request.session['uname']=uname
-            request.session['name']=name
+            request.session['uname']=lg.username
+            request.session['name']=lg.name
+            if(lg.usertype=="Faculty"):
+                return render(request,'faculty.html')
             return render(request,'index.html',{'lg':lg})
     return render(request,'home.html')
 def index(request):
@@ -127,3 +123,21 @@ def contactus(request):
         return render(request,'contactus.html',{'uname':uname,'name':name,'val':val})
     val=0
     return render(request,'contactus.html',{'uname':uname,'name':name,'val':val})
+def assignments(request):
+    return render(request,'assignments.html')
+def mid1(request):
+    if request.method=='POST':
+        sub=request.POST.get('subject')
+        q1=request.POST.get('q1')
+        q2=request.POST.get('q2')
+        q3=request.POST.get('q3')
+        q4=request.POST.get('q4')
+        q5=request.POST.get('q5')
+        try:
+            text=Assignments.objects.create(sub=sub,mid="mid1")
+        except:
+            text=Assignments.objects.get(sub=sub)
+        text.save()
+    return render(request,'mid1.html')
+def mid2(request):
+    return render(request,'mid2.html')

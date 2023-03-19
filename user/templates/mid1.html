@@ -1,0 +1,22 @@
+{% extends 'assignments.html' %}
+{% block d %}
+<br>
+<form action='/mid1' method='post'>
+    {% csrf_token %}
+<center>
+<div class="mb-3" style="width:800px;">
+    <label for="exampleFormControlInput1" class="form-label"><strong>Subject</strong></label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" name="subject" placeholder="Subject">
+</div>
+  <div class="mb-3" style="width:800px;">
+    <label for="exampleFormControlTextarea1" class="form-label"><strong>Assignment Questions</strong></label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" name="q1" rows="1"></textarea>
+    <textarea class="form-control" id="exampleFormControlTextarea1" name="q2" rows="1"></textarea>
+    <textarea class="form-control" id="exampleFormControlTextarea1" name="q3" rows="1"></textarea>
+    <textarea class="form-control" id="exampleFormControlTextarea1" name="q4" rows="1"></textarea>
+    <textarea class="form-control" id="exampleFormControlTextarea1" name="q5" rows="1"></textarea>
+  </div>
+  <input type="submit" class="btn btn-primary">
+</center>
+</form>
+{% endblock %}
