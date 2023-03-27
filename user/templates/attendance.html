@@ -8,9 +8,10 @@
   </p> 
 <br>
 <center>
-    <p style="margin-bottom:5px;font-style:italic">
+    <p style="display:inline-block;margin-bottom:5px;font-style:italic">
         <b>Attendance Progress</b>
-    </p>
+      </p>
+        <p style="display:inline-block;position:relative;top:30px;right:110px;font-size:20px;color:black;margin:0px;padding:0px;"><i><b>{{percentage}}%</b></i></p>
 <div class="progress-stacked" style="width:75%;height:25px;margin-bottom:10px;">
     <div class="progress" role="progressbar" aria-label="Segment one" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: {{v1}}%;height:25px;">
       <div class="progress-bar bg-danger"></div>
@@ -22,7 +23,6 @@
       <div class="progress-bar bg-info"></div>
     </div>
   </div>
-  <p style="display:inline-block;position:relative;bottom:38px;left:220px;font-size:20px;color:black;margin:0px;padding:0px;"><i><b>{{percentage}}%</b></i></p>
   <strong>{{msg}}</strong>
   <br>
 </center>
