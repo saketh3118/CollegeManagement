@@ -9,14 +9,15 @@
       
       
       <center>
-        <hr class="border-2" style="margin:0px;padding:0px;color:black;">
+        <hr class="border-2" style="margin:0px;padding:0px;color:black;width:1300px;">
       <b><p style="font-size:120%;margin:0px;">Assignment Questions</p></b>
-      <hr class="border-2" style="margin:0px;padding:0px;">
+      <hr class="border-2" style="margin:0px;padding:0px;width:1300px;">
     </center>
     {% for assign in assignments %}
     {% if assign.sub != ""%}
       <details style="padding-left:10px;">
             <summary><strong>{{assign.sub}}</strong></summary>
+            <br>
         <div class="container" style="width:1300px;">
            <div class="row" style="margin-left:160px;">
              <div class="col-10" style="border:2px solid black;"><center>{{assign.sub}}</center></div>
@@ -35,12 +36,11 @@
 
         <br>
         <center>
-            <hr class="border-2" style="margin:0px;padding:0px;color:black;">
+            <hr class="border-2" style="margin:0px;padding:0px;color:black;width:1300px;">
           <b><p style="font-size:120%;margin:0px;">Time Table</p></b>
-          <hr class="border-2" style="margin:0px;padding:0px;"> <br>
-        </center>
+          <hr class="border-2" style="margin:0px;padding:0px;width:1300px;"> <br>
         <strong style="margin-left:69vw;">Effective from: {{date}}</strong>
-        <table class="table table-secondary table-hover">
+        <table class="table table-secondary table-hover" style="width:1300px;">
             <tr>
                 <th>Day</th><th>I</th><th>II</th><th rowspan="7">Break</th><th>III</th><th>IV</th><th rowspan="7">Lunch</th><th>V</th><th>VI</th><th>VII</th>
             </tr>
@@ -50,14 +50,15 @@
             </tr> 
             {% endfor %}
           </table>
+        </center>
           <br>
           <br>
 
 
        <center>
-            <hr class="border-2" style="margin:0px;padding:0px;color:black;">
+            <hr class="border-2" style="margin:0px;padding:0px;color:black;width:1300px;">
           <b><p style="font-size:120%;margin:0px;">Exam Results</p></b>
-          <hr class="border-2" style="margin:0px;padding:0px;">
+          <hr class="border-2" style="margin:0px;padding:0px;width:1300px;">
 
          <br>
           <div class="progress-stacked" style="width:75%;height:25px;margin-bottom:10px;">
