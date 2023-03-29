@@ -13,19 +13,27 @@
       <b><p style="font-size:120%;margin:0px;">Assignment Questions</p></b>
       <hr class="border-2" style="margin:0px;padding:0px;">
     </center>
+    {% for assign in assignments %}
+    {% if assign.sub != ""%}
       <details style="padding-left:10px;">
-            <summary><strong>Subject</strong></summary>
+            <summary><strong>{{assign.sub}}</strong></summary>
         <div class="container">
            <div class="row" style="margin-left:160px;">
-             <div class="col-10" style="border:2px solid black;">.col-9</div>
-             <div class="col-5" style="border:2px solid black;">.col-4<br>Since 9 + 4 = 13 &gt; 12, this 4-column-wide div gets wrapped onto a new line as one contiguous unit.</div>
-             <div class="col-5" style="border:2px solid black;">.col-6<br>Subsequent columns continue along the new line.</div>
+             <div class="col-10" style="border:2px solid black;"><center>{{assign.sub}}</center></div>
+             <div class="col-5" style="border:2px solid black;"><center>{{assign.mid}}</center>
+             Q1:{{assign.q1}}<br>
+             Q2:{{assign.q2}}<br>
+             Q3:{{assign.q3}}<br>
+             Q4:{{assign.q4}}<br>
+             Q5:{{assign.q5}}</div>
+             <div class="col-5" style="border:2px solid black;"></div>
            </div>
          </div>
         </details>
+        {% endif %}
+{% endfor %}
 
-
-        <br><br>
+        <br>
         <center>
             <hr class="border-2" style="margin:0px;padding:0px;color:black;">
           <b><p style="font-size:120%;margin:0px;">Time Table</p></b>

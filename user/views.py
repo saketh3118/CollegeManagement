@@ -70,7 +70,8 @@ def academics(request):
         temp=0
     v3=temp*10
     tt=TimeTable.objects.all()
-    return render(request,'academics.html',{'s':s,'uname':uname,'name':name,'sum1':sum1,'sum2':sum2,'sum3':sum3,'sum4':sum4,'avg':avg,'tt':tt,'date':tt[0].date.date(),'v1':v1,'v2':v2,'v3':v3})
+    assignments=Assignments.objects.all()
+    return render(request,'academics.html',{'s':s,'uname':uname,'name':name,'sum1':sum1,'sum2':sum2,'sum3':sum3,'sum4':sum4,'avg':avg,'tt':tt,'date':tt[0].date.date(),'v1':v1,'v2':v2,'v3':v3,'assignments':assignments})
 def attendance(request):
     uname=request.session.get('uname')
     name=request.session.get('name')
@@ -134,7 +135,7 @@ def mid1(request):
         q4=request.POST.get('q4')
         q5=request.POST.get('q5')
         try:
-            text=Assignments.objects.create(sub=sub,mid="mid1")
+            text=Assignments.objects.create(sub=sub,mid="mid1",q1=q1,q2=q2,q3=q3,q4=q4,q5=q5)
         except:
             text=Assignments.objects.get(sub=sub)
         text.save()
