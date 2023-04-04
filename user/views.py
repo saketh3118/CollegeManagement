@@ -213,3 +213,5 @@ def marks(request):
             m1.save()
             m2.save()
     return render(request,'marks.html',{'students':students,'sub':sub})
+def logout(request):
+    return render(request,'logout.html')
