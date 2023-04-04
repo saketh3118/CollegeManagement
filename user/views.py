@@ -1,6 +1,8 @@
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 import user
-from user.models import LoginDetails,Semester,Attendance,Queries,TimeTable,Assignments
+from django.contrib import messages
+from user.models import *
 # Create your views here.
 def home(request):
     if request.method=='POST':
@@ -71,7 +73,9 @@ def academics(request):
     v3=temp*10
     tt=TimeTable.objects.all()
     assignments=Assignments.objects.all()
-    return render(request,'academics.html',{'s':s,'uname':uname,'name':name,'sum1':sum1,'sum2':sum2,'sum3':sum3,'sum4':sum4,'avg':avg,'tt':tt,'date':tt[0].date.date(),'v1':v1,'v2':v2,'v3':v3,'assignments':assignments})
+    m1=Mid1.objects.get(username=uname)
+    m2=Mid2.objects.get(username=uname)
+    return render(request,'academics.html',{'s':s,'uname':uname,'name':name,'sum1':sum1,'sum2':sum2,'sum3':sum3,'sum4':sum4,'avg':avg,'tt':tt,'date':tt[0].date.date(),'v1':v1,'v2':v2,'v3':v3,'assignments':assignments,'m1':m1,'m2':m2})
 def attendance(request):
     uname=request.session.get('uname')
     name=request.session.get('name')
@@ -125,20 +129,87 @@ def contactus(request):
     val=0
     return render(request,'contactus.html',{'uname':uname,'name':name,'val':val})
 def assignments(request):
-    return render(request,'assignments.html')
+    uname=request.session.get('uname')
+    fac=LoginDetails.objects.get(username=uname)
+    return render(request,'assignments.html',{'fac':fac})
 def mid1(request):
+    uname=request.session.get('uname')
+    fac=LoginDetails.objects.get(username=uname)
     if request.method=='POST':
-        sub=request.POST.get('subject')
+        sub=fac.dept
         q1=request.POST.get('q1')
         q2=request.POST.get('q2')
         q3=request.POST.get('q3')
         q4=request.POST.get('q4')
         q5=request.POST.get('q5')
         try:
-            text=Assignments.objects.create(sub=sub,mid="mid1",q1=q1,q2=q2,q3=q3,q4=q4,q5=q5)
+            text=Assignments.objects.create(sub=sub,mid="Mid1",q1=q1,q2=q2,q3=q3,q4=q4,q5=q5)
+            text.save()
         except:
             text=Assignments.objects.get(sub=sub)
-        text.save()
-    return render(request,'mid1.html')
+            text.mid="Mid1"
+            text.q1=request.POST.get('q1')
+            text.q2=request.POST.get('q2')
+            text.q3=request.POST.get('q3')
+            text.q4=request.POST.get('q4')
+            text.q5=request.POST.get('q5')
+            text.save()
+        messages.success(request,'Success!Assignment Questions has been Posted')
+        return render(request,'mid1.html',{'fac':fac,'ans':text,'flag':1})
+    ans=Assignments.objects.get(sub=fac.dept)
+    ans.mid="Mid1"
+    return render(request,'mid1.html',{'fac':fac,'ans':ans,'flag':-1})
 def mid2(request):
-    return render(request,'mid2.html')
+    uname=request.session.get('uname')
+    fac=LoginDetails.objects.get(username=uname)
+    if request.method=='POST':
+        sub=fac.dept
+        q6=request.POST.get('q6')
+        q7=request.POST.get('q7')
+        q8=request.POST.get('q8')
+        q9=request.POST.get('q9')
+        q10=request.POST.get('q10')
+        try:
+            text=Assignments.objects.create(sub=sub,mid="Mid2",q6=q6,q7=q7,q8=q8,q9=q9,q10=q10)
+            text.save()
+        except:
+            text=Assignments.objects.get(sub=sub)
+            text.mid="Mid2"
+            text.q6=request.POST.get('q6')
+            text.q7=request.POST.get('q7')
+            text.q8=request.POST.get('q8')
+            text.q9=request.POST.get('q9')
+            text.q10=request.POST.get('q10')
+            text.save()
+        messages.success(request,'Success!Assignment Questions has been Posted')
+        return render(request,'mid2.html',{'fac':fac,'ans':text,'flag':1})
+    ans=Assignments.objects.get(sub=fac.dept)
+    ans.mid="Mid2"
+    return render(request,'mid2.html',{'fac':fac,'ans':ans,'flag':-1})
+def marks(request):
+    uname=request.session.get('uname')
+    fac=LoginDetails.objects.get(username=uname)
+    students=LoginDetails.objects.filter(usertype="Student")
+    if request.method=="POST":
+        sub=fac.dept
+        for student in students:
+            try:
+                m1=Mid1.objects.create(username=student.username)
+            except:
+                m1=Mid1.objects.get(username=student.username)
+            try:
+                m2=Mid2.objects.create(username=student.username)
+            except:
+                m2=Mid2.objects.get(username=student.username)
+            if sub=="Java_Programming_CSE":
+                m1.Java_Programming_Cse=request.POST.get(student.username)
+                m2.Java_Programming_Cse=request.POST.get(student.username)
+            elif sub=="Data_Structures_Cse":
+                m1.Data_Structures_Cse=request.POST.get(student.username)
+                m2.Data_Structures_Cse=request.POST.get(student.username)
+            elif sub=="Web_Technologies_Cse":
+                m1.Web_Technologies_Cse=request.POST.get(student.username)
+                m2.Web_Technologies_Cse=request.POST.get(student.username)
+            m1.save()
+            m2.save()
+    return render(request,'marks.html',{'students':students,'sub':sub})

@@ -94,12 +94,31 @@ class TimeTable(models.Model):
     def __str__(self):
         return str(self.Year)+"   "+self.Dept+"   "+self.Day
 class Assignments(models.Model):
-    sub=models.CharField(max_length=30,default="sub",primary_key=True)
+    sub=models.CharField(max_length=30,default="",primary_key=True)
     mid=models.CharField(max_length=200,default="mid")
-    q1=models.CharField(max_length=200,default="text")
-    q2=models.CharField(max_length=200,default="text")
-    q3=models.CharField(max_length=200,default="text")
-    q4=models.CharField(max_length=200,default="text")
-    q5=models.CharField(max_length=200,default="text")
+    q1=models.CharField(max_length=200,default="text",blank=True)
+    q2=models.CharField(max_length=200,default="text",blank=True)
+    q3=models.CharField(max_length=200,default="text",blank=True)
+    q4=models.CharField(max_length=200,default="text",blank=True)
+    q5=models.CharField(max_length=200,default="text",blank=True)
+    q6=models.CharField(max_length=200,default="text",blank=True)
+    q7=models.CharField(max_length=200,default="text",blank=True)
+    q8=models.CharField(max_length=200,default="text",blank=True)
+    q9=models.CharField(max_length=200,default="text",blank=True)
+    q10=models.CharField(max_length=200,default="text",blank=True)
     def __str__(self):
-        return self.sub+" "+self.mid
+        return self.sub
+class Mid1(models.Model):
+    username=models.CharField(max_length=30,default="",primary_key=True)
+    Java_Programming_Cse=models.CharField(max_length=10,blank=True)
+    Data_Structures_Cse=models.CharField(max_length=10,blank=True)
+    Web_Technologies_Cse=models.CharField(max_length=10,blank=True)
+    def __str__(self):
+        return self.username
+class Mid2(models.Model):
+    username=models.CharField(max_length=30,default="",primary_key=True)
+    Java_Programming_Cse=models.CharField(max_length=10,blank=True)
+    Data_Structures_Cse=models.CharField(max_length=10,blank=True)
+    Web_Technologies_Cse=models.CharField(max_length=10,blank=True)
+    def __str__(self):
+        return self.username
