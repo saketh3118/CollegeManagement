@@ -7,7 +7,7 @@
     <div class="btn-group" style="margin-top:10px;">
 <form action="/marks" method="post">
     {% csrf_token %}
-        <table class="table" style="width:1300px;">
+        <table class="table text-white" style="width:1300px;">
             <thead>
               <tr>
                 <th scope="col">Name</th>
@@ -21,8 +21,8 @@
                 <tr>
                     <th scope="row">{{student.name}}</th>
                     <td>{{student.username}}</td>
-                    <td><input type="number" name="{{student.username}}" class="text-primary"style="border:2px solid;border-radius:10px;"></td>
-                    <td><input type="number" name="{{student.name}}"class="text-primary"style="border:2px solid;border-radius:10px;"></td>
+                    <td><input type="number" name="{{student.username}}" class="text-primary bg-black text-white" style="border:2px solid white;border-radius:10px;"></td>
+                    <td><input type="number" name="{{student.name}}"class="text-primary bg-black text-white" style="border:2px solid white;border-radius:10px;"></td>
                 </tr>
                 {% endfor %}
             </tbody>
