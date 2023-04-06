@@ -11,5 +11,7 @@ urlpatterns = [
     path('mid1',views.mid1),
     path('mid2',views.mid2),
     path('marks',views.marks),
-    path('logout',views.logout)
+    path('logout',views.logout),
+    path('logoutf',views.logoutf),
+    path('faculty',views.faculty)
 ]

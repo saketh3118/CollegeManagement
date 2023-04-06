@@ -16,9 +16,10 @@ def home(request):
             request.session['uname']=lg.username
             request.session['name']=lg.name
             if(lg.usertype=="Faculty"):
-                return render(request,'faculty.html')
-            return render(request,'index.html',{'lg':lg})
-    return render(request,'home.html')
+                fac=LoginDetails.objects.get(username=request.session.get('uname'))
+                return render(request,'faculty.html',{'fac':fac})
+            return render(request,'index.html',{'lg':lg,'uname':lg.username,'name':lg.name})
+    return render(request,'home.html',{})
 def index(request):
     uname=request.session.get('uname')
     name=request.session.get('name')
@@ -212,6 +213,16 @@ def marks(request):
                 m2.Web_Technologies_Cse=request.POST.get(student.username)
             m1.save()
             m2.save()
-    return render(request,'marks.html',{'students':students,'sub':sub})
+    return render(request,'marks.html',{'students':students,'sub':fac.dept,'fac':fac})
 def logout(request):
-    return render(request,'logout.html')
+    uname=request.session.get('uname')
+    name=request.session.get('name')
+    return render(request,'logout.html',{'uname':uname,'name':name})
+def logoutf(request):
+    fac=LoginDetails.objects.get(username=request.session.get('uname'))
+    uname=request.session.get('uname')
+    name=request.session.get('name')
+    return render(request,'logoutf.html',{'fac':fac,'uname':uname,'name':name})
+def faculty(request):
+    fac=LoginDetails.objects.get(username=request.session.get('uname'))
+    return render(request,'faculty.html',{'fac':fac})

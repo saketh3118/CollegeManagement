@@ -8,7 +8,7 @@
 </style>
 </head>
 <body> 
-    <nav class="navbar navbar-expand-lg bg-dark bg-body-tertiary" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg sticky-top" style="background-color:black;">
         <div class="container-fluid">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -16,17 +16,30 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+                <a class="nav-link text-white" href="/faculty"><strong>Home</strong></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/assignments">Assigments</a>
+                <a class="nav-link text-white" href="/assignments"><strong>Assigments</strong></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/marks">Marks</a>
+                <a class="nav-link text-white" href="/marks"><strong>Marks</strong></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Contact Us</a>
+                <a class="nav-link text-white" href="#"><strong>Contact Us</strong></a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="/logoutf"><strong>LogOut</strong></a>
+              </li>
+              <li class="nav-item dropdown" style="position:relative;left:710px;">
+                <button class="btn btn-dark dropdown-toggle bg-black" data-bs-toggle="dropdown" aria-expanded="false">
+                 <p style="font-size:130%;display:inline;">&equiv;</p> {{fac.username}}
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark">
+                  <li><a class="dropdown-item disabled" href="#">{{fac.name}}</a></li>
+                  <li><a class="dropdown-item" href="/logout">LogOut</a></li>
+                </ul>
+              </li>
+
             </ul>
           </div>
         </div>

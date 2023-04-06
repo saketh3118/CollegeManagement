@@ -1,332 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel" >
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="../static/img/slide3.jpeg" class="d-block w-100" alt="..." height="350px">  
+<div class="jumbotron" style="background-color:black;height:500px;">
+    <div class="container">
+        <h2 class="text-white" style="position:relative;left:40px;top:50px;">Welcome to <strong class="text-primary" style="display:inline;">Saketh's Student Portal</strong></h2>
+      <h3 class="text-white" style="position:relative;left:40px;top:50px;">Hello, <strong class="text-primary" style="display:inline;">{{name}}</strong></h3>
+      <h5 style="position:relative;left:40px;top:50px;width:360px;" class="text-white"><i>"A good education can change Anyone. A good teacher can change Everything."</i></h5> <br>
+      <h6 style="position:relative;left:40px;top:50px;" class="text-white">Always feel free to reach us out<a class="btn btn-primary btn-lg mx-2" href="/contactus" role="button">Contact &raquo;</a></h6>
+    </div>
+    <img src="../static/img/icons8-student-96.png" style="position:relative;width:330px;bottom:220px;left:900px;">
+  </div>
+
+  <div class="container">
+    <!-- Example row of columns -->
+    <div class="row mt-5"  style="position:relative;left:40px;">
+      <div class="col-md-4 text-white mx-5" style="width:270px;height:300px;border-radius:10px;background-color:black;position:relative;bottom:160px;border:1px solid gray;">
+        <h2 class="m-3">Academics</h2>
+        <p class="m-3">Confidence is reason for many Great Achievements.When you Score good marks in Exams it boosts your confidence,check your performance here</p>
+        <p><a class="btn btn-primary mx-3" href="/academics" role="button">Academics &raquo;</a></p>
       </div>
-      <div class="carousel-item">
-        <img src="../static/img/slide2.jpeg" class="d-block w-100" alt="..." height="350px">
-        <div class="carousel-caption d-none d-md-block">
-            <h5>Inter College Competition</h5>
-            <p>Not only academics other activities are also important</p>
-          </div>      
+      <div class="col-md-4 text-white mx-5" style="height:300px;width:270px;border-radius:10px;background-color:black;position:relative;bottom:160px;border:1px solid gray;">
+        <h2 class="m-3">Attendance</h2>
+        <p class="m-3">Attendance is most overrated thing in Engineering,but coming regular to college can improve your knowledge.Check your Attendance here</p>
+        <p class=><a class="btn mx-3 btn-primary" href="/attendance" role="button">Attendance &raquo;</a></p>
       </div>
-      <div class="carousel-item">
-        <img src="../static/img/slide1.jpeg" class="d-block w-100" alt="..." height="350px">
-        <div class="carousel-caption d-none d-md-block">
-            <h5 style="color:lavendar;">MREC AdminBlock</h5>
-            <p  style="color:black;">The Entire College Operates from here...</p>
+      <div class="col-md-4 text-white mx-5" style="height:300px;width:250px;border-radius:10px;background-color:black;position:relative;bottom:160px;border:1px solid gray;">
+        <h2 class="m-3">Offday</h2>
+        <p class="m-3">Time is So Unpredictable,we may get sudden works which aren't in our Control. So feel free to take a leave ,DM us the reason here</p>
+        <p class="m-3"><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
- <p style="margin:10px 0px 0px 15px;font-size:130%">
-    Welcome <strong>{{lg.username}} {{lg.name}}</strong><strong>{{uname}} {{name}}</strong>
- </p>
-<div class="col-md-12" style="background-color:white; padding-top:5px;margin-left:15px;">
 
-    <div class="col-md-12" style="width:1300px;">
+    <hr>
 
-        <h1 class="heading-title">About MREC</h1>
-        <div class="row">
-            <div class="col-md-9">
-                <p style="text-align: justify; font-family: Palatino Linotype;">
-                    <strong>Malla Reddy Engineering College (Autonomous)</strong> – MREC, is one of the top notch and highly
-                    reputed engineering colleges in Hyderabad, Telangana. MREC is part of Malla Reddy Group of Institutions
-                    (MRGI), founded by Sri. Ch. Malla Reddy, currently Hon’ble Minister, Labor and Employment,
-                    Factories and Skill Development, Govt. of Telangana State, who has invaluable insights into technical
-                    education of highest quality. The college is situated in a serene, lush green environment on
-                    Kompally- Bahadurpally Road, opposite Forest Academy, Medchal-Malkajgiri District, Telangana
-                    State and adjacent to Urban Forest.
-                </p>
-
-                <p style="text-align: justify; font-family: Palatino Linotype;">
-                    Established in the year <strong>2002</strong>, the college is approved by AICTE and affiliated to JNTUH.
-                    The college offers <strong>12 UG programmes </strong>for the students with intake in various
-                    specialisations–Computer Science and Engineering (240), Emerging Courses in Computer Science
-                    and Engineering (Artificial Intelligence and Machine Learning(180), Cyber Security(180),
-                    Data Science (180) & Internet of Things (60)), Information Technology(60),
-                    Artificial Intelligence and Machine Learning(60), Electronics and Communication Engineering(180),
-                    Civil Engineering(180), Electrical and Electronics Engineering(120), Mechanical Engineering(240),
-                    Mining Engineering(60),  and <strong>7PG Programmes </strong>for the students with intake in various specialisations –
-                    Computer Science and Engineering(30), Structural Engineering(30), Electrical Power Systems(30),
-                    VLSI & Embedded Systems(30), Machine Design(30), Thermal Engineering(30) and Master of Business
-                    Administration(60). The sanctioned intake for all these <strong>19 programmes  </strong>is <strong>1620 </strong> (UG-1380 and PG-240).
-                </p>
-
-                <p style="text-align: justify; font-family: Palatino Linotype;">
-                    The University Grants Commission (UGC) conferred <strong>‘Autonomous’  </strong>status
-                    upon the college till the year <strong>2024 – 25 </strong>. The college is placed in 251 – 300
-                    Band in Engineering category in <strong>NIRF 2021  </strong>rankings. The college is accredited by
-                    <strong>NAAC with 'A++' Grade   </strong><strong>(Cycle III).   </strong>It is the only engineering college in <strong>Telangana & AP</strong>
-                    and one among the 6 colleges in South India with <strong>SEVEN years Accreditation </strong>validity.
-                    <strong>Five UG programmes </strong>offered by the departments of CE, EEE, ME, ECE and CSE got accredited by
-                    <strong>NBA</strong> recently with a score of 700+ points each under <strong>Tier – I </strong>
-                    which is a first time ever feat in the state of Telangana. The eligible PG programmes
-                    are also accredited by NBA till June 2022 which is again a rare achievement.
-                    AICTE has handpicked the college under <strong>Rs. 50 Lakh</strong> worth <strong>‘Margadarshan’ </strong>scheme wherein
-                    the college got the privilege to mentor 10 Engineering colleges for the NBA accreditation
-                    process of the eligible programmes in those colleges.
-                </p>
-
-                <p style="text-align: justify; font-family: Palatino Linotype;">
-                    The research potential of the college is duly recognized by various
-                    funding agencies both national and international. It is evident from the fact
-                    that the college got <strong>Rs. 1 Crore </strong>grant from the software giant Microsoft under ‘AI for Earth’ scheme.
-                </p>
-
-                <p style="text-align: justify; font-family: Palatino Linotype;">
-                    The <strong>Institute Innovation Council  </strong>(IIC) is vibrant and bagged <strong>4-star rating</strong> recently
-                    awarded by Ministry of Education’s Innovation Council. Also, the college is listed in ‘<strong>Performer</strong>’
-                    category in <strong>ARIIA 2021</strong>. MRECHUB, the <strong>incubation centre </strong>at MREC supports the entrepreneurial ideas
-                    among the students and encourages them to establish their Start-ups.
-                    <strong>MSME Development Institute </strong>Hyderabad sanctioned <strong>Business Incubation Center </strong> to MREC.
-                </p>
-
-
-                <p style="text-align: justify; font-family: Palatino Linotype;">
-                    The <strong>Centre of Excellence </strong>addresses the need of Skill development training to the students.
-                    Students are trained in certification courses of <strong>
-Microsoft - Java, Python,
-Amazon Web Services (AWS), Database and CISCO - Introduction to Networks.
-</strong>
-                    The phenomenal reforms undertaken by the college made it the leader in terms of placements.
-                    Year after year the placement record is getting improved making the college break its own
-                    records set by it earlier. In the year 2020-21, 92% of the students got placed while 94%
-                    of the students in 2021-22 batch have been placed till date.  Well qualified, committed and
-                    dedicated Training and Placement officers at MREC TPO strived hard to bring nearly 132
-                    companies to the college for recruitment. Some of the Companies visited: Microsoft, Amazon,
-                    Morgan Stanley, Pay Pal, Commvault, Qualcomm, Experian, Toshiba, Hyundai, Dassault Systems, Boeing, etc.
-                </p>
-                <p style="text-align: justify; font-family: Palatino Linotype;">
-                    MREC has four statutory bodies which are constituted as per the guidelines of UGC and AICTE.
-                    During framing of the course syllabus suggestions from Academicians, Industry Experts,
-                    Corporate individuals and Alumni are collected as per the Industry requirements.
-                    Besides the Value Added Courses, the students are trained in soft skills, quantitative aptitude,
-                    reasoning, interview skills, interpersonal skills, technical and coding skills etc. Also Hackathons,
-                    Idea contests and Project expos conducted in the college regularly, bring out the hidden
-                    talents among the students.
-                </p>
-
-                <p style="text-align: justify; font-family: Palatino Linotype;">
-                    Further, the R and D Cell encourages both the faculty and students to take up quality
-                    research besides educating them regarding research ethics, quality publications and IPR related issues.
-                    The efforts put in by the Entrepreneurship Development Cell
-                    (EDC) in educating the students about the scope of entrepreneurship are lauded by the affiliating
-                    university JNTUH. Career Guidance Cell gives appropriate guidance to the students based on their
-                    strengths, weaknesses and their inclination.
-                </p>
-
-                <p style="text-align: justify; font-family: Palatino Linotype;">
-                    The dynamic Industry Institute Interaction Cell (IIIC)
-                    has ventured the college into MoUs with the reputed academic institutes of higher learning in the
-                    region and renowned MNCs and other industries. MoUs with international organizations like O-Pitblast
-                    and Strayos are signed. The recent achievement is the MoU with IIT Hyderabad and T- HUB.
-                </p>
-                <p style="text-align: justify; font-family: Palatino Linotype;">
-                    MREC is a recognized IIRS / ISRO Nodal Center.
-                    Also shortlisted by AICTE in Distinguished Chair Professor Scheme under which Prof. M. L. Munjal,
-                    INSA Honorary Scientist, Facility for Research in Technical Acoustics (FRITA),
-                    Department of Mechanical Engineering, Indian Institute of Science, Bengaluru is allocated as Mentor
-                    to MREC.
-                </p>
-                <p style="text-align: justify; font-family: Palatino Linotype;">
-                    Besides the regular academic oriented laboratories, MREC has 5 Research & Development centres,
-                    2 Workshops and 2 Data centres. IBM lab, HP DevOps lab and CISCO lab are established in association
-                    with the leading industry giants. The students are trained in the emerging technologies like
-                    Google cloud, Salesforce, RedHat Linux, Campus Connect, LabVIEW, STAAD Pro, CREO, ANSYS, HFSS
-                    Communication Design Suite Software, CADENCE, O-PITBLAST, STRAYOS, etc., to fill the gap between
-                    the academics and the industry requirements.
-                </p>
-                <p style="text-align: justify; font-family: Palatino Linotype;">
-                    The state–of–the–art infrastructure at MREC creates
-                    a conductive environment that supports progressive Teaching Learning Process.
-                    100% ICT enabled classrooms and laboratories go beyond the prescribed AICTE norms,
-                    to cater to the academic needs and research requirements of the students and the faculty members.
-                </p>
-                <p style="text-align: justify; font-family: Palatino Linotype;">
-                    The total number of computers available for the student support
-                    activities on campus is 2130 which results in 2:1 student computer ratio.
-                    14 Digital Touch Screens across the campus help the students present their content
-                    in an attracting style. 24x7 Wi-Fi facility with 70+ access points covers the entire campus
-                    with high speed internet connectivity of about 1 Gbps. Two Auditoriums with 2500 and 300 seating
-                    capacity are available for actively conducting programmes related to students and faculty members.
-                </p>
-                <p style="text-align: justify; font-family: Palatino Linotype;">
-                    The asset of MREC and the treasure house of information is the ‘Knowledge Resource Centre’,
-                    the Central Library of MREC. The well stacked library of MREC holds 60509 volumes and 7865 titles.
-                    Remotlog is an essential feature of the central library that helps the faculty and students to access
-                    the e-resources remotely at any point of time. Also the central library has registered with various
-                    digital subscriptions like Delnet, IEEE, Inflibnet etc to access various e-journals and e–books.
-                    The mission of the library is to provide information services and access to full text digital
-                    and printed resources to support the scholarly and informational needs of the college community.
-                </p>
-
-                <p style="text-align: justify; font-family: Palatino Linotype;">
-                    Besides academics the college believes in bringing out and building up
-                    the co-curricular and extra-curricular potential hidden in the students.
-                    Various clubs like Literary club, Dance club, Music club, Social service club,
-                    Fine arts club, Technical club and Photography club under Students’ Associations Council (SAC)
-                    are actively involved in nurturing the variety of talents in the students.
-                    MREC promotes sportsmanship among the engineering students as the institute believes
-                    in the concept of sound body and sound mind. Indoor game facilities with well-equipped,
-                    ventilated and spacious Gymnasium are available in the sports complex to help the students
-                    in maintaining their fitness. Around 20 students got selected for the affiliating University teams
-                    in various games and sports.
-                </p>
-
-                <p style="text-align: justify; font-family: Palatino Linotype;">
-                    The NSS units I & II of MREC are actively involved in taking up various Social Service activities
-                    that benefit the people residing in the villages around the college and in the five adopted villages.
-                    These efforts are duly recognised by the authorities and our
-                    NSS Program officer and few students received state level awards.
-                    The institute conducts Games and sports competition in connection with the two day
-                    national level student techno cultural fest Akshara and in connection with the college annual
-                    day Resonanz.
-                </p>
-
-                <p style="text-align: justify; font-family: Palatino Linotype;">
-                    The college caters to wide ranging aspirations and goals of student communities by
-                    offering relevant courses and programs in various streams of Engineering & Technology and Management.
-                    It owns world-class infrastructure and well-equipped laboratories in all departments.
-                    It is skilfully and smartly guided by Dr. A. Ramaswami Reddy, Principal,
-                    who has a rich teaching and industrial experience of many years.
-                </p>
-
-             
-                
-
-
-            </div>
-
-            <div class="col-md-2">
-                <p style="color: #009999; font-size: 18px; padding-left:5px">
-                    Few highlights of MREC:
-                </p>
-                <ul class="contentbullets" style="">
-
-                    <li>
-                        Placements in Top-Notch Companies
-                    </li>
-                    <li>
-                        Qualified faculty with industry / research experience
-                    </li>
-                    <li>
-                        Choice-based credit system
-                    </li>
-                    <li>
-                        Industry Driven Curriculum
-                    </li>
-                    <li>
-                        MOUs with Top MNCs and Industry Majors
-                    </li>
-                    <li>
-                        Centralized Academic Library with Digital Collections
-                    </li>
-                    <li>
-                        Technical case studies & online assignments
-                    </li>
-                    <li>
-                        Wi-Fi enabled campus
-                    </li>
-                    <li>
-                        24 HR Video Surveillance
-                    </li>
-                    <li>
-                        Intutive e-Learning Portal
-                    </li>
-
-                    <li>
-                        Excellent Research and incubation Centers
-                    </li>
-                    <li>
-                        State-of-the-art laboratories
-                    </li>
-
-                    <li>
-                        Well-equipped Major Auditorium
-                    </li>
-                    <li>
-                        Technical Fests, workshops & Conferences
-                    </li>
-                    <li>
-                        Comprehensive Campus Recruitment Training
-                    </li>
-                    <li>
-                        Guest lectures by experts from Industry/Academia
-                    </li>
-                    <li>
-                        Well Furnished hostels
-                    </li>
-                    <li>
-                        Industry Interface Programs
-                    </li>
-                    <li>
-                        Green Campus
-                    </li>
-                    <li>
-                        Gymnasium
-                    </li>
-                    <li>
-                        Indoor and Outdoor Sports
-                    </li>
-                    <li>
-                        Spacious Food Courts
-                    </li>
-                    <li>
-                        Pollution Free Campus
-                    </li>
-                    <li>
-                        24x7 Security
-                    </li>
-                </ul>
-
-            </div>
-        </div>
-
-        <div class="row" style="width:1350px;">
-            <div class="col-md-12" style="background-color: #0f0331;">
-        
-                <footer style="background-color: #0f0331;">
-        
-        
-                    <div class="row">
-        
-                        <div class="col-md-12">
-        
-                            <div class="col-md-1" style="vertical-align:top;">
-                                <div>
-        
-                                    <a href=""> <img src="../static/img/MREC_logo.jpeg" style="width:130px; background-color:none;" /></a>
-                                </div>
-                            </div>
-                            <div class="col-md-6" style="color: white; vertical-align: top;margin-top: 12px;color:white;font-weight:bold;">
-                                <div class="row">
-                                    <div style="display:inline;font-size:16px;">
-                                        <a href="" style="font-size:16px;padding-left:0px">MREC HOME</a>  |
-                                        <a href="" style="font-size:16px;">Contact Us</a>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div style="display:inline; font-size:16px;">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div style="color: lightgray; font-size: 16px;">
-                                        Malla Reddy Engineering College (A)
-                                        Maisammaguda(H),Gundlapochampally (V),Medchal (M).
-                                        Medchal - Malkajgiri District
-                                        Telangana - 500100.info@mrec.ac.in
-                                    </div>
-                                </div>
-                            </div>
-      {% endblock %}
+  </div> 
+{% endblock %}
