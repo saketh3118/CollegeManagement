@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-import user
+from django.contrib.auth import authenticate
 from django.contrib import messages
 from user.models import *
 # Create your views here.
@@ -8,6 +8,9 @@ def home(request):
     if request.method=='POST':
         username=request.POST.get('username')
         password=request.POST.get('password')
+        user=authenticate(username=username,password=password)
+        if(user is not None):
+            return render(request,'admin.html')
         try:
             lg=LoginDetails.objects.get(username=username)
         except :
@@ -226,3 +229,21 @@ def logoutf(request):
 def faculty(request):
     fac=LoginDetails.objects.get(username=request.session.get('uname'))
     return render(request,'faculty.html',{'fac':fac})
+def admin(request):
+    return render(request,'admin.html')
+def addusers(request):
+    lg=LoginDetails.objects.all()
+    return render(request,'addusers.html',{'lg':lg,'adduser':'no'})
+def adduserdetails(request):
+    lg=LoginDetails.objects.all()
+    c=LoginDetails.objects.all().count()
+    sub=Mid1.objects.all()
+    if request.method=='POST':
+        username=request.POST.get('username')
+        usertype=request.POST.get('usertype')
+        dept=request.POST.get('dept')
+        name=request.POST.get('name')
+        newuser=LoginDetails.objects.create(username=username,password=username,name=name,usertype=usertype,dept=dept)
+        c=c+1
+        newuser.save()
+    return render(request,'addusers.html',{'lg':lg,'adduser':'yes','count':c,'sub':sub})

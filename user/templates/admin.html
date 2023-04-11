@@ -1,0 +1,67 @@
+<head>
+    <script src="/docs/5.3/assets/js/color-modes.js"></script>
+    <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=1300px;, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    
+</head>
+<body class="bg-black">
+<div class="row m-0" style="height:100%;">
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark bg-black col-3" style="width:300px;">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <span class="fs-4 ms-4"><strong class="text-primary">Saketh's</strong> Admin Portal</span>
+      </a>
+      <hr>
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+          <a href="#" class="nav-link text-white" aria-current="page">
+            <img class="mb-1" src="../static/img/arrow.png">
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="/addusers" class="nav-link text-white">
+            <img class="mb-1" src="../static/img/arrow.png">
+            UserLogin Details
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link text-white">
+            <img class="mb-1" src="../static/img/arrow.png">
+            Exam Results
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link text-white">
+            <img class="mb-1" src="../static/img/arrow.png">
+            Time Table
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link text-white">
+            <img class="mb-1" src="../static/img/arrow.png">
+            Attendance
+          </a>
+        </li>
+      </ul>
+      <hr class="text-white">
+      <div class="dropdown">
+        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="../static/img/log.png" alt="" width="32" height="32" class="rounded-circle me-2">
+          <strong>Admin</strong>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+          <li><a class="dropdown-item" href="#">New project...</a></li>
+          <li><a class="dropdown-item" href="#">Settings</a></li>
+          <li><a class="dropdown-item" href="#">Profile</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#">Sign out</a></li>
+        </ul>
+      </div>
+</div>
+<div class="col bg-black text-white border-primary" style="margin:5px 5px 0px 0px;width:100%;border:3px solid white">
+    {% block content %}
+    {% endblock%}
+</div>
+</body>

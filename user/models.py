@@ -122,3 +122,5 @@ class Mid2(models.Model):
     Web_Technologies_Cse=models.CharField(max_length=10,blank=True)
     def __str__(self):
         return self.username
+class Materials(models.Model):
+    material=models.FileField()

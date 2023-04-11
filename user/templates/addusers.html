@@ -1,0 +1,47 @@
+{% extends 'admin.html'%}
+{% block content%}
+   
+<div class="h4 pb-2 mt-3 mx-1 text-primary border-bottom border-3 border-primary">
+    User LoginDetails
+</div>
+   <table class="table table-hover text-white mx-5 my-3" style="width:900px;">
+    <tr class="text-primary">
+       <th>S.No</th> <th>Name</th><th>Username</th><th>Usertype</th><th>Department</th>
+    </tr>
+    {% for user in lg%}
+    {% if user.username != ""%}
+    <tr>
+        <td>{{forloop.counter}}</td><td>{{user.name}}</td><td>{{user.username}}</td><td>{{user.usertype}}</td><td>{{user.dept}}</td>
+    </tr>
+    {% endif%}
+    {% endfor%}
+   {% if adduser == 'yes' %}
+   <form action='/adduserdetails' method='post'>
+    {% csrf_token%}
+   <td>{{count}}</td>
+   <td><input type="text" class="bg-black text-white form-control border-1 border-white" style="height:30px;" name="name"></td>
+   <td><input type="text" class="bg-black text-white form-control border-1 border-white" style="height:30px;" name="username"></td>
+   <td>
+    <select class="form-control form-control-sm text-white bg-black" name="usertype"style="width:100px;">
+        <option >Usertype &#x25BC;</option>
+        <option value="Faculty">Faculty</option>
+        <option value="Student">Student</option>
+    </select>
+    </td>
+    <td>
+    <select class="form-control form-control-sm text-white bg-black" name="dept" style="width:130px;">
+        <option >Department &#x25BC;</option>
+        <option value="Cse">Cse</option>
+        <option value="Java_Programming_Cse">Java Programming</option>
+        <option value="Web_Technologies_Cse">Web Technologies</option>
+        <option value="Data_Structures_Cse">Data Structures</option>
+    </select>
+</td>
+<input type="submit">
+</form>
+     {% endif %}
+   </table>
+   <a href="/adduserdetails">
+   <button class="btn btn-primary">Add Users</button>
+   </a>
+{% endblock%}

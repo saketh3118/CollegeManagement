@@ -13,5 +13,8 @@ urlpatterns = [
     path('marks',views.marks),
     path('logout',views.logout),
     path('logoutf',views.logoutf),
-    path('faculty',views.faculty)
+    path('faculty',views.faculty),
+    path('admins',views.admin),
+    path('addusers',views.addusers),
+    path('adduserdetails',views.adduserdetails)
 ]
