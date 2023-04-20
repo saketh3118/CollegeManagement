@@ -1,10 +1,9 @@
 from django.db import models
 from django.utils import timezone
-# Create your models here.
 class LoginDetails(models.Model):
     username=models.CharField(max_length=20,primary_key=True)
     password=models.CharField(max_length=20)
-    name=models.CharField(max_length=50,default="")
+    name=models.CharField(max_length=100)
     usertype=models.CharField(max_length=30,default="usertype")
     dept=models.CharField(max_length=30,default="department")
     def __str__(self):

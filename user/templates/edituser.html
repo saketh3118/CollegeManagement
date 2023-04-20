@@ -4,16 +4,23 @@
 <div class="h4 pb-2 mt-3 mx-1 text-primary border-bottom border-3 border-primary">
     User LoginDetails
 </div>
-   <table class="table table-hover mx-5 my-3" style="width:900px;">
-    <tr class="text-black">
+   <table class="table table-hover mx-5 my-3" style="width:90%;">
+    <tr>
        <th>S.No</th> <th>Name</th><th>Username</th><th>Usertype</th><th>Department</th>
     </tr>
     {% for user in lg%}
     {% if user.username != ""%}
     <tr>
+        {% if user.username == pk %}
+        <form action='/savechanges' method='post'>
+            {% csrf_token%}
+        <td>{{forloop.counter0}}</td><td><input class="form-control form-control-sm" type="text" name="name" value="{{user.name}}"></td><td><input type="text" name="username" class="form-control form-control-sm" value="{{user.username}}"></td><td>{{user.usertype}}</td><td>{{user.dept}}</td><td>
+            <a href="{% url 'edituser' pk=user.username %}"><img src="../static/img/edit.gif" style="height:30px;"></td></a><td><button><img src="../static/img/icons8-checkmark.gif"></button></td></form>
+        {% endif%}
+        {% if user.username != pk %}
         <td>{{forloop.counter0}}</td><td>{{user.name}}</td><td>{{user.username}}</td><td>{{user.usertype}}</td><td>{{user.dept}}</td><td>
-            <a href="{% url 'edituser' pk=user.username %}"><img src="../static/img/edit.gif" style="height:25px;"></td></a>
-            <td><a href="{% url 'deleteuser' pk=user.username %}"><img src="../static/img/icons8-trash.gif" style="height:25px;"></td></a>
+            <a href="{% url 'edituser' pk=user.username %}"><img src="../static/img/edit.gif" style="height:30px;"></td></a>
+        {% endif %}
     </tr>
     {% endif%}
     {% endfor%}

@@ -1,18 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="jumbotron" style="background-color:black;height:500px;">
+<div class="jumbotron" style="background-color:#EAEAEA;height:500px;">
     <div class="container">
-        <h2 class="text-white" style="position:relative;left:40px;top:50px;">Welcome to <strong class="text-primary" style="display:inline;">Saketh's Student Portal</strong></h2>
-      <h3 class="text-white" style="position:relative;left:40px;top:50px;">Hello, <strong class="text-primary" style="display:inline;">{{name}}</strong></h3>
-      <h5 style="position:relative;left:40px;top:50px;width:360px;" class="text-white"><i>"A good education can change Anyone. A good teacher can change Everything."</i></h5> <br>
-      <h6 style="position:relative;left:40px;top:50px;" class="text-white">Always feel free to reach us out<a class="btn btn-primary btn-lg mx-2" href="/contactus" role="button">Contact &raquo;</a></h6>
+        <h2 class="text-black" style="position:relative;left:40px;top:50px;">Welcome to <strong style="display:inline;color:#FF2E63;">Saketh's Student Portal</strong></h2>
+      <h3 class="text-black" style="position:relative;left:40px;top:50px;">Hello, <strong style="display:inline;color:#FF2E63;">{{name}}</strong></h3>
+      <h5 style="position:relative;left:40px;top:50px;width:360px;" class="text-black"><i>"A good education can change Anyone. A good teacher can change Everything."</i></h5> <br>
+      <h6 style="position:relative;left:40px;top:50px;" class="text-black">Always feel free to reach us out<a class="btn text-black btn-lg mx-2" href="/contactus" style="background-color:#FF2E63;" role="button">Contact &raquo;</a></h6>
     </div>
-    <img src="../static/img/icons8-student-96.png" style="position:relative;width:330px;bottom:220px;left:900px;">
+    <img src="../static/img/icons8-student-96.png" class="dark"style="position:relative;width:330px;bottom:220px;left:900px;">
   </div>
-
   <div class="container">
-    <!-- Example row of columns -->
     <div class="row mt-5"  style="position:relative;left:40px;">
       <div class="col-md-4 text-white mx-5" style="width:270px;height:300px;border-radius:10px;background-color:black;position:relative;bottom:160px;border:1px solid gray;">
         <h2 class="m-3">Academics</h2>
@@ -32,4 +30,8 @@
     </div>
     <hr>
   </div> 
+   <script>
+    a=document.getElementById('home')
+    a.style.backgroundColor="#FF2E63";
+  </script> 
 {% endblock %}

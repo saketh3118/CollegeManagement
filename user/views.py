@@ -247,3 +247,31 @@ def adduserdetails(request):
         c=c+1
         newuser.save()
     return render(request,'addusers.html',{'lg':lg,'adduser':'yes','count':c,'sub':sub})
+def edituser(request,pk):
+    lg=LoginDetails.objects.all()
+    c=LoginDetails.objects.all().count()
+    sub=Mid1.objects.all()
+    if request.method=='POST':
+        username=request.POST.get('username')
+        usertype=request.POST.get('usertype')
+        dept=request.POST.get('dept')
+        name=request.POST.get('name')
+        newuser=LoginDetails.objects.create(username=username,password=username,name=name,usertype=usertype,dept=dept)
+        newuser.save()
+    return render(request,'edituser.html',{'pk':pk,'lg':lg,'adduser':'no','count':c,'sub':sub})
+def savechanges(request):
+    lg=LoginDetails.objects.all()
+    if(request.method=='POST'):
+        name=request.POST.get('name')
+        username=request.POST.get('username')
+        user=LoginDetails.objects.get(username=username)
+        user.username=username
+        user.name=name
+        user.save()
+    return render(request,'edituser.html',{'lg':lg})
+def deleteuser(request,pk):
+    lg=LoginDetails.objects.all()
+    c=LoginDetails.objects.all().count()
+    sub=Mid1.objects.all()
+    LoginDetails.objects.get(username=pk).delete()
+    return render(request,'addusers.html',{'lg':lg,'adduser':'yes','count':c,'sub':sub})

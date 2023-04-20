@@ -16,5 +16,8 @@ urlpatterns = [
     path('faculty',views.faculty),
     path('admins',views.admin),
     path('addusers',views.addusers),
-    path('adduserdetails',views.adduserdetails)
+    path('adduserdetails',views.adduserdetails),
+    path('edituser.html/<str:pk>',views.edituser,name="edituser"),
+    path('deleteuser.html/<str:pk>',views.deleteuser,name="deleteuser"),
+    path('savechanges',views.savechanges)
 ]
