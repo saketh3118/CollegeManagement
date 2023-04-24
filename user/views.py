@@ -59,27 +59,12 @@ def academics(request):
     sum4=round(sum4,2)
     avg=round((sum1+sum2+sum3+sum4)/4,2)
     temp=avg
-    v1=0.0
-    v2=0.0
-    v3=0.0
-    if(temp>=3):
-        v1=30
-        temp=temp-3
-    else:
-        v1=temp*10
-        temp=0
-    if(temp>=4):
-        v2=40
-        temp=temp-4
-    else:
-        v2=temp*10
-        temp=0
-    v3=temp*10
+    v1=temp*10
     tt=TimeTable.objects.all()
     assignments=Assignments.objects.all()
     m1=Mid1.objects.get(username=uname)
     m2=Mid2.objects.get(username=uname)
-    return render(request,'academics.html',{'s':s,'uname':uname,'name':name,'sum1':sum1,'sum2':sum2,'sum3':sum3,'sum4':sum4,'avg':avg,'tt':tt,'date':tt[0].date.date(),'v1':v1,'v2':v2,'v3':v3,'assignments':assignments,'m1':m1,'m2':m2})
+    return render(request,'academics.html',{'s':s,'uname':uname,'name':name,'sum1':sum1,'sum2':sum2,'sum3':sum3,'sum4':sum4,'avg':avg,'tt':tt,'date':tt[0].date.date(),'v1':v1,'assignments':assignments,'m1':m1,'m2':m2})
 def attendance(request):
     uname=request.session.get('uname')
     name=request.session.get('name')
@@ -91,9 +76,6 @@ def attendance(request):
     for i in [a.DM_TOTAL,a.CNS_TOTAL,a.EEA_TOTAL,a.GB_TOTAL,a.CD_TOTAL,a.QA_TOTAL,a.DM_LAB_TOTAL,a.CD_LAB_TOTAL,a.ENG_LAB_TOTAL]:
         sum2=sum2+i
     percentage=round((sum1*100)/sum2,2)
-    v1=0.0
-    v2=0.0
-    v3=0.0
     msg=""
     if(percentage>=65 and percentage<75):
         msg="You're Close to 75% Attendance,Come Regular to Improve"
@@ -102,20 +84,7 @@ def attendance(request):
     elif(percentage<65):
         msg="You are in Dangerzone Come regular to avoid Detention"
     ans=round(percentage,2)
-    if(percentage>=25):
-        v1=25
-        percentage=percentage-25
-    else:
-        v1=percentage
-        percentage=0
-    if(percentage>=40):
-        v2=40
-        percentage=percentage-40
-    else:
-        v2=percentage
-        percentage=0
-    v3=percentage
-    return render(request,'attendance.html',{'uname':uname,'name':name,'a':a,'msg':msg,'percentage':ans,'v1':v1,'v2':v2,'v3':v3})
+    return render(request,'attendance.html',{'uname':uname,'name':name,'a':a,'msg':msg,'percentage':ans,'v1':ans})
 def contactus(request):
     uname=request.session.get('uname')
     name=request.session.get('name')

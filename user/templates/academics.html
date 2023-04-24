@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% block content%}
 <strong>
-       <div class="mx-3 mt-3 text-white"> Student Name: {{name}}</div>
-        <div class="mx-3 text-white" text-white>Roll No: {{uname}}</div> 
+       <div class="mx-3 mt-3"> Student Name: {{name}}</div>
+        <div class="mx-3">Roll No: {{uname}}</div> 
 </strong>
 <br>
-<div class="h4 pb-2 mb-4 mx-3 text-white border-bottom border-3 border-white">
+<div class="h4 pb-2 mb-4 mx- border-bottom border-3 mx-3 border-dark" style="color:#FF2E63;">
     Midterm Marks
 </div>
-  <table class="mx-5 table table-hover text-white" style="width:1200px;">
+  <table class="mx-5 table table-hover" style="width:1200px;">
     <tr>
         <th>S.No</th><th>Subject</th><th>Mid1</th><th>Mid 2</th>
     </tr>
@@ -17,7 +17,7 @@
     <tr><td>3</td><td>Web Technologies</td><td>{{m1.Web_Technologies_Cse}}</td><td>{{m2.Web_Technologies_Cse}}</td>
 
   </table>
-<div class="h4 pb-2 mb-4 mx-3 text-white border-bottom border-3">
+<div class="h4 pb-2 mb-4 mx-3 border-bottom border-3">
     Assignment Questions
   </div>
     {% for assign in assignments %}
@@ -27,14 +27,14 @@
             <br>
         <div class="container" style="width:1300px;">
            <div class="row" style="margin-left:160px;">
-             <div class="col-10" style="border:2px solid white;"><center>{{assign.sub}}</center></div>
-             <div class="col-5" style="border:2px solid white;"><center>Mid1</center>
+             <div class="col-10" style="border:2px solid black;"><center>{{assign.sub}}</center></div>
+             <div class="col-5" style="border:2px solid black;"><center>Mid1</center>
              Q1:{{assign.q1}}<br>
              Q2:{{assign.q2}}<br>
              Q3:{{assign.q3}}<br>
              Q4:{{assign.q4}}<br>
              Q5:{{assign.q5}}</div>
-             <div class="col-5" style="border:2px solid white;">
+             <div class="col-5" style="border:2px solid black;">
                 <center>Mid2</center>
                 Q1:{{assign.q6}}<br>
                 Q2:{{assign.q7}}<br>
@@ -48,12 +48,12 @@
         {% endif %}
 {% endfor %}
         <br>
-        <div class="h4 pb-2 mb-4 mx-3 text-white border-bottom border-3 border-white">
+        <div class="h4 pb-2 mb-4 mx-3 border-bottom border-3 border-black">
             Time Table
         </div>
         <center>      
-        <strong class="text-white" style="margin-left:69vw;">Effective from: {{date}}</strong>
-        <table class="table table-hover mx-3 text-white" style="width:1200px;">
+        <strong class="" style="margin-left:69vw;">Effective from: {{date}}</strong>
+        <table class="table table-hover mx-3" style="width:1200px;">
             <tr>
                 <th>Day</th><th>I</th><th>II</th><th rowspan="7">Break</th><th>III</th><th>IV</th><th rowspan="7">Lunch</th><th>V</th><th>VI</th><th>VII</th>
             </tr>
@@ -68,25 +68,25 @@
           <br>
 
 
-          <div class="h4 pb-2 mb-4 mx-3 text-white border-bottom border-3 border-white">
+          <div class="h4 pb-2 mb-4 mx-3 border-bottom border-3 border-white">
             Exam Results
           </div>
        <center>
          <br>
-          <div class="progress-stacked" style="width:75%;height:25px;margin-bottom:10px;">
+          <div class="progress-stacked" style="width:75%;height:25px;margin-bottom:10px;border:1px solid black">
             <div class="progress" role="progressbar" aria-label="Segment one" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width: {{v1}}%;height:25px;">
-              <div class="progress-bar bg-danger"></div>
-            </div>
-            <div class="progress" role="progressbar" aria-label="Segment two" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width:{{v2}}%;height:25px;">
-              <div class="progress-bar bg-warning"></div>
-            </div>
-            <div class="progress" role="progressbar" aria-label="Segment three" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width:{{v3}}%;height:25px;">
-              <div class="progress-bar bg-success"></div>
+                {% if v1 < 40%}
+                <div class="progress-bar bg-danger"></div>
+                {% elif v1 < 70 %}
+                <div class="progress-bar bg-warning"></div>
+                {% elif v1 >= 70%}
+                <div class="progress-bar bg-success"></div>
+                {% endif %}
             </div>
           </div>
           <p style="display:inline-block;position:relative;bottom:38px;font-size:20px;color:black;margin:0px;padding:0px;"><i><b>CGPA: {{avg}}</b></i></p>
   <p>
-    <button class="btn btn-primary"type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample" style="width:700px;">
+    <button class="btn" style="background-color:#FF2E63;width:500px;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample" style="width:700px;">
       <strong>B.Tech I-I Semester Results</strong>
     </button>
   </p>
@@ -154,7 +154,7 @@
         </div>
     </div>
 <p style="margin-top:10px;">
-    <button class="btn btn-primary"type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample2" aria-expanded="false" aria-controls="collapseWidthExample2" style="width:700px;">
+    <button class="btn" style="background-color:FF2E63;width:500px;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample2" aria-expanded="false" aria-controls="collapseWidthExample2" style="width:700px;">
       <strong>B.Tech I-II Semester Results</strong>
     </button>
   </p>
@@ -224,7 +224,7 @@
 
     
 <p style="margin-top:10px;">
-    <button class="btn btn-primary"type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample3" aria-expanded="false" aria-controls="collapseWidthExample3" style="width:700px;">
+    <button class="btn" style="background-color:FF2E63;width:500px;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample3" aria-expanded="false" aria-controls="collapseWidthExample3" style="width:700px;">
       <strong>B.Tech II-I Semester Results</strong>
     </button>
   </p>
@@ -301,7 +301,7 @@
 
     
 <p style="margin-top:10px;">
-    <button class="btn btn-primary"type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample4" aria-expanded="false" aria-controls="collapseWidthExample4" style="width:700px;">
+    <button class="btn" style="background-color:FF2E63;width:500px;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample4" aria-expanded="false" aria-controls="collapseWidthExample4" style="width:700px;">
       <strong>B.Tech II-II Semester Results</strong>
     </button>
   </p>

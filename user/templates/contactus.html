@@ -15,7 +15,7 @@
   <br>
   <form action='/contactus' method='post'>
     {% csrf_token %}
-  <div class="mb-3 row text-white" style="margin-left:200px;width:1100px;">
+  <div class="mb-3 row" style="margin-left:200px;width:1100px;">
     <label class="col-sm-2 col-form-label">Username</label>
     <div class="col-sm-10" style="margin-top:6px;">
         <strong style="display:inline;">{{uname}}</strong>
@@ -25,12 +25,12 @@
       <strong style="display:inline;">{{name}}</strong>
     </div>
   </div>
-    <div class="mb-3 text-white" style="margin-left:210px;">
+    <div class="mb-3" style="margin-left:210px;">
     <label for="exampleFormControlTextarea1" class="form-label"><b>Enter Your Message</b></label>
-    <textarea class="form-control bg-black text-white m-0" id="exampleFormControlTextarea1" name="text" rows="3" style="width:700px;height:200px;border:2px solid white;" placeholder="Start Wrirting From Here....."></textarea>
+    <textarea class="form-control m-0" id="exampleFormControlTextarea1" name="text" rows="3" style="width:700px;height:200px;border:2px solid #FF2E63;background-color:#EAEAEA;" placeholder="Start Writing From Here....."></textarea>
   </div>
   <div class="col-auto" style="margin-left:530px;">
-    <input type="submit" class="btn btn-primary mb-3">
+    <input type="submit" style="background-color:#FF2E63;" class="btn mb-3">
   </div>
 </form>
 
