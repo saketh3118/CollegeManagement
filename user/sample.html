@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: grid;
+            height: 100vh;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-rows:0.4fr 1.5fr 0.8fr 0.8fr;
+            grid-template-areas: "navbar navbar navbar navbar"
+                                "sidebar main main main"
+                                "sidebar box1 box2 box3"
+                                "footer footer footer footer"; 
+            grid-gap: 2px;
+        }
+        nav{background-color: red;
+         grid-area: navbar}
+        main{background-color: black;
+        grid-area: main;}
+        .sidebar{background-color: blue;
+        grid-area: sidebar;}
+        .box1{background-color: violet;
+        grid-area: box1;}
+        .box2{background-color: greenyellow;grid-area: box2;}
+        .box3{background-color: khaki;grid-area: box3;}
+        footer{background-color: darkcyan;grid-area: footer;}
+        @media screen and (max-width:900px)
+        {
+            .container{
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                grid-template-areas: "navbar""main""sidebar""box1""box2""box3""footer";
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>nav</nav>
+        <main></main>
+        <div class="sidebar">sidebar</div>
+        <div class="box1">box1</div>
+        <div class="box2">box2</div>
+        <div class="box3">box3</div>
+        <footer>footer</footer>
+    </div>
+</body>
+</html>
