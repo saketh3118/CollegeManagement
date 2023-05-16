@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    
+    <title>Document</title>
+    <style>
+        .bar{
+            color:#FF2E63;
+            width:60vw;
+        }
+        .main::-webkit-scrollbar {
+            background-color: white;  
+            border-radius: 20px;
+            width: 10px; 
+            height: 10px;    
+          }
+          .main::-webkit-scrollbar-thumb{
+            background-color:#FF2E63;
+            border-radius: 20px;
+          }
+        .table{
+            width:60vw;
+        }
+        #container{
+            display: grid;
+            height: 100vh;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows:1.5fr 0.8fr 0.8fr;
+            grid-template-areas:"sidebar main main"
+                                "sidebar box1 box2"
+                                "footer footer footer"; 
+            grid-gap: 5px;
+        }
+        .main{background-color: black;
+        grid-area: main;}
+        .sidebar{background-color: blue;
+        grid-area: sidebar;}
+        .box1{background-color: violet;
+        grid-area: box1;}
+        .box2{background-color: greenyellow;grid-area: box2;}
+        footer{background-color: darkcyan;grid-area: footer;}
+        @media screen and (max-width:900px)
+        {
+            .bar{
+                color:#FF2E63;
+                width:100vw;
+            }
+            .main,.sidebar,.box1,.box2,footer{
+                height: 50vh;
+            }
+            .table{
+                width:10vw;
+            }
+            #container{
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows:1fr 1fr 1fr 1fr 1fr;
+                grid-template-areas: "main""sidebar""box1""box2""footer";
+            }
+        }
+    </style>
+</head>
+<body style="background-color:#EAEAEA">
+    <div id="container" style="height:85vh;position:relative;top:10vh">
+        <div class="main overflow-auto" style="background-color:white;border-radius:20px;">
+            <div class="h4 pb-2 mb-4 mx- border-bottom border-3 mx-3 border-dark bar">
+                Time Table
+            </div>   
+            <strong>Effective from: {{date}}</strong>
+            <table class="table table-hover mx-3">
+                <tr>
+                    <th>Day</th><th>I</th><th>II</th><th rowspan="7">Break</th><th>III</th><th>IV</th><th rowspan="7">Lunch</th><th>V</th><th>VI</th><th>VII</th>
+                </tr>
+                {% for x in tt%}
+                <tr>
+                    <td>{{x.Day}}</td><td>{{x.C1}}</td><td>{{x.C2}}</td><td>{{x.C3}}</td><td>{{x.C4}}</td><td>{{x.C5}}</td><td>{{x.C6}}</td><td>{{x.C7}}</td>
+                </tr><tr>
+                    <td>{{x.Day}}</td><td>{{x.C1}}</td><td>{{x.C2}}</td><td>{{x.C3}}</td><td>{{x.C4}}</td><td>{{x.C5}}</td><td>{{x.C6}}</td><td>{{x.C7}}</td>
+                </tr><tr>
+                    <td>{{x.Day}}</td><td>{{x.C1}}</td><td>{{x.C2}}</td><td>{{x.C3}}</td><td>{{x.C4}}</td><td>{{x.C5}}</td><td>{{x.C6}}</td><td>{{x.C7}}</td>
+                </tr><tr>
+                    <td>{{x.Day}}</td><td>{{x.C1}}</td><td>{{x.C2}}</td><td>{{x.C3}}</td><td>{{x.C4}}</td><td>{{x.C5}}</td><td>{{x.C6}}</td><td>{{x.C7}}</td>
+                </tr><tr>
+                    <td>{{x.Day}}</td><td>{{x.C1}}</td><td>{{x.C2}}</td><td>{{x.C3}}</td><td>{{x.C4}}</td><td>{{x.C5}}</td><td>{{x.C6}}</td><td>{{x.C7}}</td>
+                </tr><tr>
+                    <td>{{x.Day}}</td><td>{{x.C1}}</td><td>{{x.C2}}</td><td>{{x.C3}}</td><td>{{x.C4}}</td><td>{{x.C5}}</td><td>{{x.C6}}</td><td>{{x.C7}}</td>
+                </tr><tr>
+                    <td>{{x.Day}}</td><td>{{x.C1}}</td><td>{{x.C2}}</td><td>{{x.C3}}</td><td>{{x.C4}}</td><td>{{x.C5}}</td><td>{{x.C6}}</td><td>{{x.C7}}</td>
+                </tr><tr>
+                    <td>{{x.Day}}</td><td>{{x.C1}}</td><td>{{x.C2}}</td><td>{{x.C3}}</td><td>{{x.C4}}</td><td>{{x.C5}}</td><td>{{x.C6}}</td><td>{{x.C7}}</td>
+                </tr><tr>
+                    <td>{{x.Day}}</td><td>{{x.C1}}</td><td>{{x.C2}}</td><td>{{x.C3}}</td><td>{{x.C4}}</td><td>{{x.C5}}</td><td>{{x.C6}}</td><td>{{x.C7}}</td>
+                </tr><tr>
+                    <td>{{x.Day}}</td><td>{{x.C1}}</td><td>{{x.C2}}</td><td>{{x.C3}}</td><td>{{x.C4}}</td><td>{{x.C5}}</td><td>{{x.C6}}</td><td>{{x.C7}}</td>
+                </tr><tr>
+                    <td>{{x.Day}}</td><td>{{x.C1}}</td><td>{{x.C2}}</td><td>{{x.C3}}</td><td>{{x.C4}}</td><td>{{x.C5}}</td><td>{{x.C6}}</td><td>{{x.C7}}</td>
+                </tr><tr>
+                    <td>{{x.Day}}</td><td>{{x.C1}}</td><td>{{x.C2}}</td><td>{{x.C3}}</td><td>{{x.C4}}</td><td>{{x.C5}}</td><td>{{x.C6}}</td><td>{{x.C7}}</td>
+                </tr><tr>
+                    <td>{{x.Day}}</td><td>{{x.C1}}</td><td>{{x.C2}}</td><td>{{x.C3}}</td><td>{{x.C4}}</td><td>{{x.C5}}</td><td>{{x.C6}}</td><td>{{x.C7}}</td>
+                </tr><tr>
+                    <td>{{x.Day}}</td><td>{{x.C1}}</td><td>{{x.C2}}</td><td>{{x.C3}}</td><td>{{x.C4}}</td><td>{{x.C5}}</td><td>{{x.C6}}</td><td>{{x.C7}}</td>
+                </tr><tr>
+                    <td>{{x.Day}}</td><td>{{x.C1}}</td><td>{{x.C2}}</td><td>{{x.C3}}</td><td>{{x.C4}}</td><td>{{x.C5}}</td><td>{{x.C6}}</td><td>{{x.C7}}</td>
+                </tr>
+                {% endfor %}
+              </table>
+            
+
+        </div>
+        <div class="sidebar" style="background-color:white;border-radius:20px;">sidebar</div>
+        <div class="box1" style="background-color:white;border-radius:20px;">box1</div>
+        <div class="box2" style="background-color:white;border-radius:20px;">box2</div>
+        <footer style="background-color:white;border-radius:20px;">footer</footer>
+    </div>
+</body>
+</html>

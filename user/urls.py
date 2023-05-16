@@ -19,5 +19,11 @@ urlpatterns = [
     path('adduserdetails',views.adduserdetails),
     path('edituser.html/<str:pk>',views.edituser,name="edituser"),
     path('deleteuser.html/<str:pk>',views.deleteuser,name="deleteuser"),
-    path('savechanges',views.savechanges)
+    path('savechanges',views.savechanges),
+    path('listofsems',views.listofsems),
+    path('edituserresults/<str:pk>',views.edituser,name="edituserresults")
 ]
+
+
+
+# <a href="{% url 'edituser' pk=user.username %}">

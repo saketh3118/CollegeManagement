@@ -233,9 +233,13 @@ def savechanges(request):
     if(request.method=='POST'):
         name=request.POST.get('name')
         username=request.POST.get('username')
+        usertype=request.POST.get('usertype')
+        dept=request.POST.get('dept')
         user=LoginDetails.objects.get(username=username)
         user.username=username
         user.name=name
+        user.dept=dept
+        user.usertype=usertype
         user.save()
     return render(request,'edituser.html',{'lg':lg})
 def deleteuser(request,pk):
@@ -244,3 +248,8 @@ def deleteuser(request,pk):
     sub=Mid1.objects.all()
     LoginDetails.objects.get(username=pk).delete()
     return render(request,'addusers.html',{'lg':lg,'adduser':'yes','count':c,'sub':sub})
+def listofsems(request):
+    return render(request,'listOfSems.html')
+def editresults(request,pk):
+    student=LoginDetails.objects.get(username=pk)
+    return render(request,'editresults.html',{'user':student})

@@ -12,10 +12,30 @@
     {% if user.username != ""%}
     <tr>
         {% if user.username == pk %}
-        <form action='/savechanges' method='post'>
-            {% csrf_token%}
-        <td>{{forloop.counter0}}</td><td><input class="form-control form-control-sm" type="text" name="name" value="{{user.name}}"></td><td><input type="text" name="username" class="form-control form-control-sm" value="{{user.username}}"></td><td>{{user.usertype}}</td><td>{{user.dept}}</td><td>
-            <a href="{% url 'edituser' pk=user.username %}"><img src="../static/img/edit.gif" style="height:30px;"></td></a><td><button><img src="../static/img/icons8-checkmark.gif"></button></td></form>
+            <form action='/savechanges' method='post'>
+                {% csrf_token%}
+                <td>{{forloop.counter0}}</td>
+                <td><input class="form-control form-control-sm" type="text" name="name" value="{{user.name}}"></td>
+                <td><input type="text" name="username" class="form-control form-control-sm" value="{{user.username}}"></td>
+                <td>
+                    <select class="form-control form-control-sm" name="usertype"style="width:100px;">
+                        <option value={{user.usertype}}>Usertype &#x25BC;</option>
+                        <option value="Faculty">Faculty</option>
+                        <option value="Student">Student</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="form-control form-control-sm" name="dept" style="width:130px;">
+                        <option value={{user.dept}}>Department &#x25BC;</option>
+                        <option value="Cse">Cse</option>
+                        <option value="Java_Programming_Cse">Java Programming</option>
+                        <option value="Web_Technologies_Cse">Web Technologies</option>
+                        <option value="Data_Structures_Cse">Data Structures</option>
+                    </select>
+                </td>
+                <td>
+                <a href="{% url 'edituser' pk=user.username %}"><img src="../static/img/edit.gif" style="height:30px;"></td></a><td><button><img src="../static/img/icons8-checkmark.gif"></button></td>
+            </form>
         {% endif%}
         {% if user.username != pk %}
         <td>{{forloop.counter0}}</td><td>{{user.name}}</td><td>{{user.username}}</td><td>{{user.usertype}}</td><td>{{user.dept}}</td><td>

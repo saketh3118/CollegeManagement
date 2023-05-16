@@ -1,0 +1,8 @@
+{% extends 'admin.html'%}
+{% block content%}
+<table>
+    <tr>
+        <a href="{% url 'edituserresults' pk=user.username %}"><td>{{user.name}}</td></a>
+    </tr>
+</table>
+{% endblock%}
