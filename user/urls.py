@@ -21,7 +21,12 @@ urlpatterns = [
     path('deleteuser.html/<str:pk>',views.deleteuser,name="deleteuser"),
     path('savechanges',views.savechanges),
     path('listofsems',views.listofsems),
-    path('edituserresults/<str:pk>',views.edituser,name="edituserresults")
+    path('edituserresults/<str:pk>/<str:sem>',views.edituserresults,name="edituserresults"),
+    path('sem1',views.sem1),
+    path('sem2',views.sem2),
+    path('sem3',views.sem3),
+    path('sem4',views.sem4),
+    path('edituserresults/<str:pk>/<str:sem>',views.edituserresults,name="edituserresults")
 ]
 
 
