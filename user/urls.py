@@ -26,7 +26,12 @@ urlpatterns = [
     path('sem2',views.sem2),
     path('sem3',views.sem3),
     path('sem4',views.sem4),
-    path('edituserresults/<str:pk>/<str:sem>',views.edituserresults,name="edituserresults")
+    path('edituserresults/<str:pk>/<str:sem>',views.edituserresults,name="edituserresults"),
+    path('timetable',views.timetable),
+    path('editattendance',views.editattendance),
+    path('edituserattendance/<str:pk>',views.edituserattendance,name="edituserattendance"),
+    path('midmarks1',views.midmarks1),
+    path('midmarks2',views.midmarks2)
 ]
 
 

@@ -5,32 +5,17 @@
 </center>
 <center>
     <div class="btn-group" style="margin-top:10px;">
-<form action="/marks" method="post">
-    {% csrf_token %}
-        <table class="table text-white" style="width:1300px;">
-            <thead>
-              <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Reg No.</th>
-                <th scope="col" style="padding-left:70px;">Mid 1</th>
-                <th scope="col" style="padding-left:70px;">Mid 2</th>
-              </tr>
-            </thead>
-            <tbody class="table-group-divider">
-                {% for student in students%}
-                <tr>
-                    <th scope="row">{{student.name}}</th>
-                    <td>{{student.username}}</td>
-                    <td><input type="number" name="{{student.username}}" class="text-primary bg-black text-white" style="border:2px solid white;border-radius:10px;"></td>
-                    <td><input type="number" name="{{student.name}}"class="text-primary bg-black text-white" style="border:2px solid white;border-radius:10px;"></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-          </table>
-        </div>
-        <br>
-        <input type="submit" class="btn btn-primary" style="margin-right:35px;">
-    </form>
-</center>
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          Exam Type
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="/midmarks1">Mid1</a></li>
+          <li><a class="dropdown-item" href="/midmarks2">Mid2</a></li>
+        </ul>
+      </div>
+    </center>      
 
+{% block marks %}
+{% endblock%}
 {% endblock%}

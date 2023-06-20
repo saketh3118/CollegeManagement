@@ -26,7 +26,6 @@ class Semester(models.Model):
     c7=models.CharField(max_length=10,default=0)
     IT_WORKSHOP=models.IntegerField()
     c8=models.CharField(max_length=10,default=0)
-    TotalCredits1=models.IntegerField(default=0)
     ENG=models.IntegerField(default=0)
     c9=models.CharField(max_length=10,default=0)
     PandS=models.IntegerField(default=0)
@@ -43,7 +42,6 @@ class Semester(models.Model):
     c15=models.CharField(max_length=10,default=0)
     PYTHON_LAB=models.IntegerField(default=0)
     c16=models.CharField(max_length=10,default=0)
-    TotalCredits2=models.IntegerField(default=0)
     DM=models.IntegerField(default=0)
     c17=models.CharField(max_length=10,default=0)
     COA=models.IntegerField(default=0)
@@ -62,7 +60,6 @@ class Semester(models.Model):
     c24=models.CharField(max_length=10,default=0)
     GS=models.IntegerField(default=0)
     c25=models.CharField(max_length=10,default=0)
-    TotalCredits3=models.IntegerField(default=0)
     ASOT=models.IntegerField(default=0)
     c26=models.CharField(max_length=10,default=0)
     DBMS=models.IntegerField(default=0)
@@ -81,7 +78,6 @@ class Semester(models.Model):
     c33=models.CharField(max_length=10,default=0)
     ES=models.IntegerField(default=0)
     c34=models.CharField(max_length=10,default=0)
-    TotalCredits4=models.IntegerField(default=0)
     def __str__(self):
         return str(self.username)
 class Attendance(models.Model):
@@ -95,6 +91,10 @@ class Attendance(models.Model):
     DM_LAB=models.IntegerField(default=0) 
     CD_LAB=models.IntegerField(default=0)
     ENG_LAB=models.IntegerField(default=0)
+    def __str__(self):
+        return str(self.username)
+class TotalAttendance(models.Model):
+    Dept=models.CharField(max_length=20,default="",primary_key=True)
     DM_TOTAL=models.IntegerField(default=0) 
     CNS_TOTAL=models.IntegerField(default=0) 
     EEA_TOTAL=models.IntegerField(default=0) 
@@ -105,7 +105,7 @@ class Attendance(models.Model):
     CD_LAB_TOTAL=models.IntegerField(default=0)
     ENG_LAB_TOTAL=models.IntegerField(default=0)
     def __str__(self):
-        return str(self.username)
+        return self.Dept
 class Queries(models.Model):
     name=models.CharField(primary_key=True,max_length=100,default=0)
     username=models.ForeignKey(LoginDetails,on_delete=models.CASCADE)
@@ -116,40 +116,42 @@ class TimeTable(models.Model):
     date=models.DateTimeField(default=timezone.now)
     Year=models.IntegerField()
     Dept=models.CharField(max_length=20)
-    Day=models.CharField(max_length=20,default="sunday")
+    Day=models.CharField(max_length=20,default="sunday",primary_key=True)
     C1=models.CharField(max_length=20)
     C2=models.CharField(max_length=20)
     C3=models.CharField(max_length=20)
     C4=models.CharField(max_length=20)
     C5=models.CharField(max_length=20)
     C6=models.CharField(max_length=20)
-    C7=models.CharField(max_length=20,default="sports")
+    C7=models.CharField(max_length=20,default="")
     def __str__(self):
         return str(self.Year)+"   "+self.Dept+"   "+self.Day
 class Assignments(models.Model):
     sub=models.CharField(max_length=30,default="",primary_key=True)
     mid=models.CharField(max_length=200,default="mid")
-    q1=models.CharField(max_length=200,default="text",blank=True)
-    q2=models.CharField(max_length=200,default="text",blank=True)
-    q3=models.CharField(max_length=200,default="text",blank=True)
-    q4=models.CharField(max_length=200,default="text",blank=True)
-    q5=models.CharField(max_length=200,default="text",blank=True)
-    q6=models.CharField(max_length=200,default="text",blank=True)
-    q7=models.CharField(max_length=200,default="text",blank=True)
-    q8=models.CharField(max_length=200,default="text",blank=True)
-    q9=models.CharField(max_length=200,default="text",blank=True)
-    q10=models.CharField(max_length=200,default="text",blank=True)
+    q1=models.CharField(max_length=200,default="",blank=True)
+    q2=models.CharField(max_length=200,default="",blank=True)
+    q3=models.CharField(max_length=200,default="",blank=True)
+    q4=models.CharField(max_length=200,default="",blank=True)
+    q5=models.CharField(max_length=200,default="",blank=True)
+    q6=models.CharField(max_length=200,default="",blank=True)
+    q7=models.CharField(max_length=200,default="",blank=True)
+    q8=models.CharField(max_length=200,default="",blank=True)
+    q9=models.CharField(max_length=200,default="",blank=True)
+    q10=models.CharField(max_length=200,default="",blank=True)
     def __str__(self):
         return self.sub
 class Mid1(models.Model):
     username=models.CharField(max_length=30,default="",primary_key=True)
+    name=models.CharField(max_length=50,default="")
     Java_Programming_Cse=models.CharField(max_length=10,blank=True)
     Data_Structures_Cse=models.CharField(max_length=10,blank=True)
     Web_Technologies_Cse=models.CharField(max_length=10,blank=True)
     def __str__(self):
         return self.username
 class Mid2(models.Model):
-    username=models.CharField(max_length=30,default="",primary_key=True)
+    username=models.CharField(max_length=30,default="")
+    name=models.CharField(max_length=50,default="",primary_key=True)
     Java_Programming_Cse=models.CharField(max_length=10,blank=True)
     Data_Structures_Cse=models.CharField(max_length=10,blank=True)
     Web_Technologies_Cse=models.CharField(max_length=10,blank=True)

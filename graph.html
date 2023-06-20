@@ -1,71 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div id="chart_div" style="height:500px;width:700px;"></div>
+<html>
+  <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script>
-        google.charts.load('current', {packages: ['corechart', 'line']});
-google.charts.setOnLoadCallback(drawAxisTickColors);
+    <script type="text/javascript">
 
-function drawAxisTickColors() {
-      var data = new google.visualization.DataTable();
-      data.addColumn('number', 'Semester');
-      data.addColumn('number', 'SGpa');
-      data.addColumn('number', 'CGpa');
-      data.addRows([
-        [0, 0, 9.05],[1,9.6,9.05], [2,9.5, 9.05],[3,9,9.05],[4,8.5, 9.05], 
-      ]);
-
-      var options = {
-        lineWidth: 5,
-        hAxis: {
-            gridlines:{
-                color: 'transparent'
-            },
-          title: 'Time',
-          textStyle: {
-            color: '#1a237e',
-            fontSize: 15,
-            fontName: 'Arial',
-            bold: true,
-            italic: true
-          },
-          titleTextStyle: {
-            color: '#1a237e',
-            fontSize: 16,
-            fontName: 'Arial',
-            bold: true,
-            italic: true
-          }
-        },
-        vAxis: {
-            gridlines:{
-                color: 'transparent'
-            },
-          title: 'GPA',
-          ticks:[0,1,2,3,4,5,6,7,8,9,10],
-          textStyle: {
-            color: '#1a237e',
-            fontSize: 15,
-            bold: true
-          },
-          titleTextStyle: {
-            color: '#1a237e',
-            fontSize: 20,
-            bold: true
-          }
-        },
-        colors: ['#a52714', '#097138']
-      };
-      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-      chart.draw(data, options);
-    }
     </script>
-</body>
+  </head>
+  <body>
+    <div id="barchart_material" style="width: 600px; height: 500px;"></div>
+  </body>
 </html>

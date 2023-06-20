@@ -1,0 +1,66 @@
+{% extends 'edit_attendance.html'%}
+{% block cont%}
+<form action='/edituserattendance/{{pk}}' method='post'>
+    {% csrf_token %}
+<table class="table my-3 mx-3 table-striped" style="width:75vw;">
+    <tr>
+        <th>S.No</th><th>Subject</th><th>Classes present</th><th>Total Classes</th>
+    </tr>
+    <tr> 
+        <td>1</td>
+        <td>DM</td>
+        <td><input class="input form-control-sm"name="dm"type="number" value={{attendance.DM}}></td>
+        <td>{{total.DM_TOTAL}}</td>
+    </tr>
+    <tr> 
+        <td>2</td>
+        <td>CNS</td>
+        <td><input class="input form-control-sm"name="cns"type="number" value={{attendance.CNS}}></td>
+        <td>{{total.CNS_TOTAL}}</td>
+    </tr>
+    <tr> 
+        <td>3</td>
+        <td>EEA</td>
+        <td><input class="input form-control-sm"name="eea"type="number" value={{attendance.EEA}}></td>
+        <td>{{total.EEA_TOTAL}}</td>
+    </tr>
+    <tr> 
+        <td>4</td>
+        <td>GB</td>
+        <td><input class="input form-control-sm"name="gb"type="number" value={{attendance.GB}}></td>
+        <td>{{total.GB_TOTAL}}</td>
+    </tr>
+    <tr> 
+        <td>5</td>
+        <td>CD</td>
+        <td><input class="input form-control-sm"name="cd"type="number" value={{attendance.CD}}></td>
+        <td>{{total.CD_TOTAL}}</td>
+    </tr>
+    <tr> 
+        <td>6</td>
+        <td>QA</td>
+        <td><input class="input form-control-sm"name="qa"type="number" value={{attendance.QA}}></td>
+        <td>{{total.QA_TOTAL}}</td>
+    </tr>
+    <tr> 
+        <td>7</td>
+        <td>DM LAB</td>
+        <td><input class="input form-control-sm"name="dm_lab"type="number" value={{attendance.DM_LAB}}></td>
+        <td>{{total.DM_LAB_TOTAL}}</td>
+    </tr>
+    <tr> 
+        <td>8</td>
+        <td>CD LAB</td>
+        <td><input class="input form-control-sm"name="cd_lab"type="number" value={{attendance.CD_LAB}}></td>
+        <td>{{total.CD_LAB_TOTAL}}</td>
+    </tr>
+    <tr> 
+        <td>9</td>
+        <td>ENG</td>
+        <td><input class="input form-control-sm"name="eng_lab"type="number" value={{attendance.ENG_LAB}}></td>
+        <td>{{total.ENG_LAB_TOTAL}}</td>
+    </tr>
+</table>
+<center><button class="btn" style="background-color:#ff2e63;">Save Changes</button></center>
+</form>
+{% endblock%}

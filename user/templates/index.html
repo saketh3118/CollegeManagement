@@ -1,35 +1,151 @@
-{% extends 'base.html' %}
-{% block content %}
-<div class="jumbotron" style="background-color:#EAEAEA;height:500px;">
-    <div class="container">
-        <h2 class="text-black" style="position:relative;left:40px;top:50px;">Welcome to <strong style="display:inline;color:#FF2E63;">Saketh's Student Portal</strong></h2>
-      <h3 class="text-black" style="position:relative;left:40px;top:50px;">Hello, <strong style="display:inline;color:#FF2E63;">{{name}}</strong></h3>
-      <h5 style="position:relative;left:40px;top:50px;width:360px;" class="text-black"><i>"A good education can change Anyone. A good teacher can change Everything."</i></h5> <br>
-      <h6 style="position:relative;left:40px;top:50px;" class="text-black">Always feel free to reach us out<a class="btn text-black btn-lg mx-2" href="/contactus" style="background-color:#FF2E63;" role="button">Contact &raquo;</a></h6>
-    </div>
-    <img src="../static/img/student.png" class="dark"style="position:relative;width:330px;bottom:220px;left:900px;">
+
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=0.8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    
+    <style>
+      .box{
+        margin-top:10px;
+        width:270px;
+        height:300px;
+        border-radius:10px;
+        background-color:#EAEAEA;
+        position:relative;
+        bottom:160px;
+        border:1px solid gray;
+      }
+      .index{
+        position:relative;
+        top:50px;
+      }
+      .containerr {
+        display: flex;
+      }
+      .navi{
+        background-color:#EAEAEA;
+      }
+      .div1, .div2 {
+        width: 50%;
+      }
+      .btn{
+        color:#EAEAEA;
+        background-color:#eaeaea;
+        transition: .2s ease-in-out 0s;
+      }
+    .btn:hover {
+      transform: scale(1.20);
+      color: #eaeaea;
+      background-color: #FF2E63;
+      border-color: #ffffff;
+    }
+    .mid{
+      width:90vw;
+    }
+    @media screen and (max-width:900px)
+    {
+       .containerr,.div1,.div2{
+        display:block;
+        width:90vw;
+       }
+       .div2{
+        width:90vw;
+        margin-left:10px;
+       }
+       .div3,.logout{
+        display:none;
+       }
+       .index{
+        position:relative;
+        left:10vw;
+       }
+      .navi{
+        width:100vw;
+      }
+      .home{
+        padding-top:10px;
+      }
+      .box{
+        margin:8px 0px;
+        width:270px;
+        position:relative;
+        right:15px;
+      }
+    }
+  </style>
+  </head>
+<body style="background-color:#EAEAEA;"> 
+  <nav class="navbar navbar-expand-lg sticky-top navi">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav home">
+              <li class="nav-item">
+                <a class="nav-link btn" id="home" style="color:black;border:0px;" href="/index"><strong>Home</strong></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link btn" id="academics"style="color:black;border:0px;" href="/academics"><strong>Academics</strong></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link btn" id="attendance"style="color:black;border:0px;" href="/attendance"><strong>Attendance</strong></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link btn" id="contactus"style="color:black;border:0px;" href="/contactus"><strong>Contact Us</strong></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link btn" id="logout"style="color:black;border:0px;" href="/logout" id="liveToastBtn"><strong>LogOut</strong></a>
+              </li>
+              <li class="nav-item dropdown logout" style="position:relative;left:710px; background-color:orange; border-radius:20px;">
+                <button class="btn dropdown-toggle" data-bs-toggle="dropdown" style="background-color:#FF2E63;"aria-expanded="false">
+                 <p style="font-size:130%;display:inline;">&equiv;</p> {{uname}}
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item disabled" href="#">{{name}}</a></li>
+                  <li><a class="dropdown-item" href="/logout">LogOut</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>   
+      
+<div class="jumbotron containerr" style="background-color:#EAEAEA;height:500px;">
+  <div class="container div1 index">
+      <h2 class="text-black" style="">Welcome to <strong style="display:inline;color:#FF2E63;">Saketh's Student Portal</strong></h2>
+    <h3 class="text-black" style="">Hello, <strong style="display:inline;color:#FF2E63;">{{name}}</strong></h3>
+    <h5 class="text-black"><i>"A good education can change Anyone. A good teacher can change Everything."</i></h5> <br>
+    <h6 style="" class="text-black">Always feel free to reach us out<a class="btn text-black btn-lg mx-2" href="/contactus" style="background-color:#FF2E63;margin-top:10px;" role="button">Contact &raquo;</a></h6>
   </div>
-  <div class="container">
-    <div class="row mt-5"  style="position:relative;left:40px;height:0px;">
-      <div class="col-md-4 mx-5" style="width:270px;height:300px;border-radius:10px;background-color:#EAEAEA;position:relative;bottom:160px;border:1px solid gray;">
-        <h2 class="m-3">Academics</h2>
-        <p class="m-3">Confidence is reason for many Great Achievements.When you Score good marks in Exams it boosts your confidence,check your performance here</p>
-        <p><a class="btn mx-3" style="background-color:#FF2E63;" href="/academics" role="button">Academics &raquo;</a></p>
-      </div>
-      <div class="col-md-4 mx-5" style="height:300px;width:270px;border-radius:10px;background-color:#EAEAEA;position:relative;bottom:160px;border:1px solid gray;">
-        <h2 class="m-3">Attendance</h2>
-        <p class="m-3">Attendance is most overrated thing in Engineering,but coming regular to college can improve your knowledge.Check your Attendance here</p>
-        <p class=><a class="btn mx-3" style="background-color:#FF2E63;" href="/attendance" role="button">Attendance &raquo;</a></p>
-      </div>
-      <div class="col-md-4 mx-5" style="height:300px;width:250px;border-radius:10px;background-color:#EAEAEA;position:relative;bottom:160px;border:1px solid gray;">
-        <h2 class="m-3">Offday</h2>
-        <p class="m-3">Time is So Unpredictable,we may get sudden works which aren't in our Control. So feel free to take a leave ,DM us the reason here</p>
-        <p class="m-3"><a class="btn" style="background-color:#FF2E63;" href="#" role="button">View details &raquo;</a></p>
-      </div>
+  <div class="div3">
+  <img src="../static/img/student.png" class="dark"style="width:330px;position:relative;right:100px;">
+  </div>
+</div>
+<div class="container">
+  <div class="row mt-5"  style="position:relative;left:40px;height:0px;">
+    <div class="col-md-4 mx-5 box">
+      <h2 class="m-3">Academics</h2>
+      <p class="m-3">Confidence is reason for many Great Achievements.When you Score good marks in Exams it boosts your confidence,check your performance here</p>
+      <p><a class="btn mx-3" style="background-color:#FF2E63;" href="/academics" role="button">Academics &raquo;</a></p>
     </div>
-  </div> 
-   <script>
-    a=document.getElementById('home')
-    a.style.backgroundColor="#FF2E63";
-  </script> 
-{% endblock %}
+    <div class="col-md-4 mx-5 box">
+      <h2 class="m-3">Attendance</h2>
+      <p class="m-3">Attendance is most overrated thing in Engineering,but coming regular to college can improve your knowledge.Check your Attendance here</p>
+      <p class=><a class="btn mx-3" style="background-color:#FF2E63;" href="/attendance" role="button">Attendance &raquo;</a></p>
+    </div>
+    <div class="col-md-4 mx-5 box">
+      <h2 class="m-3">Offday</h2>
+      <p class="m-3">Time is So Unpredictable,we may get sudden works which aren't in our Control. So feel free to take a leave ,DM us the reason here</p>
+      <p class="m-3"><a class="btn" style="background-color:#FF2E63;" href="#" role="button">View details &raquo;</a></p>
+    </div>
+  </div>
+</div> 
+ <script>
+  a=document.getElementById('home')
+  a.style.backgroundColor="#FF2E63";
+</script> 
+    </body>
+</html>

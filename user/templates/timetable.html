@@ -1,0 +1,82 @@
+{% extends 'admin.html'%}
+{% block style%}
+<style>
+input{
+    width:70px;
+}
+</style>
+{% endblock%}
+{% block content%}
+<form action='/timetable' method='post'>
+    {% csrf_token%}
+<table class="table table-striped mx-3 my-5" style="width:100%;">
+    <tr>
+        <th>Day</th><th>I</th><th>II</th><th>III</th><th>IV</th><th>V</th><th>VI</th><th>VII</th>
+    </tr>
+    <tr>
+        <td>Monday</td>
+        <td><input type="text" name="mc1" value={{d1.C1}}></td>
+        <td><input type="text" name="mc2" value={{d1.C2}}></td>
+        <td><input type="text" name="mc3" value={{d1.C3}}></td>
+        <td><input type="text" name="mc4" value={{d1.C4}}></td>
+        <td><input type="text" name="mc5" value={{d1.C5}}></td>
+        <td><input type="text" name="mc6" value={{d1.C6}}></td>
+        <td><input type="text" name="mc7" value={{d1.C7}}></td> 
+    </tr>
+    
+    <tr>
+        <td>Tuesday</td>
+        <td><input type="text" name="tc1" value={{d2.C1}}></td>
+        <td><input type="text" name="tc2" value={{d2.C2}}></td>
+        <td><input type="text" name="tc3" value={{d2.C3}}></td>
+        <td><input type="text" name="tc4" value={{d2.C4}}></td>
+        <td><input type="text" name="tc5" value={{d2.C5}}></td>
+        <td><input type="text" name="tc6" value={{d2.C6}}></td>
+        <td><input type="text" name="tc7" value={{d2.C7}}></td> 
+    </tr>
+    <tr>
+        <td>Wednesday</td>
+ <td><input type="text" name="wc1" value={{d3.C1}}></td>
+ <td><input type="text" name="wc2" value={{d3.C2}}></td>
+ <td><input type="text" name="wc3" value={{d3.C3}}></td>
+ <td><input type="text" name="wc4" value={{d3.C4}}></td>
+ <td><input type="text" name="wc5" value={{d3.C5}}></td>
+ <td><input type="text" name="wc6" value={{d3.C6}}></td>
+ <td><input type="text" name="wc7" value={{d3.C7}}></td> 
+    </tr>
+    <tr>
+        <td>Thursday</td>
+        <td><input type="text" name="thc1" value={{d4.C1}}></td>
+        <td><input type="text" name="thc2" value={{d4.C2}}></td>
+        <td><input type="text" name="thc3" value={{d4.C3}}></td>
+        <td><input type="text" name="thc4" value={{d4.C4}}></td>
+        <td><input type="text" name="thc5" value={{d4.C5}}></td>
+        <td><input type="text" name="thc6" value={{d4.C6}}></td>
+        <td><input type="text" name="thc7" value={{d4.C7}}></td> 
+    </tr>
+    <tr>
+        <td>Friday</td>
+        <td><input type="text" name="fc1" value={{d5.C1}}></td>
+        <td><input type="text" name="fc2" value={{d5.C2}}></td>
+        <td><input type="text" name="fc3" value={{d5.C3}}></td>
+        <td><input type="text" name="fc4" value={{d5.C4}}></td>
+        <td><input type="text" name="fc5" value={{d5.C5}}></td>
+        <td><input type="text" name="fc6" value={{d5.C6}}></td>
+        <td><input type="text" name="fc7" value={{d5.C7}}></td>  
+    </tr>
+    <tr>
+        <td>Saturday</td>
+        <td><input type="text" name="sc1" value={{d6.C1}}></td>
+        <td><input type="text" name="sc2" value={{d6.C2}}></td>
+        <td><input type="text" name="sc3" value={{d6.C3}}></td>
+        <td><input type="text" name="sc4" value={{d6.C4}}></td>
+        <td><input type="text" name="sc5" value={{d6.C5}}></td>
+        <td><input type="text" name="sc6" value={{d6.C6}}></td>
+        <td><input type="text" name="sc7" value={{d6.C7}}></td> 
+    </tr>
+  </table>
+  <center>
+  <button class="btn" style="background-color:#ff2e63;">Save Changes</button>
+  </center>
+</form>
+{% endblock%}
