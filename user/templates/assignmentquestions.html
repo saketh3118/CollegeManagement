@@ -1,0 +1,41 @@
+{% extends 'base.html'%}
+{% block content%}
+
+<div class="h4 pb-2 mb-4 border-bottom border-3 mx-3 border-dark underline" style="color:#FF2E63;">
+    Assignment Questions
+  </div>
+    {% for assign in assignments %}
+    {% if assign.sub != ""%}
+      <details style="padding-left:10px;">
+            <summary class="text-primary"><strong>{{assign.sub}}</strong></summary>
+            <br>
+        <div class="container assignment">
+           <div class="row" style="margin-left:160px">
+             <div class="col-10 assign"><center>{{assign.sub}}</center></div>
+             <div class="col-10 assign"><center>Mid1</center>
+             Q1:{{assign.q1}}<br>
+             Q2:{{assign.q2}}<br>
+             Q3:{{assign.q3}}<br>
+             Q4:{{assign.q4}}<br>
+             Q5:{{assign.q5}}</div>
+             <div class="col-10 assign">
+                <center>Mid2</center>
+                Q1:{{assign.q6}}<br>
+                Q2:{{assign.q7}}<br>
+                Q3:{{assign.q8}}<br>
+                Q4:{{assign.q9}}<br>
+                Q5:{{assign.q10}}</div>
+             </div>
+           </div>
+         </div>
+        </details>
+        {% endif %}
+{% endfor %}
+        
+<script>
+    a=document.getElementById('assign')
+    b=document.getElementById('academics')
+    a.style.backgroundColor="#d0d0d0";
+    b.style.backgroundColor="#d0d0d0";
+  </script>
+  {% endblock%}

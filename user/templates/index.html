@@ -8,15 +8,18 @@
     
     <style>
       .box{
+        transition: box-shadow .3s;
         margin-top:10px;
         width:270px;
         height:300px;
         border-radius:10px;
-        background-color:#EAEAEA;
+        background-color:#fafafa;
         position:relative;
         bottom:160px;
-        border:1px solid gray;
       }
+      .box:hover {
+        box-shadow: 0 0 11px rgba(33,33,33,.2); 
+    }
       .index{
         position:relative;
         top:50px;
@@ -25,21 +28,18 @@
         display: flex;
       }
       .navi{
-        background-color:#EAEAEA;
+        background-color:#fff;
       }
       .div1, .div2 {
         width: 50%;
       }
       .btn{
-        color:#EAEAEA;
-        background-color:#eaeaea;
-        transition: .2s ease-in-out 0s;
+        color:black;
+        background-color:#fff;
       }
-    .btn:hover {
-      transform: scale(1.20);
-      color: #eaeaea;
-      background-color: #FF2E63;
-      border-color: #ffffff;
+    .btn:hover,#drop:hover,.dropitem:hover {
+      color: black;
+      background-color: #f2f2f2;
     }
     .mid{
       width:90vw;
@@ -76,7 +76,7 @@
     }
   </style>
   </head>
-<body style="background-color:#EAEAEA;"> 
+<body style="background-color:#fff;"> 
   <nav class="navbar navbar-expand-lg sticky-top navi">
         <div class="container-fluid">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,9 +87,23 @@
               <li class="nav-item">
                 <a class="nav-link btn" id="home" style="color:black;border:0px;" href="/index"><strong>Home</strong></a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link btn" id="academics"style="color:black;border:0px;" href="/academics"><strong>Academics</strong></a>
+              <center>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-dark dropitem" href="#" style="border-radius:10px;" id="academics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <strong>Academics</strong>
+                </a>
+                <ul class="dropdown-menu" id="drop" style="background-color:#fff;">
+                  <li><a class="dropdown-item dropitem btn" id="sem" href="/semresults">Semester Results</a></li>
+                  <li><a class="dropdown-item dropitem btn" id="mid" href="/mid">Mid Marks</a></li>
+                  <li><a class="dropdown-item dropitem btn" id="assign" href="/assignmentquestions">Assigmnet Questions</a></li>
+                  <li><a class="dropdown-item dropitem btn" id="tt" href="/displaytimetable">Time Table</a></li>
+                </ul>
               </li>
+            </center>
+
+
+
+
               <li class="nav-item">
                 <a class="nav-link btn" id="attendance"style="color:black;border:0px;" href="/attendance"><strong>Attendance</strong></a>
               </li>
@@ -99,13 +113,13 @@
               <li class="nav-item">
                 <a class="nav-link btn" id="logout"style="color:black;border:0px;" href="/logout" id="liveToastBtn"><strong>LogOut</strong></a>
               </li>
-              <li class="nav-item dropdown logout" style="position:relative;left:710px; background-color:orange; border-radius:20px;">
-                <button class="btn dropdown-toggle" data-bs-toggle="dropdown" style="background-color:#FF2E63;"aria-expanded="false">
+              <li class="nav-item dropdown logout" style="position:relative;left:710px; border-radius:20px;">
+                <button class="btn dropdown-toggle text-dark" data-bs-toggle="dropdown" style="background-color:#fff;border:2px solid black;"aria-expanded="false">
                  <p style="font-size:130%;display:inline;">&equiv;</p> {{uname}}
                 </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item disabled" href="#">{{name}}</a></li>
-                  <li><a class="dropdown-item" href="/logout">LogOut</a></li>
+                <ul class="dropdown-menu" style="background-color:#fff;">
+                  <li><a class="dropdown-item btn disabled" href="#">{{name}}</a></li>
+                  <li><a class="dropdown-item btn" href="/logout">LogOut</a></li>
                 </ul>
               </li>
             </ul>
@@ -113,7 +127,7 @@
         </div>
       </nav>   
       
-<div class="jumbotron containerr" style="background-color:#EAEAEA;height:500px;">
+<div class="jumbotron containerr" style="background-color:#fff;height:500px;">
   <div class="container div1 index">
       <h2 class="text-black" style="">Welcome to <strong style="display:inline;color:#FF2E63;">Saketh's Student Portal</strong></h2>
     <h3 class="text-black" style="">Hello, <strong style="display:inline;color:#FF2E63;">{{name}}</strong></h3>
@@ -145,7 +159,7 @@
 </div> 
  <script>
   a=document.getElementById('home')
-  a.style.backgroundColor="#FF2E63";
+  a.style.backgroundColor="#f2f2f2";
 </script> 
     </body>
 </html>

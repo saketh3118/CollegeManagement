@@ -4,7 +4,6 @@ urlpatterns = [
     path('',views.home),
     path('index',views.index),
     path('home',views.home),
-    path('academics',views.academics),
     path('attendance',views.attendance),
     path('contactus',views.contactus),
     path('assignments',views.assignments),
@@ -31,7 +30,11 @@ urlpatterns = [
     path('editattendance',views.editattendance),
     path('edituserattendance/<str:pk>',views.edituserattendance,name="edituserattendance"),
     path('midmarks1',views.midmarks1),
-    path('midmarks2',views.midmarks2)
+    path('midmarks2',views.midmarks2),
+    path('semresults',views.semresults),
+    path('mid',views.mid),
+    path('assignmentquestions',views.assign),
+    path('displaytimetable',views.displaytimetable)
 ]
 
 

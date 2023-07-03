@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: cursive;
+  }
+  a {
+    text-decoration: none;
+  }
+  li {
+    list-style: none;
+  }
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #eaeaea;
+    color: black;
+  }
+  .nav-links a {
+    color: black;
+  }
+  .logo {
+    font-size: 32px;
+  }
+  .menu {
+    display: flex;
+    gap: 1em;
+    font-size: 18px;
+  }
+  .menu li:hover {
+    background-color: #D0D0D0;
+    border-radius: 100px;
+    transition: 0.3s ease;
+  }
+  .menu li {
+    padding: 5px 14px;
+  }
+  .services {
+    position: relative; 
+  }
+  .dropdown {
+    background-color: #eaeaea;
+    padding: 1em 0;
+    position: absolute;
+    display: none;
+    border-radius: 5px;
+    top: 35px;
+  }
+  .dropdown li + li {
+    margin-top: 10px;
+  }
+  .dropdown li {
+    padding: 0.5em 1em;
+    width: 8em;
+    text-align: center;
+  }
+  .dropdown li:hover {
+    background-color: #D0D0D0;
+  }
+  .services:hover .dropdown {
+    display: block;
+  }
+  input[type=checkbox] {
+    display: none;
+  } 
+  .hamburger {
+    display: none;
+    font-size: 24px;
+    user-select: none;
+  }
+  @media (max-width: 768px) {
+   .menu {
+      display:none;
+      position: absolute;
+      background-color:#eaeaea;
+      right: 0;
+      left: 0;
+      text-align: center;
+      padding: 16px 0;
+    }
+    .menu li:hover {
+      display: inline-block;
+      background-color:#d0d0d0;
+      transition: 0.3s ease;
+    }
+    .menu li + li {
+      margin-top: 12px;
+    }
+    input[type=checkbox]:checked ~ .menu {
+      display: block;
+    }
+    .hamburger {
+      display: block;
+    }
+    .dropdown {
+      left: 50%;
+      top: 30px;
+      transform: translateX(35%);
+    }
+    .dropdown li:hover {
+      background-color: #d0d0d0;
+    }
+  }
+  </style>
+  <title>Document</title>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="logo">Student Portal</div>
+    <ul class="nav-links">
+      <input type="checkbox" id="checkbox_toggle" />
+      <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+      <div class="menu">
+        <li><a href="#" class="btn">Home</a></li>
+        <li class="services">
+            <a href="#" class="btn">Academics</a>
+            <ul class="dropdown">
+                <li><a href="#" class="btn">Dropdown 1 </a></li>
+                <li><a href="#" class="btn">Dropdown 2</a></li>
+                <li><a href="#" class="btn">Dropdown 2</a></li>
+                <li><a href="#" class="btn">Dropdown 3</a></li>
+                <li><a href="#" class="btn">Dropdown 4</a></li>
+            </ul>
+        </li>
+        <li><a href="#" class="btn">Attendance</a></li>
+        <li><a href="#" class="btn">Contact Us</a></li>
+        <li><a href="#" class="btn">Profile</a></li>
+      </div>
+    </ul>
+  </nav>
+  <script>
+    const btn = document.getElementsByClassName('btn');
+for(var i=0;i<btn.length;i++)
+{
+    btn[i].addEventListener('click', func);
+    btn[i].addEventListener('focusout', func2);
+}
+function func(e)
+{
+        e.target.style.backgroundColor = '#d0d0d0';
+        e.target.style.color = 'black';
+        e.target.style.borderRadius='100px';
+        e.target.style.paddingTop='5px';
+        e.target.style.paddingBottom='5px';
+        e.target.style.paddingLeft='10px';
+        e.target.style.paddingRight='10px';
+}
+function func2(e)
+{
+    e.target.backgroundColor='#eaeaea';
+    e.target.style.color = 'black';
+    e.target.style.borderRadius='100px';
+    e.target.style.padding='0px';
+}
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+{% block content%}
+<div class="h4 pb-2 mb-4 mx- border-bottom border-3 mx-3 border-dark underline" style="color:#FF2E63;">
+    Time Table
+</div>
+<center>      
+<strong class="" style="margin-left:69vw;">Effective from: {{date}}</strong>
+<table class="table table-hover mx-3 timetable" >
+    <tr>
+        <th>Day</th><th>I</th><th>II</th><th rowspan="7">Break</th><th>III</th><th>IV</th><th rowspan="7">Lunch</th><th>V</th><th>VI</th><th>VII</th>
+    </tr>
+    {% for x in tt%}
+    <tr>
+        <td>{{x.Day}}</td><td>{{x.C1}}</td><td>{{x.C2}}</td><td>{{x.C3}}</td><td>{{x.C4}}</td><td>{{x.C5}}</td><td>{{x.C6}}</td><td>{{x.C7}}</td>
+    </tr> 
+    {% endfor %}
+  </table>
+</center>
+  <br>
+  <br>
+
+  
+<script>
+    a=document.getElementById('tt')
+    b=document.getElementById('academics')
+    a.style.backgroundColor="#d0d0d0";
+    b.style.backgroundColor="#d0d0d0";
+  </script>
+{% endblock%}

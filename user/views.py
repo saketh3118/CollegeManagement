@@ -27,7 +27,23 @@ def index(request):
     uname=request.session.get('uname')
     name=request.session.get('name')
     return render(request,'index.html',{'uname':uname,'name':name}) 
-def academics(request):
+def displaytimetable(request):
+    uname=request.session.get('uname')
+    name=request.session.get('name')
+    tt=TimeTable.objects.all()
+    return render(request,'displaytimetable.html',{'tt':tt,'date':tt[0].date.date(),'assignments':assignments,'uname':uname,'name':name})
+def assign(request):
+    uname=request.session.get('uname')
+    name=request.session.get('name')
+    assignments=Assignments.objects.all()
+    return render(request,'assignmentquestions.html',{'assignments':assignments,'uname':uname,'name':name})
+def mid(request):
+    uname=request.session.get('uname')
+    name=request.session.get('name')
+    m1=Mid1.objects.get(username=uname)
+    m2=Mid2.objects.get(username=uname)
+    return render(request,'midmarks.html',{'m1':m1,'m2':m2,'uname':uname,'name':name})
+def semresults(request):
     uname=request.session.get('uname')
     name=request.session.get('name')
     s=Semester.objects.get(username=uname)
@@ -70,11 +86,7 @@ def academics(request):
     avg=round((sum1+sum2+sum3+sum4)/4,2)
     temp=avg
     v1=temp*10
-    tt=TimeTable.objects.all()
-    assignments=Assignments.objects.all()
-    m1=Mid1.objects.get(username=uname)
-    m2=Mid2.objects.get(username=uname)
-    return render(request,'academics.html',{'s':s,'uname':uname,'name':name,'sum1':sum1,'sum2':sum2,'sum3':sum3,'sum4':sum4,'avg':avg,'avg1':sum1,'avg2':round((sum1+sum2)/2,2),'avg3':round((sum1+sum2+sum3)/3,2),'avg4':round((sum1+sum2+sum3+sum4)/4,2),'tt':tt,'date':tt[0].date.date(),'v1':v1,'assignments':assignments,'m1':m1,'m2':m2})
+    return render(request,'semresults.html',{'s':s,'uname':uname,'name':name,'sum1':sum1,'sum2':sum2,'sum3':sum3,'sum4':sum4,'avg':avg,'avg1':sum1,'avg2':round((sum1+sum2)/2,2),'avg3':round((sum1+sum2+sum3)/3,2),'avg4':round((sum1+sum2+sum3+sum4)/4,2),'v1':v1,'assignments':assignments})
 def attendance(request):
     uname=request.session.get('uname')
     name=request.session.get('name')

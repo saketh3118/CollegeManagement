@@ -1,0 +1,31 @@
+{% extends 'base.html'%}
+{% block content%}
+<strong>
+    <div class="mx-3 mt-3"> Student Name: {{name}}</div>
+     <div class="mx-3">Roll No: {{uname}}</div> 
+</strong>
+<br>
+
+<center>
+<div class="py-3"style="border-radius:20px;width:800px;background-color:#eff0f0;">
+<div class="h4 pb-2 mb-4 mx-  border-3 mx-3 border-dark underline" style="color:#FF2E63;">
+    Midterm Marks
+</div>
+  <table class="mx-3 table table-hover mid" style="width:95%;">
+    <tr>
+        <th>S.No</th><th>Subject</th><th>Mid1</th><th>Mid 2</th>
+    </tr>
+    <tr><td>1</td><td>Java Programming</td><td>{{m1.Java_Programming_Cse}}</td><td>{{m2.Java_Programming_Cse}}</td>
+    <tr><td>2</td><td>Data Structures</td><td>{{m1.Data_Structures_Cse}}</td><td>{{m2.Data_Structures_Cse}}</td>
+    <tr><td>3</td><td>Web Technologies</td><td>{{m1.Web_Technologies_Cse}}</td><td>{{m2.Web_Technologies_Cse}}</td>
+
+  </table>
+</div>
+</center>
+<script>
+    a=document.getElementById('mid')
+    b=document.getElementById('academics')
+    a.style.backgroundColor="#d0d0d0";
+    b.style.backgroundColor="#d0d0d0";
+  </script>
+  {% endblock%}
