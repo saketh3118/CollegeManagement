@@ -25,11 +25,8 @@
   </div> 
   <strong class="text-success">{{msg}}</strong>
   <br>
-</center>
-
-
-
-<table class="table table-hover mx-5" style="width:1265px;">
+  <div class="m-5 midd" style="width:95vw;border-radius:20px;">
+<table class="table table-hover" style="width:90%;">
     <thead>
       <tr>
         <th scope="col">S.No</th>
@@ -95,7 +92,7 @@
       </tr>
     </tbody>
   </table>
-  <center>
+</div>
   {%   if v3 < 10 %}
    <p class="text-warning" style="font-size:150%"><strong><i>Your Attendance is below 75%.Please Contact Hod</i></strong></p>
    {% endif%}
@@ -103,6 +100,6 @@
 
 <script>
   a=document.getElementById('attendance')
-  a.style.backgroundColor="#d0d0d0";
+  a.style.backgroundColor="#f2f2f2";
 </script>
    {% endblock %}
