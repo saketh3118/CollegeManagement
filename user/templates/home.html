@@ -89,6 +89,18 @@ body {
       </style>     
 </head>
 <body class="text-center" style="background-color:#fff;">
+  <div class="container-fluid">
+    {% if messages %}
+  {% for message in messages%}
+     <center>
+  <div class="alert alert-{{message.tags}}  alert-danger alert-dismissible fade show" role="alert" style="width:90vw;position:relative;color:black;top:30px;max-width:500px;">
+      <strong>{{message}}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  </center>
+  {% endfor%}
+  {% endif %}
+  <div>
     <main class="form-signin w-100 m-auto">
       <form action='home' method='POST'>
         {% csrf_token %}

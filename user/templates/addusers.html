@@ -1,17 +1,27 @@
 {% extends 'admin.html'%}
 {% block content%}
-   
-<div class="h4 pb-2 mt-3 mx-1 text-primary border-bottom border-3 border-primary">
-    User LoginDetails
-</div>
-   <table class="table mx-5 my-3" style="width:900px;">
+   <center>
+    {% if messages %}
+{% for message in messages%}
+   <center>
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert" style="width:1200px;position:relative;color:black;top:30px;">
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</center>
+{% endfor%}
+{% endif %}
+
+<div class="cont mx-3 my-3" style="">
+    <h2 class="my-2 text-primary">User LoginDetails</h2>
+   <table class="table my-3">
     <tr class="text-black">
        <th>S.No</th> <th>Name</th><th>Username</th><th>Usertype</th><th>Department</th>
     </tr>
     {% for user in lg%}
     {% if user.username != ""%}
     <tr>
-        <td>{{forloop.counter0}}</td><td>{{user.name}}</td><td>{{user.username}}</td><td>{{user.usertype}}</td><td>{{user.dept}}</td><td>
+        <td>{{forloop.counter}}</td><td>{{user.name}}</td><td>{{user.username}}</td><td>{{user.usertype}}</td><td>{{user.dept}}</td><td>
             <a href="{% url 'edituser' pk=user.username %}"><img src="../static/img/edit.gif" style="height:25px;"></td></a>
             <td><a href="{% url 'deleteuser' pk=user.username %}"><img src="../static/img/icons8-trash.gif" style="height:25px;"></td></a>
     </tr>
@@ -43,9 +53,15 @@
 </form>
      {% endif %}
    </table>
+</div>
    <center>
    <a href="/adduserdetails">
    <button class="btn btn-primary">Add Users</button>
    </a>
 </center>
+</center>
+<script>
+    a=document.getElementById('userlogin')
+    a.style.backgroundColor="#f2f2f2";
+  </script> 
 {% endblock%}

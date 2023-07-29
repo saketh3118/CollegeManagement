@@ -1,10 +1,32 @@
 {% extends 'base.html'%}
+{% block style%}
+.main{
+  margin:10px 5px 0px 5px;
+  box-shadow:rgba(99,99,99,.1) 2px 2px 10px 10px;
+  width:90vw;
+  border-radius:20px;
+}
+.timetable{
+  width:95%;
+}
+{%endblock%}
+{%block media%}
+.main{
+  width:98vw;
+  overflow-x:scroll;
+}
+.timetable{
+  margin:5px 10px 5px 10px;
+  width:900px;
+}
+{%endblock%}
 {% block content%}
-<div class="h4 pb-2 mb-4 mx- border-bottom border-3 mx-3 border-dark underline" style="color:#FF2E63;">
+<div class="h4 pb-2 mb-4 mx- border-bottom border-3 mx-3 border-dark underline" style="color:#FF2E63;width:90vw;">
     Time Table
 </div>
 <center>      
-<strong class="" style="margin-left:69vw;">Effective from: {{date}}</strong>
+<strong class="date" style="">Effective from: <span style="color:#0d6efd"><b>{{date}}</b></span></strong>
+<div class="main">
 <table class="table table-hover mx-3 timetable" >
     <tr>
         <th>Day</th><th>I</th><th>II</th><th rowspan="7">Break</th><th>III</th><th>IV</th><th rowspan="7">Lunch</th><th>V</th><th>VI</th><th>VII</th>
@@ -14,7 +36,8 @@
         <td>{{x.Day}}</td><td>{{x.C1}}</td><td>{{x.C2}}</td><td>{{x.C3}}</td><td>{{x.C4}}</td><td>{{x.C5}}</td><td>{{x.C6}}</td><td>{{x.C7}}</td>
     </tr> 
     {% endfor %}
-  </table>
+</table>
+<div>
 </center>
   <br>
   <br>

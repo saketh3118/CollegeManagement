@@ -3,10 +3,9 @@
 <style>
     .aa {
         width:258px;
-        margin:10px;
+        {% comment %} margin:10px; {% endcomment %}
         background: transparent;
         position: relative;
-        left:300px;
         padding: 12px 15px;
         display: flex;
         align-items: center;
@@ -24,7 +23,7 @@
       }
       
       .aa span {
-        margin: 10px;
+        {% comment %} margin: 10px; {% endcomment %}
       }
       
       .aa::before {
@@ -57,8 +56,14 @@
 </style>
 {% endblock%}
 {%block content%}
+<center>
 <a href="/sem1" class="aa">Semester-1</a>
 <a href="/sem2" class="aa">Semester-2</a>
 <a href="/sem3" class="aa">Semester-3</a>
 <a href="/sem4" class="aa">Semester-4</a>
+</center>
+<script>
+  a=document.getElementById('results')
+  a.style.backgroundColor="#f2f2f2";
+</script>
 {% endblock%}

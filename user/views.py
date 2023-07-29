@@ -8,12 +8,18 @@ def home(request):
     if request.method=='POST':
         username=request.POST.get('username')
         password=request.POST.get('password')
+        request.session['uname']=username
+        request.session['name']=username
         user=authenticate(username=username,password=password)
-        if(user is not None):
-            return render(request,'admin.html')
+        if(user is not None and username!=''):
+            lg=LoginDetails.objects.all()
+            return render(request,'addusers.html',{'lg':lg,'adduser':'no','uname':request.session.get('uname'),'name':request.session.get('name')})
         try:
+            if(username==''):
+                raise Exception
             lg=LoginDetails.objects.get(username=username)
-        except :
+        except:
+            messages.success(request,'Invalid Username or Password')
             return render(request,'home.html')
         if(lg.username==username and lg.password==password):
             request.session['uname']=lg.username
@@ -284,8 +290,9 @@ def faculty(request):
 def admin(request):
     return render(request,'admin.html')
 def addusers(request):
+    # ad=LoginDetails.objects.get(username=request.session.get('uname'))
     lg=LoginDetails.objects.all()
-    return render(request,'addusers.html',{'lg':lg,'adduser':'no'})
+    return render(request,'addusers.html',{'lg':lg,'adduser':'no','uname':request.session.get('uname'),'name':request.session.get('name')})
 def adduserdetails(request):
     lg=LoginDetails.objects.all()
     c=LoginDetails.objects.all().count()
@@ -296,9 +303,10 @@ def adduserdetails(request):
         dept=request.POST.get('dept')
         name=request.POST.get('name')
         newuser=LoginDetails.objects.create(username=username,password=username,name=name,usertype=usertype,dept=dept)
-        c=c+1
         newuser.save()
-    return render(request,'addusers.html',{'lg':lg,'adduser':'yes','count':c,'sub':sub})
+        messages.success(request,'Success!User Details has been Added')
+        return render(request,'addusers.html',{'lg':lg,'adduser':'no','count':c,'sub':sub,'uname':request.session.get('uname'),'name':request.session.get('name')})
+    return render(request,'addusers.html',{'lg':lg,'adduser':'yes','count':c,'sub':sub,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def edituser(request,pk):
     lg=LoginDetails.objects.all()
     c=LoginDetails.objects.all().count()
@@ -310,7 +318,7 @@ def edituser(request,pk):
         name=request.POST.get('name')
         newuser=LoginDetails.objects.create(username=username,password=username,name=name,usertype=usertype,dept=dept)
         newuser.save()
-    return render(request,'edituser.html',{'pk':pk,'lg':lg,'adduser':'no','count':c,'sub':sub})
+    return render(request,'edituser.html',{'pk':pk,'lg':lg,'adduser':'no','count':c,'sub':sub,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def savechanges(request):
     lg=LoginDetails.objects.all()
     if(request.method=='POST'):
@@ -324,15 +332,17 @@ def savechanges(request):
         user.dept=dept
         user.usertype=usertype
         user.save()
-    return render(request,'edituser.html',{'lg':lg})
+        messages.success(request,'Success!User Details has edited Successfully')
+    return render(request,'addusers.html',{'lg':lg,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def deleteuser(request,pk):
     lg=LoginDetails.objects.all()
     c=LoginDetails.objects.all().count()
     sub=Mid1.objects.all()
     LoginDetails.objects.get(username=pk).delete()
-    return render(request,'addusers.html',{'lg':lg,'adduser':'yes','count':c,'sub':sub})
+    messages.success(request,'Success!User Details has Deleted')
+    return render(request,'addusers.html',{'lg':lg,'adduser':'no','count':c,'sub':sub,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def listofsems(request):
-    return render(request,'listOfSems.html')
+    return render(request,'listOfSems.html',{'uname':request.session.get('uname'),'name':request.session.get('name')})
 # def editresults(request,pk):
 #     student=LoginDetails.objects.get(username=pk)
 #     return render(request,'editresults.html',{'user':student})
@@ -435,23 +445,23 @@ def edituserresults(request,pk,sem):
             student.ES=request.POST.get('es')
             student.c34=request.POST.get('es_credits')
             student.save()
-    return render(request,'editresults.html',{'username':pk,'sem':sem,'users':users,'student':student})
+    return render(request,'editresults.html',{'username':pk,'sem':sem,'users':users,'student':student,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def sem1(request):
     users=LoginDetails.objects.filter(usertype="Student").order_by('username')
     subjects=[["LANM",4],["EC",4],["BEEE",3],["PPS",3],["PPS_LAB",3],["BEE_LAB",1.5],["EC_LAB",1],["IT_WORKSHOP",1.5]]
-    return render(request,'sem.html',{'users':users,'sem':'sem1','subjects':subjects})
+    return render(request,'sem.html',{'users':users,'sem':'sem1','subjects':subjects,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def sem2(request):
     users=LoginDetails.objects.filter(usertype="Student").order_by('username')
     subjects=[["ENG",3],["PandS",3],["SCP",4],["PYTHON",4],["EG",3],["ENG_LAB",1],["SCP_LAB",1],["PYTHON_LAB",2]]
-    return render(request,'sem.html',{'users':users,'sem':'sem2','subjects':subjects})
+    return render(request,'sem.html',{'users':users,'sem':'sem2','subjects':subjects,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def sem3(request):
     subjects=[["DM",3],["COA",3],["DS",3],["JAVA",3],["OS",3],["DS_LAB",1.5],["JAVA_LAB",1.5],["OS_LAB",2],["GS",0]]
     users=LoginDetails.objects.filter(usertype="Student").order_by('username')
-    return render(request,'sem.html',{'users':users,'sem':'sem3','subjects':subjects})
+    return render(request,'sem.html',{'users':users,'sem':'sem3','subjects':subjects,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def sem4(request):
     subjects=[["ASOT",3],["DBMS",3],["WT",3],["DAA",3],["CC",3],["DBMS LAB",2],["WT LAB",1.5],["DAA LAB",1.5],["ES",0]]
     users=LoginDetails.objects.filter(usertype="Student").order_by('username')
-    return render(request,'sem.html',{'users':users,'sem':'sem4','subjects':subjects})
+    return render(request,'sem.html',{'users':users,'sem':'sem4','subjects':subjects,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def timetable(request):
     try:
         d1=TimeTable.objects.get(Day="MONDAY")
@@ -544,8 +554,8 @@ def timetable(request):
             d6.Dept="CSE"
             d6.Year=3
             d6.save()
-            return render(request,'timetable.html',{'d1':d1,'d2':d2,'d3':d3,'d4':d4,'d5':d5,'d6':d6})
-    return render(request,'timetable.html',{'d1':d1,'d2':d2,'d3':d3,'d4':d4,'d5':d5,'d6':d6})
+            return render(request,'timetable.html',{'d1':d1,'d2':d2,'d3':d3,'d4':d4,'d5':d5,'d6':d6,'uname':request.session.get('uname'),'name':request.session.get('name')})
+    return render(request,'timetable.html',{'d1':d1,'d2':d2,'d3':d3,'d4':d4,'d5':d5,'d6':d6,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def editattendance(request):
     users=LoginDetails.objects.filter(usertype="Student").order_by('username')
     try:
@@ -573,7 +583,7 @@ def editattendance(request):
         attendance.CD_LAB_TOTAL=cd_lab
         attendance.ENG_LAB_TOTAL=eng_lab
         attendance.save()
-    return render(request,'edit_attendance.html',{'users':users,'subjects':subjects,'attendance':attendance})
+    return render(request,'edit_attendance.html',{'users':users,'subjects':subjects,'attendance':attendance,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def edituserattendance(request,pk):
     users=LoginDetails.objects.filter(usertype="Student").order_by('username')
     total=TotalAttendance.objects.get(Dept="CSE")
@@ -602,4 +612,6 @@ def edituserattendance(request,pk):
         attendance.CD_LAB=cd_lab
         attendance.ENG_LAB=eng_lab
         attendance.save()
-    return render(request,'edituserattendance.html',{'pk':pk,'users':users,'attendance':attendance,'total':total})
+    return render(request,'edituserattendance.html',{'pk':pk,'users':users,'attendance':attendance,'total':total,'uname':request.session.get('uname'),'name':request.session.get('name')})
+def logoutadmin(request):
+    return render(request,'logoutadmin.html')

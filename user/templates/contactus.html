@@ -1,4 +1,14 @@
 {% extends 'base.html' %}
+{% block media%}
+.boxx{
+  dsiplay:block;
+  width:80vw;
+  overflow-x:auto;
+}
+textarea{
+  width:100px;
+}
+{%endblock%}
 {% block content %}
 {% if val == 1%}
 <center>
@@ -15,23 +25,23 @@
   <br>
   <form action='/contactus' method='post'>
     {% csrf_token %}
-  <div class="mb-3 row" style="margin-left:200px;width:1100px;">
-    <label class="col-sm-2 col-form-label">Username</label>
-    <div class="col-sm-10" style="margin-top:6px;">
-        <strong style="display:inline;">{{uname}}</strong>
+  <div class="mb-3 row mx-3" style="width:90vw;">
+    <span class="" style="width:90vw">Username</span>
+    <div class="col-sm-10" style="margin-top:2px;">
+        <strong style="display:inline;color:#0d6efd;width:90vw">{{uname}}</strong>
     </div>
-    <label class="col-sm-2 col-form-label">Student Name</label>
-    <div class="col-sm-10" style="margin-top:6px;">
-      <strong style="display:inline;">{{name}}</strong>
+    <label class="col-sm-2 col-form-label" style="width:90vw">Student Name</label>
+    <div class="col-sm-10" style="margin-top:2px;">
+      <strong style="display:inline;color:#0d6efd;width:90vw;">{{name}}</strong>
+    </div>
+    <p for="exampleFormControlTextarea1" class="form-label my-3" style="display:block;"><b>Enter Your Message</b></p><br>
+      <div class="mb-3 boxx">
+        <textarea class="form-control m-0" id="exampleFormControlTextarea1" name="text" rows="3" style="width:700px;height:200px;border:2px solid grey;color:#black;" placeholder="Start Writing From Here....."></textarea>
+      </div>
+    <div class="col-auto" style="">
     </div>
   </div>
-    <div class="mb-3" style="margin-left:210px;">
-    <label for="exampleFormControlTextarea1" class="form-label"><b>Enter Your Message</b></label>
-    <textarea class="form-control m-0" id="exampleFormControlTextarea1" name="text" rows="3" style="width:700px;height:200px;border:2px solid #FF2E63;color:#f2f2f2;" placeholder="Start Writing From Here....."></textarea>
-  </div>
-  <div class="col-auto" style="margin-left:530px;">
-    <input type="submit" style="background-color:#FF2E63;" class="btn mb-3">
-  </div>
+  <center><input type="submit" style="background-color:#FF2E63;" class="btn mb-3"></center>
 </form>
 
 {% comment %} {{text}} {% endcomment %}

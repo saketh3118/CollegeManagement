@@ -34,7 +34,8 @@ urlpatterns = [
     path('semresults',views.semresults),
     path('mid',views.mid),
     path('assignmentquestions',views.assign),
-    path('displaytimetable',views.displaytimetable)
+    path('displaytimetable',views.displaytimetable),
+    path('logoutadmin',views.logoutadmin)
 ]
 
 

@@ -1,4 +1,15 @@
 {% extends 'base.html'%}
+{% block media%}
+.midd{
+  width:120vw;
+  overflow-x:scroll;
+}
+{%endblock%}
+{% block style%}
+.midd,table{
+  width:50vw;
+}
+{%endblock%}
 {% block content%}
 <strong>
     <div class="mx-3 mt-3"> Student Name: {{name}}</div>
@@ -7,11 +18,12 @@
 <br>
 
 <center>
-<div  class="midd py-3"style="border-radius:20px;width:800px;">
-<div class="h4 pb-2 mb-4 mx-  border-3 mx-3 border-dark underline" style="color:#FF2E63;">
+<div  class="midd py-3"style="border-radius:20px;">
+<div class="h3 border-3 border-dark underline" style="color:#FF2E63;">
     Midterm Marks
 </div>
-  <table class="mx-3 table table-hover mid" style="width:95%;">
+<div>
+  <table class="mx-3 table table-hover">
     <tr>
         <th>S.No</th><th>Subject</th><th>Mid1</th><th>Mid 2</th>
     </tr>
@@ -20,6 +32,7 @@
     <tr><td>3</td><td>Web Technologies</td><td>{{m1.Web_Technologies_Cse}}</td><td>{{m2.Web_Technologies_Cse}}</td>
 
   </table>
+</div>
 </div>
 </center>
 <script>

@@ -1,4 +1,31 @@
 {% extends 'base.html' %}
+{% block style%}
+.bt{
+    width:40vw;
+}
+.tabl{
+    box-shadow: rgba(99,99,99,.2)2px 2px 10px 10px;
+    border-radius:10px;
+    width:600px;
+}
+table{
+    {% comment %} width:1000px; {% endcomment %}
+    border-radius:10px;
+}
+{%endblock%}
+{% block media%}
+.bt{
+    width:400px;
+}
+.tabl{
+    width:400px;
+    overflow-x:scroll;
+}
+.tablee{
+    width:600px;
+    margin:3px;
+}
+{% endblock%}
 {% block content%}
 <strong>
        <div class="mx-3 mt-3"> Student Name: {{name}}</div>
@@ -79,13 +106,13 @@
          </div>
          <p style="display:inline-block;position:relative;bottom:38px;font-size:20px;color:black;margin:0px;padding:0px;"><i><b>CGPA: {{avg}}</b></i></p>
  <p>
-   <button class="btn" style="background-color:#FF2E63;width:500px;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample" style="width:700px;">
+   <button class="btn bt" style="background-color:#FF2E63;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample" style="width:700px;">
      <strong>B.Tech I-I Semester Results</strong>
    </button>
  </p>
      <div class="collapse collapse-horizontal" id="collapseWidthExample">
-         <div class="card card-body" style="width:600px;background-color:#fff;">
-           <table class="table table-hover p-0" style="background-color:#fff;">
+         <div class="tabl" style="background-color:#fff;">
+           <table class="table tablee table-hover p-0" style="background-color:#fff;">
                <tr>
                    <th>S.No</th>
                    <th>Subject</th>
@@ -147,13 +174,13 @@
        </div>
    </div>
 <p style="margin-top:10px;">
-   <button class="btn" style="background-color:FF2E63;width:500px;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample2" aria-expanded="false" aria-controls="collapseWidthExample2" style="width:700px;">
+   <button class="btn bt" style="background-color:FF2E63;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample2" aria-expanded="false" aria-controls="collapseWidthExample2" style="width:700px;">
      <strong>B.Tech I-II Semester Results</strong>
    </button>
  </p>
      <div class="collapse collapse-horizontal" id="collapseWidthExample2">
-        <div class="card card-body" style="width:600px;background-color:#fff;">
-          <table class="table table-hover p-0" style="background-color:#fff;">
+        <div class="tabl" style="background-color:#fff;">
+          <table class="table tablee table-hover p-0" style="background-color:#fff;">
                <tr>
                    <th>S.No</th>
                    <th>Subject</th>
@@ -217,13 +244,13 @@
 
    
 <p style="margin-top:10px;">
-   <button class="btn" style="background-color:FF2E63;width:500px;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample3" aria-expanded="false" aria-controls="collapseWidthExample3" style="width:700px;">
+   <button class="btn bt" style="background-color:FF2E63;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample3" aria-expanded="false" aria-controls="collapseWidthExample3" style="width:700px;">
      <strong>B.Tech II-I Semester Results</strong>
    </button>
  </p>
      <div class="collapse collapse-horizontal" id="collapseWidthExample3">
-        <div class="card card-body" style="width:600px;background-color:#fff;">
-          <table class="table table-hover p-0" style="background-color:#fff;">
+        <div class="tabl" style="background-color:#fff;">
+          <table class="table tablee table-hover p-0" style="background-color:#fff;">
                <tr>
                    <th>S.No</th>
                    <th>Subject</th>
@@ -294,13 +321,13 @@
 
    
 <p style="margin-top:10px;">
-   <button class="btn" style="background-color:FF2E63;width:500px;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample4" aria-expanded="false" aria-controls="collapseWidthExample4" style="width:700px;">
+   <button class="btn bt" style="background-color:FF2E63;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample4" aria-expanded="false" aria-controls="collapseWidthExample4" style="width:700px;">
      <strong>B.Tech II-II Semester Results</strong>
    </button>
  </p>
      <div class="collapse collapse-horizontal" id="collapseWidthExample4">
-         <div class="card card-body" style="width:600px;background-color:#fff;">
-           <table class="table table-hover p-0" style="background-color:#fff;">
+         <div class="tabl" style="background-color:#fff;">
+           <table class="table  tablee table-hover p-0" style="background-color:#fff;">
                <tr>
                    <th>S.No</th>
                    <th>Subject</th>
