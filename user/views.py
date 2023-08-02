@@ -372,6 +372,7 @@ def edituserresults(request,pk,sem):
             student.IT_WORKSHOP=request.POST.get('it')
             student.c8=request.POST.get('it_credits')
             student.save()
+            messages.success(request,'Success! '+stu.username+' Semester I Results has Updated')
     elif sem=="sem2":
         try:
             student=Semester.objects.get(username=pk)
@@ -395,6 +396,7 @@ def edituserresults(request,pk,sem):
             student.PYTHON_LAB=request.POST.get('python_lab')
             student.c16=request.POST.get('python_lab_credits')
             student.save()
+            messages.success(request,'Success! '+stu.username+' Semester II Results has Updated')
     elif sem=="sem3":
         try:
             student=Semester.objects.get(username=pk)
@@ -420,6 +422,7 @@ def edituserresults(request,pk,sem):
             student.GS=request.POST.get('gs')
             student.c25=request.POST.get('gs_credits')
             student.save()
+            messages.success(request,'Success! '+stu.username+' Semester III Results has Updated')
     elif sem=="sem4":
         try:
             student=Semester.objects.get(username=pk)
@@ -445,7 +448,8 @@ def edituserresults(request,pk,sem):
             student.ES=request.POST.get('es')
             student.c34=request.POST.get('es_credits')
             student.save()
-    return render(request,'editresults.html',{'username':pk,'sem':sem,'users':users,'student':student,'uname':request.session.get('uname'),'name':request.session.get('name')})
+            messages.success(request,'Success! '+stu.username+' Semester IV Results has Updated')
+    return render(request,'editresults.html',{'stu':stu,'username':pk,'sem':sem,'users':users,'student':student,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def sem1(request):
     users=LoginDetails.objects.filter(usertype="Student").order_by('username')
     subjects=[["LANM",4],["EC",4],["BEEE",3],["PPS",3],["PPS_LAB",3],["BEE_LAB",1.5],["EC_LAB",1],["IT_WORKSHOP",1.5]]
@@ -554,6 +558,7 @@ def timetable(request):
             d6.Dept="CSE"
             d6.Year=3
             d6.save()
+            messages.success(request,'Success! Time Table has been Updated')
             return render(request,'timetable.html',{'d1':d1,'d2':d2,'d3':d3,'d4':d4,'d5':d5,'d6':d6,'uname':request.session.get('uname'),'name':request.session.get('name')})
     return render(request,'timetable.html',{'d1':d1,'d2':d2,'d3':d3,'d4':d4,'d5':d5,'d6':d6,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def editattendance(request):
@@ -583,6 +588,7 @@ def editattendance(request):
         attendance.CD_LAB_TOTAL=cd_lab
         attendance.ENG_LAB_TOTAL=eng_lab
         attendance.save()
+        messages.success(request,'Success! Total Number of Classes has been Updated')
     return render(request,'edit_attendance.html',{'users':users,'subjects':subjects,'attendance':attendance,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def edituserattendance(request,pk):
     users=LoginDetails.objects.filter(usertype="Student").order_by('username')
@@ -612,6 +618,7 @@ def edituserattendance(request,pk):
         attendance.CD_LAB=cd_lab
         attendance.ENG_LAB=eng_lab
         attendance.save()
-    return render(request,'edituserattendance.html',{'pk':pk,'users':users,'attendance':attendance,'total':total,'uname':request.session.get('uname'),'name':request.session.get('name')})
+        messages.success(request,'Success! '+user.username+' Attendance has been Updated')
+    return render(request,'edituserattendance.html',{'stu':user,'pk':pk,'users':users,'attendance':attendance,'total':total,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def logoutadmin(request):
     return render(request,'logoutadmin.html')

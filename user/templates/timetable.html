@@ -4,12 +4,45 @@
 input{
     width:70px;
 }
+.con{
+    width:90vw;
+    padding:5px;
+    box-shadow:rgba(99,99,99,.1)10px 10px 20px 20px;
+    border-radius:20px;
+}
+.tab{
+    max-width:1200px; 
+}
+{% block media%}
+.con{
+    width:90vw;
+    overflow-x:scroll;
+}
+.tab{
+
+    margin:20px;
+}
+{%endblock%}
 </style>
 {% endblock%}
 {% block content%}
+
+{% if messages %}
+{% for message in messages%}
+   <center>
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert" style="width:90vw;position:relative;color:black;top:30px;">
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</center>
+{% endfor%}
+{% endif %}
 <form action='/timetable' method='post'>
     {% csrf_token%}
-<table class="table table-striped mx-3 my-5" style="width:100%;">
+    <center>
+        <h3 style="color:#0d6efd">Time Table</h3>
+    <div class="con">
+<table class="table tab table-striped" style="">
     <tr>
         <th>Day</th><th>I</th><th>II</th><th>III</th><th>IV</th><th>V</th><th>VI</th><th>VII</th>
     </tr>
@@ -75,9 +108,11 @@ input{
         <td><input type="text" name="sc7" value={{d6.C7}}></td> 
     </tr>
   </table>
-  <center>
-  <button class="btn" style="background-color:#ff2e63;">Save Changes</button>
-  </center>
+  <div>
+</center>
+<center>
+    <button class="btn my-4" style="background-color:#ff2e63;">Save Changes</button>
+</center> 
 </form>
 
 <script>

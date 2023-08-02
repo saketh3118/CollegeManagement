@@ -11,10 +11,41 @@
         display:inline-block;
         width:200px;
     }
+    .box{
+        width:90vw;
+        margin:15px 0px 15px 0px;
+        padding:10px;
+        border-radius:20px;
+        box-shadow:rgba(99,99,99,.2)2px 2px 5px 5px;
+    }
+    .tabe{
+        width:90%;
+        border-radius:20px;
+    }
+    @media screen and (max-width:900px)
+    {
+        .box{
+            overflow-x:auto;
+        }
+        .tabe{
+            width:600px;
+        }
+    }
 </style>
 {% endblock%}
 {% block content %}
 <center>
+    
+    {% if messages %}
+{% for message in messages%}
+   <center>
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert" style="width:90vw;position:relative;color:black;top:30px;">
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</center>
+{% endfor%}
+{% endif %}
 <div class="btn-group">
     <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:#ff2e63;">
       Students
@@ -29,7 +60,9 @@
 {% block cont%}
 <form action='/editattendance' method='post'>
     {% csrf_token %}
-<table class="table my-3 mx-3 table-striped" style="width:75vw;">
+    <center>
+    <div class="box">
+<table class="table tabe table-striped">
     <tr>
         <th>S.No</th><th>Subject</th><th>Total Classes</th>
     </tr>
@@ -79,6 +112,8 @@
         <td><input class="input form-control-sm" name="eng_lab"type="number" value={{attendance.ENG_LAB_TOTAL}}></td>
     </tr>
 </table>
+</div>
+</center>
 <center><button class="btn" style="background-color:#ff2e63;">Save Changes</button></center>
 </form>
 

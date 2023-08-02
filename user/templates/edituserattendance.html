@@ -2,7 +2,12 @@
 {% block cont%}
 <form action='/edituserattendance/{{pk}}' method='post'>
     {% csrf_token %}
-<table class="table my-3 mx-3 table-striped" style="width:75vw;">
+    <center>
+        <b><span style="font-size:120%;margin-left:10px;">Username : <span style="color:#0d6efd;">{{stu.username}}</span></span><br></b>
+        <b><span style="font-size:120%;margin-left:10px;">Name : <span style="color:#0d6efd;">{{stu.name}}</span></span><br></b>
+<div class="box">
+<table class="table tabe table-striped" >
+    
     <tr>
         <th>S.No</th><th>Subject</th><th>Classes present</th><th>Total Classes</th>
     </tr>
@@ -61,6 +66,16 @@
         <td>{{total.ENG_LAB_TOTAL}}</td>
     </tr>
 </table>
+</div>
+</center>
 <center><button class="btn" style="background-color:#ff2e63;">Save Changes</button></center>
 </form>
+
+
+
+
+<script>
+    a=document.getElementById('attendance')
+    a.style.backgroundColor="#f2f2f2";
+  </script>
 {% endblock%}
