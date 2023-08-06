@@ -159,3 +159,12 @@ class Mid2(models.Model):
         return self.username
 class Materials(models.Model):
     material=models.FileField()
+class Message(models.Model):
+    message_id=models.IntegerField()
+    sender=models.CharField(max_length=120)
+    receiver=models.CharField(max_length=120)
+    message=models.CharField(max_length=1000,blank=False)
+    timestamp=models.DateTimeField(default=timezone.now)
+    def __str__(self):
+        id=str(self.message_id)
+        return "message id "+id+" "+self.sender+" to "+self.receiver

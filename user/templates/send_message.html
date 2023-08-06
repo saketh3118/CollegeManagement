@@ -1,0 +1,54 @@
+{% extends 'base.html'%}
+{% block style%}
+.bo{
+    width:600px;
+    height:400px;
+    border:2px solid black;
+    position: relative;
+    padding-bottom: 200px;
+}
+.sub_div {
+    position: absolute;
+    bottom: 0;
+    width:90%;
+    margin-bottom:10px;
+}
+.sub{
+    padding:6px;
+    margin-top:10px;
+    overflow-y:scroll;
+    word-wrap: break-word;
+    min-height:330px;
+    max-height:330px;
+    width:550px;
+    border:2px solid black;
+}
+.sender{
+    display:inline;
+    {% comment %} float:right; {% endcomment %}
+    position:relative;
+    left:350px;
+}
+{% endblock%}
+{% block content%}
+sending to {{selected}}
+
+<p for="exampleFormControlTextarea1" class="form-label my-3" style="display:block;"><b>Enter Your Message</b></p><br>
+<form action='/message_sent/{{selected}}' method='post'>
+    {% csrf_token%}
+    <div class="container bo">
+        <div class="sub">
+            {% for message in messages%}
+            {% if message.sender == uname%}
+            <p class="sender">{{message.message}}</p> <br>
+            {% elif message.sender == selected%}
+            <p class="receiver">{{message.message}}</p>
+            {%endif%}
+            {%endfor%}
+        </div>
+      <input type="text" class="sub_div" name="text">
+    </div>
+  <button>submit</submit>
+  </form>
+
+{%endblock%}

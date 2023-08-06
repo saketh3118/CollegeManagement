@@ -35,7 +35,12 @@ urlpatterns = [
     path('mid',views.mid),
     path('assignmentquestions',views.assign),
     path('displaytimetable',views.displaytimetable),
-    path('logoutadmin',views.logoutadmin)
+    path('logoutadmin',views.logoutadmin),
+    path('send_message/<str:pk>',views.send_message),
+    path('message_sent/<str:pk>',views.message_sent),
+    path('contact_students',views.contact_students),
+    path('send_message_faculty/<str:pk>',views.send_message_faculty),
+    path('message_sent_faculty/<str:pk>',views.message_sent_faculty),
 ]
 
 

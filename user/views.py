@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate
 from django.contrib import messages
 from user.models import *
+from django.db.models import Q
 # Create your views here.
 def home(request):
     if request.method=='POST':
@@ -117,19 +118,59 @@ def attendance(request):
 def contactus(request):
     uname=request.session.get('uname')
     name=request.session.get('name')
-    val=0
+    det=LoginDetails.objects.filter(usertype="Faculty")
     if request.method=='POST':
         uname=request.session.get('uname')
         name=request.session.get('name')
-        text=request.POST.get('text')
-        obj=Queries.objects.get(username=uname)
-        obj.name=name
-        obj.text=text
-        obj.save()
-        val=1
-        return render(request,'contactus.html',{'uname':uname,'name':name,'val':val})
-    val=0
-    return render(request,'contactus.html',{'uname':uname,'name':name,'val':val})
+        sel=request.POST.get('dropdown')
+        return render(request,'send_message.html',{'selected':sel,'users':det,'uname':uname,'name':name})
+    return render(request,'contactus.html',{'selected':'','users':det,'uname':uname,'name':name})
+def send_message(request,pk):
+    uname=request.session.get('uname')
+    name=request.session.get('name')
+    # messagelist=Message.objects.filter(Q(sender=uname) & Q(receiver=pk))
+    messagelist=Message.objects.filter((Q(sender=uname) & Q(receiver=pk)) | (Q(sender=pk) & Q(receiver=uname)))
+    return render(request,'send_message.html',{'selected':pk,'uname':uname,'name':name,'messages':messagelist})
+def message_sent(request,pk):
+    uname=request.session.get('uname')
+    name=request.session.get('name')
+    sender=LoginDetails.objects.get(username=uname)
+    messagelist=Message.objects.filter(Q(sender=uname) & Q(receiver=pk))
+    if request.method=='POST':
+        message_id=Message.objects.filter().count()+1
+        object=Message.objects.create(message_id=message_id)
+        object.sender=sender.username
+        object.receiver=pk
+        object.message=request.POST.get('text')
+        object.save()
+        # messagelist=Message.objects.filter(Q(sender=uname) & Q(receiver=pk))
+        messagelist=Message.objects.filter((Q(sender=uname) & Q(receiver=pk)) | (Q(sender=pk) & Q(receiver=uname)))
+    return render(request,'send_message.html',{'selected':pk,'uname':uname,'name':name,'messages':messagelist})
+def contact_students(request):
+    uname=request.session.get('uname')
+    fac=LoginDetails.objects.get(username=uname)
+    det=LoginDetails.objects.filter(usertype="Student")
+    return render(request,'contact_students.html',{'users':det,'fac':fac,'uname':fac.username,'name':fac.name})
+def send_message_faculty(request,pk):
+    uname=request.session.get('uname')
+    fac=LoginDetails.objects.get(username=uname)
+    name=request.session.get('name')
+    messagelist=Message.objects.filter(Q(sender=uname) & Q(receiver=pk))
+    return render(request,'send_message_faculty.html',{'selected':pk,'uname':uname,'fac':fac,'name':name,'messages':messagelist})
+def message_sent_faculty(request,pk):
+    uname=request.session.get('uname')
+    name=request.session.get('name')
+    sender=LoginDetails.objects.get(username=uname)
+    messagelist=Message.objects.filter(Q(sender=uname) & Q(receiver=pk))
+    if request.method=='POST':
+        message_id=Message.objects.filter().count()+1
+        object=Message.objects.create(message_id=message_id)
+        object.sender=sender.username
+        object.receiver=pk
+        object.message=request.POST.get('text')
+        object.save()
+        messagelist=Message.objects.filter(Q(sender=uname) & Q(receiver=pk))
+    return render(request,'send_message_faculty.html',{'selected':pk,'uname':uname,'fac':sender,'name':name,'messages':messagelist})
 def assignments(request):
     uname=request.session.get('uname')
     fac=LoginDetails.objects.get(username=uname)

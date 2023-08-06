@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 {% block media%}
 .boxx{
   dsiplay:block;
@@ -28,7 +28,7 @@ textarea{
     {% csrf_token%}
   </form>
 </center> {% endcomment %}
-  <form action='/contactus' id="formm"method='post'>
+  <form class="text-white" id="formm"method='post'>
     {% csrf_token %}
   <div class="mb-3 row mx-3" style="width:90vw;">
     <span class="" style="width:90vw">Username</span>
@@ -65,7 +65,7 @@ textarea{
       <li selected="selected" disabled>To Whom You Want to send</li>
       {%endif%} {% endcomment %}
       {% for user in users%}
-      <li><a class="dropdown-item" href="send_message/{{user.username}}">{{user.name}}    {{user.dept}}</a></li>
+      <li><a class="dropdown-item" href="send_message_faculty/{{user.username}}">{{user.name}}    {{user.dept}}</a></li>
        {% endfor %}
 
 

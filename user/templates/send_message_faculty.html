@@ -1,0 +1,44 @@
+{% extends 'base2.html'%}
+{% block style%}
+.bo{
+    width:400px;
+    height:400px;
+    border:2px solid white;
+    position: relative;
+    padding-bottom: 200px;
+}
+.sub_div {
+    position: absolute;
+    bottom: 0;
+    width:90%;
+    margin-bottom:10px;
+}
+.sub{
+    padding:6px;
+    margin-top:10px;
+    overflow-y:scroll;
+    word-wrap: break-word;
+    min-height:330px;
+    max-height:330px;
+    width:350px;
+    border:2px solid white;
+}
+{% endblock%}
+{% block content%}
+<p class="text-white">sending to {{selected}}</p>
+
+<p for="exampleFormControlTextarea1" class="form-label text-white my-3" style="display:block;"><b>Enter Your Message</b></p><br>
+<form action='/message_sent_faculty/{{selected}}' class="text-white" method='post'>
+    {% csrf_token%}
+    <div class="container bo">
+        <div class="sub">
+            {% for message in messages%}
+            <p>{{message.message}}</p>
+            {%endfor%}
+        </div>
+      <input type="text" class="sub_div" name="text">
+    </div>
+  <button>submit</submit>
+  </form>
+
+{%endblock%}
