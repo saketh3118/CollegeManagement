@@ -1,76 +1,27 @@
 {% extends 'base2.html' %}
 {% block media%}
-.boxx{
-  dsiplay:block;
-  width:80vw;
-  overflow-x:auto;
-}
-textarea{
-  width:100px;
-}
 {%endblock%}
 {% block content %}
-{% comment %} {% if val == 1%} {% endcomment %}
-{% comment %} <center>
-  <div class="toast show align-items-center text-bg-primary" role="alert" aria-live="assertive" aria-atomic="true" style="width:800px;margin-top:15px;">
-    <div class="d-flex">
-      <div class="toast-body">
-        Success!! Your Message has been sent.
-      </div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-  </div>
-</center> {% endcomment %}
-{% comment %} {% endif %} {% endcomment %}
-  <br>
-  {% comment %} <center>
-  <form method='post'>
-    {% csrf_token%}
-  </form>
-</center> {% endcomment %}
-  <form class="text-white" id="formm"method='post'>
+<center>
+  <form action='/contactus' id="formm"method='post'>
     {% csrf_token %}
   <div class="mb-3 row mx-3" style="width:90vw;">
-    <span class="" style="width:90vw">Username</span>
-    <div class="col-sm-10" style="margin-top:2px;">
-        <strong style="display:inline;color:#0d6efd;width:90vw">{{uname}}</strong>
-    </div>
-    <label class="col-sm-2 col-form-label" style="width:90vw">Student Name</label>
-    <div class="col-sm-10" style="margin-top:2px;">
-      <strong style="display:inline;color:#0d6efd;width:90vw;">{{name}}</strong>
-    </div>
-    
-    {% comment %} <select name="dropdown" style="width:50vw;">
-      {% if selected != ''%}
-      <option selected="selected" disabled>{{selected}}</option>
-      {% elif selected == ''%}
-      <option selected="selected" disabled>To Whom You Want to send</option>
-      {%endif%}
-      {% for user in users%}
-     <a href="send_message/{{user.username}}"><p>{{user.name}}    {{user.dept}}</p></a>
-      {% endfor %}
-  </select> {% endcomment %}
-
-
-
+    <span class="" style="width:90vw"><b>Username :</b>
+      <strong style="display:inline;color:#0d6efd;width:90vw">{{uname}}</strong></span>
+    <label class="col-sm-2 col-form-label" style="width:90vw"><b>Student Name : </b>
+      <strong style="display:inline;color:#0d6efd;width:90vw;">{{name}}</strong></label>
 
   <div class="dropdown">
     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      To Whom You Want to send
+      Choose from our Students members to Contact.
     </button>
     <ul class="dropdown-menu">
-      {% comment %} {% if selected != ''%}
-      <li selected="selected" disabled>{{selected}}</li>
-      {% elif selected == ''%}
-      <li selected="selected" disabled>To Whom You Want to send</li>
-      {%endif%} {% endcomment %}
       {% for user in users%}
-      <li><a class="dropdown-item" href="send_message_faculty/{{user.username}}">{{user.name}}    {{user.dept}}</a></li>
+      <li><a class="dropdown-item" href="send_message_faculty/{{user.username}}">{{user.name}}   <b> {{user.dept}}</b></a></li>
        {% endfor %}
-
-
     </ul>
   </div>
+</center>
 
 
 

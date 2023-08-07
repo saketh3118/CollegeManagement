@@ -1,44 +1,176 @@
 {% extends 'base2.html'%}
 {% block style%}
-.bo{
-    width:400px;
-    height:400px;
-    border:2px solid white;
-    position: relative;
-    padding-bottom: 200px;
+img{
+    margin:0px;
+    height:20px;
+    background-color:white;
+    border-radius: 100px;
 }
-.sub_div {
-    position: absolute;
-    bottom: 0;
-    width:90%;
-    margin-bottom:10px;
+.btt{
+    border:0px;
+    text-decoration:none;
+    padding:0px;
+    background-color:white;
+    border-radius:100px;
 }
-.sub{
-    padding:6px;
+.chat-window::-webkit-scrollbar {
+    width: 8px;
+}
+.chat-window::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 5px;
+}
+
+.chat-window::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+.chat-window::-webkit-scrollbar-track {
+    background-color: #f2f2f2;
+    border-radius: 5px; 
+}
+
+.chat-window::-webkit-scrollbar-track:hover {
+    background-color: #e0e0e0;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.chat-window {
+    max-width: 600px;
+    margin-top: 10px;
+    {% comment %} border: 1px solid #ccc; {% endcomment %}
+    padding: 10px;
+    height: 380px;
+    overflow-y: scroll;scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.outer_box{
+    max-width: 600px;
+    box-shadow:rgba(99,99,99,.1)5px 5px 5px 5px;
     margin-top:10px;
-    overflow-y:scroll;
+    margin: 0 auto;
+    border-radius:10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    height: 525px;
+}
+.message {
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.message.sent {
+    text-align: right;
+}
+
+.message.received {
+    text-align: left;
+}
+
+.message-content {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 5px;
     word-wrap: break-word;
-    min-height:330px;
-    max-height:330px;
-    width:350px;
-    border:2px solid white;
+}
+
+.message.sent .message-content {
+    background-color: #DCF8C6;
+}
+
+.message.received .message-content {
+    background-color: #E2E2E2;
+}
+
+.message-timestamp {
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+}
+
+.message-box {
+    display: flex;
+    margin-top: 10px;
+}
+
+#message-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+}
+
+#send-button {
+    position:relative;
+    right:0px;bottom:0px;
+    margin-left:10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 100px;;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .chat-window {
+        height: 300px;
+    }
 }
 {% endblock%}
 {% block content%}
-<p class="text-white">sending to {{selected}}</p>
 
-<p for="exampleFormControlTextarea1" class="form-label text-white my-3" style="display:block;"><b>Enter Your Message</b></p><br>
-<form action='/message_sent_faculty/{{selected}}' class="text-white" method='post'>
+
+{% if messages %}
+{% for message in messages%}
+   <center>
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert" style="width:90vw;position:relative;color:black;top:30px;">
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</center>
+{% endfor%}
+{% endif %}
+
+
+<form action='/message_sent_faculty/{{selected}}' id="form"method='post'>
     {% csrf_token%}
-    <div class="container bo">
-        <div class="sub">
-            {% for message in messages%}
-            <p>{{message.message}}</p>
-            {%endfor%}
-        </div>
-      <input type="text" class="sub_div" name="text">
+<div class="outer_box">
+    <div class="h4 pb-2 mb-0 border-bottom border-3 mx-3 border-dark underline" style="color:#0d6efd;width:90%;">
+    <b>{{selected}}({{selectedname}})</b> <br>
+    <h6 class="mb-0"><b style="color:red;">Dept:{{selecteddept}}</b></h6>
+  </div>
+    <div class="chat-window" id="chat-wind">
+        {% for msg in messagelist %}
+            {% if msg.sender == uname%}
+                <div class="message sent">
+                    <span class="message-content">{{msg.message}}</span>
+                    <div class="message-timestamp">{{msg.timestamp}}</div>
+                </div>
+            {% elif msg.sender == selected%}
+                <div class="message received">
+                    <span class="message-content">{{msg.message}}</span>
+                    <div class="message-timestamp">{{msg.timestamp}}</div>
+                </div>    
+            {%endif%}
+        {%endfor%}
     </div>
-  <button>submit</submit>
+    <div class="message-box">
+        <input type="text" id="message-input" name="text" placeholder="Type your message here">
+        <button class="btt"><div id="send-button" onclick="refreshChat()"><img src="../static/img/icons8-send-96.png"></div></button>
+    </div>
+</div>
   </form>
 
 {%endblock%}
+{% block script %}
+<script>
+    {% comment %} a=document.getElementById('contactus')
+    a.style.backgroundColor="#f2f2f2"; {% endcomment %}
+    var objDiv = document.getElementById("chat-wind");
+    objDiv.scrollTop = objDiv.scrollHeight;    
+</script>
+{% endblock %}

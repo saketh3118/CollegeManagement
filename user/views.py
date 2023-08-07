@@ -119,11 +119,11 @@ def contactus(request):
     uname=request.session.get('uname')
     name=request.session.get('name')
     det=LoginDetails.objects.filter(usertype="Faculty")
-    if request.method=='POST':
-        uname=request.session.get('uname')
-        name=request.session.get('name')
-        sel=request.POST.get('dropdown')
-        return render(request,'send_message.html',{'selected':sel,'users':det,'uname':uname,'name':name})
+    # if request.method=='POST':
+    #     uname=request.session.get('uname')
+    #     name=request.session.get('name')
+    #     sel=request.POST.get('dropdown')
+    #     return render(request,'send_message.html',{'selected':sel,'users':det,'uname':uname,'name':name})
     return render(request,'contactus.html',{'selected':'','users':det,'uname':uname,'name':name})
 def send_message(request,pk):
     uname=request.session.get('uname')
@@ -158,24 +158,31 @@ def contact_students(request):
     return render(request,'contact_students.html',{'users':det,'fac':fac,'uname':fac.username,'name':fac.name})
 def send_message_faculty(request,pk):
     uname=request.session.get('uname')
-    fac=LoginDetails.objects.get(username=uname)
     name=request.session.get('name')
-    messagelist=Message.objects.filter(Q(sender=uname) & Q(receiver=pk))
-    return render(request,'send_message_faculty.html',{'selected':pk,'uname':uname,'fac':fac,'name':name,'messages':messagelist})
+    fac=LoginDetails.objects.get(username=uname)
+    selectedname=LoginDetails.objects.get(username=pk).name
+    selecteddept=LoginDetails.objects.get(username=pk).dept
+    messagelist=Message.objects.filter((Q(sender=uname) & Q(receiver=pk)) | (Q(sender=pk) & Q(receiver=uname)))
+    return render(request,'send_message_faculty.html',{'selected':pk,'selecteddept':selecteddept,'selectedname':selectedname,'uname':uname,'fac':fac,'name':name,'messagelist':messagelist})
 def message_sent_faculty(request,pk):
     uname=request.session.get('uname')
     name=request.session.get('name')
     sender=LoginDetails.objects.get(username=uname)
-    messagelist=Message.objects.filter(Q(sender=uname) & Q(receiver=pk))
+    selctedname=LoginDetails.objects.get(username=pk).name
+    selcteddept=LoginDetails.objects.get(username=pk).dept
+    messagelist=Message.objects.filter((Q(sender=uname) & Q(receiver=pk)) | (Q(sender=pk) & Q(receiver=uname)))
     if request.method=='POST':
-        message_id=Message.objects.filter().count()+1
-        object=Message.objects.create(message_id=message_id)
-        object.sender=sender.username
-        object.receiver=pk
-        object.message=request.POST.get('text')
-        object.save()
-        messagelist=Message.objects.filter(Q(sender=uname) & Q(receiver=pk))
-    return render(request,'send_message_faculty.html',{'selected':pk,'uname':uname,'fac':sender,'name':name,'messages':messagelist})
+        if request.POST.get('text')=='':
+            messages.warning(request,"Message Can't be Empty")
+        else:
+            message_id=Message.objects.filter().count()+1
+            object=Message.objects.create(message_id=message_id)
+            object.sender=sender.username
+            object.receiver=pk
+            object.message=request.POST.get('text')
+            object.save()
+            messagelist=Message.objects.filter((Q(sender=uname) & Q(receiver=pk)) | (Q(sender=pk) & Q(receiver=uname)))
+    return render(request,'send_message_faculty.html',{'selected':pk,'selecteddept':selcteddept,'selectedname':selctedname,'uname':uname,'fac':sender,'name':name,'messagelist':messagelist})
 def assignments(request):
     uname=request.session.get('uname')
     fac=LoginDetails.objects.get(username=uname)
