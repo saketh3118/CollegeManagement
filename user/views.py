@@ -128,24 +128,29 @@ def contactus(request):
 def send_message(request,pk):
     uname=request.session.get('uname')
     name=request.session.get('name')
-    # messagelist=Message.objects.filter(Q(sender=uname) & Q(receiver=pk))
+    selctedname=LoginDetails.objects.get(username=pk).name
+    selcteddept=LoginDetails.objects.get(username=pk).dept
     messagelist=Message.objects.filter((Q(sender=uname) & Q(receiver=pk)) | (Q(sender=pk) & Q(receiver=uname)))
-    return render(request,'send_message.html',{'selected':pk,'uname':uname,'name':name,'messages':messagelist})
+    return render(request,'send_message.html',{'selected':pk,'selecteddept':selcteddept,'selectedname':selctedname,'uname':uname,'name':name,'messagelist':messagelist})
 def message_sent(request,pk):
     uname=request.session.get('uname')
     name=request.session.get('name')
     sender=LoginDetails.objects.get(username=uname)
-    messagelist=Message.objects.filter(Q(sender=uname) & Q(receiver=pk))
+    selctedname=LoginDetails.objects.get(username=pk).name
+    selcteddept=LoginDetails.objects.get(username=pk).dept
+    messagelist=Message.objects.filter((Q(sender=uname) & Q(receiver=pk)) | (Q(sender=pk) & Q(receiver=uname)))
     if request.method=='POST':
-        message_id=Message.objects.filter().count()+1
-        object=Message.objects.create(message_id=message_id)
-        object.sender=sender.username
-        object.receiver=pk
-        object.message=request.POST.get('text')
-        object.save()
-        # messagelist=Message.objects.filter(Q(sender=uname) & Q(receiver=pk))
-        messagelist=Message.objects.filter((Q(sender=uname) & Q(receiver=pk)) | (Q(sender=pk) & Q(receiver=uname)))
-    return render(request,'send_message.html',{'selected':pk,'uname':uname,'name':name,'messages':messagelist})
+        if request.POST.get('text')=='':
+            messages.warning(request,"Message Can't be Empty")
+        else:
+            message_id=Message.objects.filter().count()+1
+            object=Message.objects.create(message_id=message_id)
+            object.sender=sender.username
+            object.receiver=pk
+            object.message=request.POST.get('text')
+            object.save()
+            messagelist=Message.objects.filter((Q(sender=uname) & Q(receiver=pk)) | (Q(sender=pk) & Q(receiver=uname)))
+    return render(request,'send_message.html',{'selected':pk,'selecteddept':selcteddept,'selectedname':selctedname,'uname':uname,'name':name,'messagelist':messagelist})
 def contact_students(request):
     uname=request.session.get('uname')
     fac=LoginDetails.objects.get(username=uname)
