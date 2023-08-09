@@ -3,7 +3,7 @@
 <center>
 <form action="/midmarks2" method="post">
     {% csrf_token %}
-        <table class="table text-white" style="width:1300px;">
+        <table class="table" style="width:1300px;">
             <thead>
               <tr>
                 <th scope="col">Name</th>
@@ -18,7 +18,7 @@
                         <tr>
                             <th scope="row">{{student}}</th>
                             <td>{{student}}</td>
-                            <td><input type="number" name="{{student.name}}" value="{{student.Java_Programming_Cse}}"class="text-primary bg-black text-white" style="border:2px solid white;border-radius:10px;"></td>
+                            <td><input type="number" name="{{student.name}}" value="{{student.Java_Programming_Cse}}"class="text-black" style="border:2px solid black;border-radius:10px;"></td>
                         </tr>
                         {% endfor %}
                 {% elif sub == "Data_Structures_Cse" %}
@@ -26,7 +26,7 @@
                         <tr>
                             <th scope="row">{{student}}</th>
                             <td>{{student}}</td>
-                            <td><input type="number" name="{{student.name}}" value="{{student.Data_Structures_Cse}}"class="text-primary bg-black text-white" style="border:2px solid white;border-radius:10px;"></td>
+                            <td><input type="number" name="{{student.name}}" value="{{student.Data_Structures_Cse}}"class="text-black" style="border:2px solid black;border-radius:10px;"></td>
                         </tr>
                         {% endfor %}
                 {% elif sub == "Web_Technologies_Cse"%}

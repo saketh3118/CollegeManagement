@@ -1,4 +1,72 @@
 {% extends 'admin.html'%}
+
+
+{% block sty%}
+.a{
+  margin-left:100px;
+  float:bottom-left;
+}
+img{
+  width:25px;
+}
+.search {
+  margin:10px;
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+.searchTerm {
+  width: 100%;
+  border: 3px solid #0d6efd;
+  border-right: none;
+  padding: 5px;
+  height: 36px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #ccc;
+}
+.searchTerm:focus{
+  color: #0d6efd;
+}
+.searchButton {
+  width: 40px;
+  height: 36px;
+  border: 1px solid #0d6efd;
+  background: #0d6efd;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+.wrap{
+  width: 80vw;
+}
+.chat-window{
+  padding:0px;
+  border:1px solid #ccc;
+  border-radius:20px;
+}
+.chat-window::-webkit-scrollbar {
+  width: 0px;
+}
+.th{
+  text-align:center;
+  height:50px;
+  background-color:#0d6efd;  
+}
+{%endblock%}
+
+{% block media%}
+.outer{
+  width:100vw;
+  overflow-x:scroll;
+}
+table{
+  width:800px;
+}
+{% endblock%}
+
 {% block content%}
    <center>
     {% if messages %}
@@ -12,12 +80,26 @@
 {% endfor%}
 {% endif %}
 
-<h2 class="my-2 text-primary">User LoginDetails</h2>
-<div class="cont mx-3 my-3" style="">
-   <table class="table my-3">
-    <tr class="text-black">
-       <th>S.No</th> <th>Name</th><th>Username</th><th>Usertype</th><th>Department</th>
-    </tr>
+<h2 class="my-2 text-primary" style="display:inline;">User LoginDetails</h2>
+<a href="/adduserdetails" class="a">
+  <button class="btn btn-primary">Add Users</button>
+</a>
+<form action='/addusers' method='post'>
+  {% csrf_token%}
+  <div class="wrap">
+    <div class="search">
+      <input type="text" name="query" class="searchTerm" value="{{queryy}}" placeholder="What are you looking for?">
+      <button type="submit" class="searchButton">
+        <img src="../static/img/icons8-send-96.png">
+      </button>
+  </div>
+  </div>
+</form>
+<div class="outer">
+<table class="table tabee table-bordered">
+  <tr class="text-black th">
+    <th>S.No</th> <th>Name</th><th>Username</th><th>Usertype</th><th>Department</th><th>Edit</th><th>Delete</th>
+  </tr>
     {% for user in lg%}
     {% if user.username != ""%}
     <tr>
@@ -51,14 +133,9 @@
 </td>
 <td><button><img src="../static/img/icons8-checkmark.gif"></button></td>
 </form>
-     {% endif %}
-   </table>
+{% endif %}
+</table>
 </div>
-   <center>
-   <a href="/adduserdetails">
-   <button class="btn btn-primary">Add Users</button>
-   </a>
-</center>
 </center>
 <script>
     a=document.getElementById('userlogin')

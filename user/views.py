@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate
 from django.contrib import messages
 from user.models import *
 from django.db.models import Q
+from django.core.paginator import Paginator
 # Create your views here.
 def home(request):
     if request.method=='POST':
@@ -343,9 +344,20 @@ def faculty(request):
 def admin(request):
     return render(request,'admin.html')
 def addusers(request):
-    # ad=LoginDetails.objects.get(username=request.session.get('uname'))
     lg=LoginDetails.objects.all()
-    return render(request,'addusers.html',{'lg':lg,'adduser':'no','uname':request.session.get('uname'),'name':request.session.get('name')})
+    if request.method=='POST':
+        query=request.POST.get('query')
+        querySet=LoginDetails.objects.filter(
+            Q(username__startswith=query) |
+            Q(name__startswith=query) |
+            Q(dept__startswith=query) | 
+            Q(usertype__startswith=query) |
+            Q(username__endswith=query) |
+            Q(name__endswith=query) |
+            Q(dept__endswith=query) | 
+            Q(usertype__endswith=query) )
+        return render(request,'addusers.html',{'lg':querySet,'queryy':query,'adduser':'no','uname':request.session.get('uname'),'name':request.session.get('name')})
+    return render(request,'addusers.html',{'queryy':'','lg':lg,'adduser':'no','uname':request.session.get('uname'),'name':request.session.get('name')})
 def adduserdetails(request):
     lg=LoginDetails.objects.all()
     c=LoginDetails.objects.all().count()
