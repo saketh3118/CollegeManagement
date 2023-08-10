@@ -277,21 +277,13 @@ def marks(request):
     return render(request,'marks.html',{'sub':fac.dept,'fac':fac})
 def midmarks1(request):
     stu=LoginDetails.objects.filter(usertype="Student")
-    for s in stu:
-        try:
-            Mid1.objects.create(name=s.name,username=s.username)
-        except:
-            Mid1.objects.get(name=s.name)
     students=Mid1.objects.all().order_by('username')
     uname=request.session.get('uname')
     fac=LoginDetails.objects.get(username=uname)
     sub=fac.dept
     if request.method=="POST":
         for student in students:
-            try:
-                m1=Mid1.objects.create(username=student.username,name=student.name)
-            except:
-                m1=Mid1.objects.get(username=student.username)
+            m1=Mid1.objects.get(username=student.username)
             if sub=="Java_Programming_Cse":
                 m1.Java_Programming_Cse=request.POST.get(student.username)
             elif sub=="Data_Structures_Cse":
@@ -305,21 +297,13 @@ def midmarks1(request):
     return render(request,'midmarks1.html',{'students':students,'sub':fac.dept,'fac':fac})
 def midmarks2(request):
     stu=LoginDetails.objects.filter(usertype="Student")
-    for s in stu:
-        try:
-            Mid2.objects.create(name=s.name,username=s.username)
-        except:
-            Mid2.objects.get(name=s.name)
     students=Mid2.objects.all().order_by('username')
     uname=request.session.get('uname')
     fac=LoginDetails.objects.get(username=uname)
     sub=fac.dept
     if request.method=="POST":
         for student in students:
-            try:
-                m2=Mid2.objects.create(username=student.username,name=student.name)
-            except:
-                m2=Mid2.objects.get(name=student.name)
+            m2=Mid2.objects.get(username=student.username)
             if sub=="Java_Programming_Cse":
                 m2.Java_Programming_Cse=request.POST.get(student.name)
             elif sub=="Data_Structures_Cse":
@@ -371,6 +355,13 @@ def adduserdetails(request):
         name=request.POST.get('name')
         newuser=LoginDetails.objects.create(username=username,password=username,name=name,usertype=usertype,dept=dept)
         newuser.save()
+        instant=LoginDetails.objects.filter(username=username)
+        if usertype == 'Student':
+            for inst in instant:
+                Semester.objects.create(username=inst,ASOT=0,DBMS=0,WT=0,DAA=0,CC=0,DBMS_LAB=0,WT_LAB=0,DAA_LAB=0,ES=0,c26=0,c27=0,c28=0,c29=0,c30=0,c31=0,c32=0,c33=0,c34=0,DM=0,COA=0,DS=0,JAVA=0,OS=0,DS_LAB=0,JAVA_LAB=0,OS_LAB=0,GS=0,c17=0,c18=0,c19=0,c20=0,c21=0,c22=0,c23=0,c24=0,c25=0,ENG=0,PandS=0,SCP=0,PYTHON=0,EG=0,ENG_LAB=0,SCP_LAB=0,PYTHON_LAB=0,c9=0,c10=0,c11=0,c12=0,c13=0,c14=0,c15=0,c16=0,LANM=0,EC=0,BEEE=0,PPS=0,PPS_LAB=0,EC_LAB=0,BEEE_LAB=0,IT_WORKSHOP=0,c1=0,c2=0,c3=0,c4=0,c5=0,c6=0,c7=0,c8=0)
+                Attendance.objects.create(username=inst)
+                Mid1.objects.create(username=inst)
+                Mid2.objects.create(username=inst.username,name=inst.name)
         messages.success(request,'Success!User Details has been Added')
         return render(request,'addusers.html',{'lg':lg,'adduser':'no','count':c,'sub':sub,'uname':request.session.get('uname'),'name':request.session.get('name')})
     return render(request,'addusers.html',{'lg':lg,'adduser':'yes','count':c,'sub':sub,'uname':request.session.get('uname'),'name':request.session.get('name')})
@@ -405,6 +396,11 @@ def deleteuser(request,pk):
     lg=LoginDetails.objects.all()
     c=LoginDetails.objects.all().count()
     sub=Mid1.objects.all()
+    type=LoginDetails.objects.get(username=pk).usertype
+    if type == 'Student':
+        Mid1.objects.get(username=pk).delete()
+        Mid2.objects.get(username=pk).delete()
+        Semester.objects.get(username=pk).delete()
     LoginDetails.objects.get(username=pk).delete()
     messages.success(request,'Success!User Details has Deleted')
     return render(request,'addusers.html',{'lg':lg,'adduser':'no','count':c,'sub':sub,'uname':request.session.get('uname'),'name':request.session.get('name')})
