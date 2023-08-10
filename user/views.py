@@ -299,6 +299,7 @@ def midmarks1(request):
             elif sub=="Web_Technologies_Cse":
                 m1.Web_Technologies_Cse=request.POST.get(student.username)
             m1.save()
+        messages.success(request,"Successfully Updated Mid 1 Marks")
         students=Mid1.objects.all().order_by('username')
         return render(request,'midmarks1.html',{'students':students,'sub':fac.dept,'fac':fac})
     return render(request,'midmarks1.html',{'students':students,'sub':fac.dept,'fac':fac})
@@ -326,6 +327,7 @@ def midmarks2(request):
             elif sub=="Web_Technologies_Cse":
                 m2.Web_Technologies_Cse=request.POST.get(student.name)
             m2.save()
+        messages.success(request,"Successfully Updated Mid 2 Marks")
         students=Mid2.objects.all().order_by('username')
         return render(request,'midmarks2.html',{'students':students,'sub':fac.dept,'fac':fac})
     return render(request,'midmarks2.html',{'students':students,'sub':fac.dept,'fac':fac})

@@ -1,38 +1,132 @@
-{% extends 'base2.html' %}
-{% block content%}
+<html>
+<head>
+  <meta name="viewport" content="width=device-width;, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<style>
+  #home,#assignment,#marks,#contactus,#logout {
+    border-radius:10px;
+  }
+  #home:hover,#assignment:hover,#marks:hover,#contactus:hover,#logout:hover {
+    color: black;
+    background-color: #f2f2f2;
+  }
+  body{
+    font-family: Arial, sans-serif;
+      }
+      .navi{
+        width:100vw;
+      }
+      .box{
+        transition: box-shadow .3s;
+        box-shadow: rgba(99,99,99,.2)2px 2px 2px 2px;
+        border: 1px solid #efe8e8;
+        margin:10px 50px;
+        width:270px;
+        height:300px;
+        border-radius:10px;
+        background-color:#fff;
+        position:relative;
+        bottom:160px;
+      }
+      .box:hover {
+        box-shadow: 0 0 11px rgba(33,33,33,.2); 
+      }
+      .conttt{
+        margin:20px;
+      }
+      @media screen and (max-width:900px){
+        #home,#assignment,#marks,#contactus,#logout {
+          margin-top:10px;
+        }
+        .logout,img{
+          display:none;
+        }
+        .conttt{
+          margin:0px;
+        }
+      }
+</style>
+</head>
+<body class="" style="background-color:#fff"> 
+    <nav class="navbar navi navbar-expand-lg sticky-top" style="background-color:#fff;">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <center>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/faculty" id='home' style="color:black;border:0px;"><strong>Home</strong></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/assignments" id="assignment"style="color:black;border:0px;"><strong>Assigments</strong></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/marks" id="marks" style="color:black;border:0px;"><strong>Marks</strong></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/contact_students" id="contactus" style="color:black;border:0px;"><strong>Contact Us</strong></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/logoutf" id="logout"style="color:black;border:0px;"><strong>Logout</strong></a>
+              </li>
+              <li class="nav-item dropdown logout" style="position:relative;left:710px;">
+                <button class="btn dropdown-toggle" data-bs-toggle="dropdown" style="border:2px solid black;"aria-expanded="false">
+                 <p style="font-size:130%;display:inline;">&equiv;</p> {{fac.username}}
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item disabled" href="#">{{fac.name}}</a></li>
+                  <li><a class="dropdown-item" href="/logoutf">LogOut</a></li>
+                </ul>
+              </li>
 
-<div class="jumbotron" style="background-color:#fff;height:500px;">
-    <div class="container">
-        <h2 class="text-dark" style="position:relative;left:40px;top:50px;">Welcome to <strong class="text-primary" style="display:inline;">Saketh's Faculty Portal</strong></h2>
-      <h3 class="text-dark" style="position:relative;left:40px;top:50px;">Hello, <strong class="text-primary" style="display:inline;">{{fac.name}}</strong></h3>
-      <h5 style="position:relative;left:40px;top:50px;width:360px;" class="text-dark"><i>"A good education can change Anyone. A good teacher can change Everything."</i></h5> <br>
-      <h6 style="position:relative;left:40px;top:50px;" class="text-dark">Always feel free to reach out Students<a class="btn btn-primary btn-lg mx-2" href="#" role="button">Contact &raquo;</a></h6>
-    </div>
-    <img src="../static/img/facultyy.png" style="position:relative;width:300px;bottom:220px;left:900px;">
-  </div>
+            </ul>
+          </center>
+          </div>
+        </div>
+      </nav>
+      
 
-  <div class="container">
-    <!-- Example row of columns -->
-    <div class="row mt-5"  style="position:relative;left:40px;">
-      <div class="col-md-4 mx-5" style="width:250px;height:300px;border-radius:10px;background-color:#fff;position:relative;bottom:160px;border:1px solid gray;">
-        <h2 class="m-3">Assignments</h2>
-        <p class="m-3">Practice is the best form of learning. One of the way is to give assignments to the students,Yes you heard it right.Click here to share Assigments</p>
-        <p><a class="btn btn-primary mx-3" href="/assignments" role="button">Assigments &raquo;</a></p>
+
+
+      <div class="jumbotron" style="background-color:#fff;height:500px;width:80vw;">
+        <div class="container conttt">
+            <h2 class="text-dark" style="position:relative;left:40px;top:50px;">Welcome to <strong class="text-primary" style="display:inline;">Faculty Portal</strong></h2>
+          <h3 class="text-dark" style="position:relative;left:40px;top:50px;">Hello, <strong class="text-primary" style="display:inline;">{{fac.name}}</strong></h3>
+          <h5 style="position:relative;left:40px;top:50px;" class="text-dark logout"><i>"A good education can change Anyone. A good teacher can change Everything."</i></h5> <br>
+          <h6 style="position:relative;left:40px;top:50px;display:inline-block;width:80vw;" class="text-dark">Always feel free to reach out Students<a class="btn btn-primary btn-lg mx-2" href="#" role="button">Contact &raquo;</a></h6>
+        </div>
+        <img src="../static/img/facultyy.png" style="position:relative;width:300px;bottom:220px;left:900px;">
       </div>
-      <div class="col-md-4 mx-5" style="height:300px;width:260px;border-radius:10px;background-color:#fff;position:relative;bottom:160px;border:1px solid gray;">
-        <h2 class="m-3">Marks</h2>
-        <p class="m-3">Every Student is Afraid of Exams,later they Attend it. Marks are symbol of students performance in Academics,So go and give them marks in your subject.</p>
-        <p class=><a class="btn mx-3 btn-primary" href="/marks" role="button">Marks &raquo;</a></p>
-      </div>
-      <div class="col-md-4 mx-5" style="height:300px;width:250px;border-radius:10px;background-color:#fff;position:relative;bottom:160px;border:1px solid gray;">
-        <h2 class="m-3">Offday</h2>
-        <p class="m-3">Time is So Unpredictable,we may get sudden works which aren't in our Control. So feel free to take a leave ,DM us the reason here</p>
-        <p class="m-3"><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
-      </div>
-    </div>
-
-    <hr>
-
-  </div> 
-
-{% endblock %}
+    
+      <div class="container">
+        <!-- Example row of columns -->
+        <div class="row mt-5"  style="position:relative;">
+          <div class="col-md-4 box" >
+            <h2 class="m-3">Assignments</h2>
+            <p class="m-3">Practice is the best form of learning. One of the way is to give assignments to the students,Yes you heard it right.Click here to share Assigments</p>
+            <p><a class="btn btn-primary mx-3" href="/assignments" role="button">Assigments &raquo;</a></p>
+          </div>
+          <div class="col-md-4 box" >
+            <h2 class="m-3">Marks</h2>
+            <p class="m-3">Every Student is Afraid of Exams,later they Attend it. Marks are symbol of students performance in Academics,So go and give them marks in your subject.</p>
+            <p class=><a class="btn mx-3 btn-primary" href="/marks" role="button">Marks &raquo;</a></p>
+          </div>
+          {% comment %} <div class="col-md-4 mx-5 box" >
+            <h2 class="m-3">Offday</h2>
+            <p class="m-3">Time is So Unpredictable,we may get sudden works which aren't in our Control. So feel free to take a leave ,DM us the reason here</p>
+            <p class="m-3"><a class="btn btn-primary" href="#" role="button">View details &raquo;</a></p>
+          </div> {% endcomment %}
+        </div>
+    
+        <hr>
+    
+      </div>     
+      <script>
+  a=document.getElementById('home')
+  a.style.backgroundColor="#f2f2f2";
+      </script>
+    </body>
+</html>

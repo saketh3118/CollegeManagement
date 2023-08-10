@@ -1,16 +1,16 @@
 {% extends 'assignments.html' %}
 {% block d %}
-
-<div class="mb-0" style="width:800px;">
-    <button class="btn btn-primary" style="width:300px;margin-left:282px;height:40px;position:relative;top:20px;">
-       {{fac.dept}}  {{ans.mid}}
+<center>
+<div class="mt-3 h4 mb-0" style="width:50vw;color:#0d6efd;">
+       <b>{{fac.dept}}</b>
     </button> 
 </div>
+</center>
 {% if flag != -1 %}
 {% if messages %}
 {% for message in messages%}
    <center>
-<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert" style="width:1200px;position:relative;color:black;top:30px;">
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert" style="width:80vw;position:relative;color:black;top:30px;">
     <strong>{{message}}</strong>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
@@ -22,13 +22,13 @@
 <form action='/mid1' method='post'>
     {% csrf_token %}
 <center>
-  <div class="mb-3" style="width:800px;">
-    <label for="exampleFormControlTextarea1" class="form-label"><strong>Assignment Questions</strong></label><br>
-    <input type="textfield" class="my-1" style="width:800px;border:1px solid black;height:40px;border-radius:10px;" name="q1" placeholder="1st Question" value="{{ans.q1}}"><br>
-    <input type="textfield" class="my-1" style="width:800px;border:1px solid black;height:40px;border-radius:10px;" name="q2" placeholder="2nd Question" value="{{ans.q2}}"><br>
-    <input type="textfield" class="my-1" style="width:800px;border:1px solid black;height:40px;border-radius:10px;" name="q3" placeholder="3rd Question" value="{{ans.q3}}"><br>
-    <input type="textfield" class="my-1" style="width:800px;border:1px solid black;height:40px;border-radius:10px;" name="q4" placeholder="4th Question" value="{{ans.q4}}"><br>
-    <input type="textfield" class="my-1" style="width:800px;border:1px solid black;height:40px;border-radius:10px;" name="q5" placeholder="5th Question" value="{{ans.q5}}">
+  <label for="exampleFormControlTextarea1" class="form-label"><strong>{{ans.mid}} Assignment Questions</strong></label><br>
+  <div class="mb-3 outer">
+    <input type="textfield" class="my-1 input" style="border:1px solid black;height:40px;border-radius:10px;" name="q1" placeholder="1st Question" value="{{ans.q1}}"><br>
+    <input type="textfield" class="my-1 input" style="border:1px solid black;height:40px;border-radius:10px;" name="q2" placeholder="2nd Question" value="{{ans.q2}}"><br>
+    <input type="textfield" class="my-1 input" style="border:1px solid black;height:40px;border-radius:10px;" name="q3" placeholder="3rd Question" value="{{ans.q3}}"><br>
+    <input type="textfield" class="my-1 input" style="border:1px solid black;height:40px;border-radius:10px;" name="q4" placeholder="4th Question" value="{{ans.q4}}"><br>
+    <input type="textfield" class="my-1 input" style="border:1px solid black;height:40px;border-radius:10px;" name="q5" placeholder="5th Question" value="{{ans.q5}}">
 </div>
   <input type="submit" class="btn btn-primary">
 </center>

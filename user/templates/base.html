@@ -175,7 +175,7 @@
                 <a class="nav-link btn" id="contactus"style="color:black;border:0px;" href="/contactus"><strong>Contact Us</strong></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link btn" id="logout"style="color:black;border:0px;" href="/logout" id="liveToastBtn"><strong>LogOut</strong></a>
+                <a class="nav-link btn" id="logout"style="color:black;border:0px;" href="/logout"><strong>LogOut</strong></a>
               </li>
               <li class="nav-item dropdown logout profile" style="position:relative;left:710px; background-color:orange; border-radius:20px;">
                 <button class="btn dropdown-toggle text-dark;" data-bs-toggle="dropdown" style="background-color:#fafafa;border:2px solid black;"aria-expanded="false">
@@ -190,8 +190,12 @@
           </div>
         </div>
       </nav>   
+
+
+      
       {% block content %}
       {% endblock %} 
+      
       {% block script %}
       {% endblock %}
     </body>

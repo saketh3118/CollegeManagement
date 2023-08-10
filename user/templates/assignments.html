@@ -1,7 +1,21 @@
 {% extends 'base2.html' %}
+{% block style %}
+.input{
+  width:60vw;
+}
+{% endblock%}
+{% block media %}
+.outer{
+  width:80vw;
+  overflow-x:scroll;
+}
+.input{
+  width:400px;
+}
+{% endblock %}
 {% block content %}
 <center>
-<div class="btn-group" style="margin-top:10px;">
+<div class="" style="margin-top:10px;">
     <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
       Mid Exam
     </button>
@@ -11,7 +25,16 @@
     </ul>
 </div>
 </center>
-
+<div style="width:100vw;">
 {% block d %}
+{% endblock %}
+</div>
+
+
+{% block script%}
+<script>
+  a=document.getElementById('assignment')
+  a.style.backgroundColor="#f2f2f2";
+</script>
 {% endblock %}
 {% endblock %}

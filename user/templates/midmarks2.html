@@ -3,22 +3,22 @@
 <center>
 <form action="/midmarks2" method="post">
     {% csrf_token %}
-        <table class="table" style="width:1300px;">
+    <div class="outer">
+        <table class="table mt-3 table-bordered tab border-2">
             <thead>
-              <tr>
+              <tr style="background-color:#f0f0f0;">
                 <th scope="col">Name</th>
                 <th scope="col">Reg No.</th>
-                <th scope="col" style="padding-left:70px;">Mid 2</th>
-                {% comment %} <th scope="col" style="padding-left:70px;">Mid 2</th> {% endcomment %}
+                <th scope="col" >Mid 2</th>
               </tr>
             </thead>
-            <tbody class="table-group-divider">
+            <tbody>
                 {% if sub == "Java_Programming_Cse"%}
                         {% for student in students%}
                         <tr>
                             <th scope="row">{{student}}</th>
                             <td>{{student}}</td>
-                            <td><input type="number" name="{{student.name}}" value="{{student.Java_Programming_Cse}}"class="text-black" style="border:2px solid black;border-radius:10px;"></td>
+                            <td><input type="number" class="input" name="{{student.name}}" value="{{student.Java_Programming_Cse}}"class="text-black"></td>
                         </tr>
                         {% endfor %}
                 {% elif sub == "Data_Structures_Cse" %}
@@ -26,7 +26,7 @@
                         <tr>
                             <th scope="row">{{student}}</th>
                             <td>{{student}}</td>
-                            <td><input type="number" name="{{student.name}}" value="{{student.Data_Structures_Cse}}"class="text-black" style="border:2px solid black;border-radius:10px;"></td>
+                            <td><input type="number" class="input" name="{{student.name}}" value="{{student.Data_Structures_Cse}}"class="text-black"></td>
                         </tr>
                         {% endfor %}
                 {% elif sub == "Web_Technologies_Cse"%}
@@ -34,7 +34,7 @@
                         <tr>
                             <th scope="row">{{student}}</th>
                             <td>{{student}}</td>
-                            <td><input type="number" name="{{student.name}}" value="{{student.Web_Technologies_Cse}}"class="text-primary bg-black text-white" style="border:2px solid white;border-radius:10px;"></td>
+                            <td><input type="number" class="input" name="{{student.name}}" value="{{student.Web_Technologies_Cse}}"class="text-primary bg-black text-white"></td>
                         </tr>
                         {% endfor %}
                 {% endif %}
