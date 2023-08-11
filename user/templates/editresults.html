@@ -6,7 +6,7 @@
         text-align:center;
     }
     .tr{
-        background-color:#0d6efd;
+        background-color:#e7e7e7;
     }
     @media screen and (max-width:900px)
     {
@@ -116,7 +116,7 @@
 {% block table %}
 {% if sem == "sem1" %}
 <div class="outer">
-<table class="table table-bordered" style="width:100vw;">
+<table class="table border-2 table-bordered" style="width:100vw;">
 <tr class="tr"><th>Username</th><th>LANM</th><th>EC</th><th>BEEE</th><th>PPS</th><th>PPS LAB</th><th>BEEE LAB</th><th>EC LAB</th><th>IT WORKSHOP</th><th>Save</th></tr>
 {% for user in semm%}
     {% if user.username == student.username %}
@@ -130,7 +130,7 @@
         <td><input type="text" name="beee_lab" value="{{user.BEEE_LAB}}"></td>
         <td><input type="text" name="ec_lab" value="{{user.EC_LAB}}"></td>
         <td><input type="text" name="it" value="{{user.IT_WORKSHOP}}"></td>
-        <td><input type="submit" class="btn text-white bg-success" style="height:30px;padding-bottom:10px;" value="Save"></td>
+        <td><input type="submit" class="btn text-white bg-success p-0" style="height:30px;" value="Save"></td>
         </tr>
     {% endif %}
     {% if user.username != student.username %}
@@ -156,7 +156,7 @@
 
 
 {% if sem == "sem2" %}
-        <table class="table table-bordered" style="width:100vw;">
+        <table class="table border-2 table-bordered" style="width:100vw;">
        <tr class="tr"><th>Username</th><th>ENG</th><th>P & S</th><th>SCP</th><th>PYTHON</th><th>EG</th><th>ENG LAB</th><th>SCP LAB</th><th>PYTHON LAB</th><th>Save</th></tr>
         {% for user in semm%}
             {% if user.username == student.username %}
@@ -196,7 +196,7 @@
 
 
     {% if sem == "sem3" %}
-        <table class="table table-bordered" style="width:100vw;">
+        <table class="table border-2 table-bordered" style="width:100vw;">
        <tr class="tr"> <th>Username</th><th>DM</th><th>COA</th><th>DS</th><th>JAVA</th><th>OS</th><th>DS LAB</th><th>JAVA LAB</th><th>OS LAB</th><th>GS</th><th>Save</th></tr>
         {% for user in semm%}
             {% if user.username == student.username %}
@@ -237,7 +237,7 @@
 
 
     {% if sem == "sem4" %}
-        <table class="table table-bordered" style="width:100vw;">
+        <table class="table border-2 table-bordered" style="width:100vw;">
       <tr class="tr">  <th>Username</th><th>ASOT</th><th>DBMS</th><th>WT</th><th>DAA</th><th>CC</th><th>DBMS LAB</th><th>WT LAB</th><th>DAA LAB</th><th>ES</th><th>Save</th></tr>
         {% for user in semm%}
             {% if user.username == student.username %}
