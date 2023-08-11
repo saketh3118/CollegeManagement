@@ -1,0 +1,135 @@
+{% extends 'admin.html'%}
+
+{% block sty%}
+.foot{
+    background-color:lightgrey;
+}
+.td{
+    font-weight: bold;
+}
+img{
+    width:25px;
+  }
+  .search {
+    margin:10px;
+    width: 60vw;
+    position: relative;
+    display: flex;
+  }
+  .searchTerm {
+    width: 100%;
+    border: 3px solid #0d6efd;
+    border-right: none;
+    padding: 5px;
+    height: 36px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #ccc;
+  }
+  .searchTerm:focus{
+    color: #0d6efd;
+  }
+  .searchButton {
+    width: 40px;
+    height: 36px;
+    border: 1px solid #0d6efd;
+    background: #0d6efd;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+.outer{
+    width:100vw;
+}
+{%endblock%}
+{% block media %}
+.outer{
+    width:100vw;
+    overflow-x:auto;
+}
+table{
+    width:900px;
+}
+{% endblock%}
+{% block content %}
+
+{% if messages %}
+{% for message in messages%}
+   <center>
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert" style="width:90vw;position:relative;color:black;top:30px;">
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</center>
+{% endfor%}
+{% endif %}
+<center>
+<h2 class="fw-bold text-success text-decoration-underline">Students Attendance</h2>
+</center>
+
+
+<form action='/displayuserattendance' method='post'>
+    {% csrf_token%}
+    <center>
+    <div class="wrap">
+      <div class="search">
+        <input type="text" name="query" class="searchTerm" value="{{query}}" placeholder="Search By Username,Subject Name etc..">
+        <button type="submit" class="searchButton">
+          <img src="../static/img/icons8-send-96.png">
+        </button>
+    </div>
+    </div>
+</center>
+  </form>
+
+
+
+<div class="outer">
+<table class="table table-bordered">
+    <tr style="background-color:#0d6efd;">
+        <th>S.No</th><th>Username</th><th>DM</th> <th>CNS</th> <th>EEA</th><th>GB</th><th>CD</th><th>QA</th><th>DM LAB</th><th>CD LAB</th><th>ENG LAB</th><th>Edit</th>
+     </tr>
+     {% for user in users %}
+     <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.DM}}</td>
+        <td>{{user.CNS}}</td>
+        <td>{{user.EEA}}</td>
+        <td>{{user.GB}}</td>
+        <td>{{user.CD}}</td>
+        <td>{{user.QA}}</td>
+        <td>{{user.DM_LAB}}</td>
+        <td>{{user.CD_LAB}}</td>
+        <td>{{user.ENG_LAB}}</td>
+        <td><a class="dropdown-item" href="{% url 'edituserattendance' pk=user.username %}"><img src="../static/img/edit.gif" width="25px;"></a></td>
+     </tr>
+     {% endfor %}
+     <tr class="foot">
+        <td class="td" style="font-size:80%;">Total Classes</td>
+        <td class="td">-</td>
+        <td class="td">{{total.DM_TOTAL}}</td>
+        <td class="td">{{total.CNS_TOTAL}}</td>
+        <td class="td">{{total.EEA_TOTAL}}</td>
+        <td class="td">{{total.GB_TOTAL}}</td>
+        <td class="td">{{total.CD_TOTAL}}</td>
+        <td class="td">{{total.QA_TOTAL}}</td>
+        <td class="td">{{total.DM_LAB_TOTAL}}</td>
+        <td class="td">{{total.CD_LAB_TOTAL}}</td>
+        <td class="td">{{total.ENG_LAB_TOTAL}}</td>
+        <td></td>
+     </tr>
+</table>
+</div>
+
+
+<script>
+    a=document.getElementById('attendance')
+    a.style.backgroundColor="#f2f2f2";
+    b=document.getElementById('student')
+    b.style.backgroundColor="#f2f2f2";
+  </script>
+{% endblock %}

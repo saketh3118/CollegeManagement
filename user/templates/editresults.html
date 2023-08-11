@@ -1,259 +1,278 @@
 {% extends 'sem.html'%}
 {% block style%}
 <style>
-    input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-.input{
-    width:200px;
-}
-@media screen and (max-width:350px)
-{
-    .conta{
-        width:120vw;
-        overflow-x:scroll;
+    input{
+        width:90px;
+        text-align:center;
     }
-}
+    .tr{
+        background-color:#0d6efd;
+    }
+    @media screen and (max-width:900px)
+    {
+         .outer{
+            width:100vw;
+            overflow:auto;
+         }
+         table{
+            width:900px;
+         }
+    }
 </style>
 {% endblock%}
 {% block cont%}
-<br>
-<b><span style="font-size:120%">Username : <span style="color:#0d6efd;">{{stu.username}}</span></span><br></b>
-<b ><span style="font-size:120%;margin-left:6px;">Name  </span></b><b><span style="font-size:120%;position:relative;left:36px;">:</span></b><b><span style="color:#0d6efd;position:relative;left:38px;">{{stu.name}}</span></b>
 <form action='/edituserresults/{{username}}/{{sem}}' method='post'>
-    {% csrf_token %}
-    
-    {% if messages %}
-{% for message in messages%}
-   <center>
-<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert" style="width:90vw;position:relative;color:black;top:30px;">
-    <strong>{{message}}</strong>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-</center>
-{% endfor%}
-{% endif %}
+    {% csrf_token%}
+    <center>
+    {% if sem == "sem1" %}
+    <center>
+        <h4 class="text-success fw-bolder text-decoration-underline">Obtained Credits {{ans}}</h4>
+    </center>
     <div class="conta">
-<table class="table tab table-hover">
-        <tr> 
-            <th>S.No</th><th>Subject</th><th>Credits</th><th>Grade</th>
-        </tr>
-            {% if sem == "sem1"%}
-        <tr>
-            <td>1</td>
-            <td>LANM</td>
-            <td><input class="input form-control" name="lanm_credits" type="text" value="{{student.c1}}"></td>
-            <td><input class="input form-control" name="lanm" type="number" value="{{student.LANM}}"></td>
-        </tr>
-            <td>2</td>
-            <td>EC</td>
-            <td><input class="input form-control" name="ec_credits" type="text" value="{{student.c2}}"></td>
-            <td><input class="input form-control" name="ec" type="number" value="{{student.EC}}"></td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>BEEE</td>
-            <td><input class="input form-control" name="beee_credits" type="text" value="{{student.c3}}"></td>
-            <td><input class="input form-control" name="beee" type="number" value="{{student.BEEE}}"></td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>PPS</td>
-            <td><input class="input form-control" name="pps_credits" type="text" value="{{student.c4}}"></td>
-            <td><input class="input form-control" name="pps" type="number" value="{{student.PPS}}"></td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>PPS LAB</td>
-            <td><input class="input form-control" name="pps_lab_credits" type="text" value="{{student.c5}}"></td>
-            <td><input class="input form-control" name="pps_lab" type="number" value="{{student.PPS_LAB}}"></td>
-        </tr>
-        <tr>
-            <td>6</td>
-            <td>EC LAB</td>
-            <td><input class="input form-control" name="ec_lab_credits" type="text" value="{{student.c6}}"></td>
-            <td><input class="input form-control" name="ec_lab" type="number" value="{{student.EC_LAB}}"></td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td>BEEE LAB</td>
-            <td><input class="input form-control" name="beee_lab_credits" type="text" value="{{student.c7}}"></td>
-            <td><input class="input form-control" name="beee_lab" type="number" value="{{student.BEEE_LAB}}" ></td>
-        </tr>
-        <tr>
-            <td>8</td>
-            <td>IT WOKSHOP</td>
-            <td><input class="input form-control" name="it_credits" type="text" value="{{student.c8}}"></td>
-            <td><input class="input form-control" name="it" type="number" value="{{student.IT_WORKSHOP}}"></td>
-        </tr>
-        {% elif sem == "sem2" %}
-        <tr>
-            <td>1</td>
-            <td>ENG</td>
-            <td><input class="input form-control" name="eng_credits" type="text" value="{{student.c9}}"></td>
-            <td><input class="input form-control" name="eng" type="number" value="{{student.ENG}}"></td>
-        </tr>
-            <td>2</td>
-            <td>PandS</td>
-            <td><input class="input form-control" name="pands_credits" type="text" value="{{student.c10}}"></td>
-            <td><input class="input form-control" name="pands" type="number" value="{{student.PandS}}"></td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>SCP</td>
-            <td><input class="input form-control" name="scp_credits" type="text" value="{{student.c11}}"></td>
-            <td><input class="input form-control" name="scp" type="number" value="{{student.SCP}}"></td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>PYTHON</td>
-            <td><input class="input form-control" name="python_credits" type="text" value="{{student.c12}}"></td>
-            <td><input class="input form-control" name="python" type="number" value="{{student.PYTHON}}"></td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>EG</td>
-            <td><input class="input form-control" name="eg_credits" type="text" value="{{student.c13}}"></td>
-            <td><input class="input form-control" name="eg" type="number" value="{{student.EG}}"></td>
-        </tr>
-        <tr>
-            <td>6</td>
-            <td>ENG LAB</td>
-            <td><input class="input form-control" name="eng_lab_credits" type="text" value="{{student.c14}}"></td>
-            <td><input class="input form-control" name="eng_lab" type="number" value="{{student.ENG_LAB}}"></td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td>SCP LAB</td>
-            <td><input class="input form-control" name="scp_lab_credits" type="text" value="{{student.c15}}"></td>
-            <td><input class="input form-control" name="scp_lab" type="number" value="{{student.SCP_LAB}}" ></td>
-        </tr>
-        <tr>
-            <td>8</td>
-            <td>PYTHON LAB</td>
-            <td><input class="input form-control" name="python_lab_credits" type="text" value="{{student.c16}}"></td>
-            <td><input class="input form-control" name="python_lab" type="number" value="{{student.PYTHON_LAB}}"></td>
-        </tr>
-        {% elif sem == "sem3" %}
-        <tr>
-            <td>1</td>
-            <td>DM</td>
-            <td><input class="input form-control" name="dm_credits" type="text" value="{{student.c17}}"></td>
-            <td><input class="input form-control" name="dm" type="number" value="{{student.DM}}"></td>
-        </tr>
-            <td>2</td>
-            <td>COA</td>
-            <td><input class="input form-control" name="coa_credits" type="text" value="{{student.c18}}"></td>
-            <td><input class="input form-control" name="coa" type="number" value="{{student.COA}}"></td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>DS</td>
-            <td><input class="input form-control" name="ds_credits" type="text" value="{{student.c19}}"></td>
-            <td><input class="input form-control" name="ds" type="number" value="{{student.DS}}"></td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>JAVA</td>
-            <td><input class="input form-control" name="java_credits" type="text" value="{{student.c20}}"></td>
-            <td><input class="input form-control" name="java" type="number" value="{{student.JAVA}}"></td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>OS</td>
-            <td><input class="input form-control" name="os_credits" type="text" value="{{student.c21}}"></td>
-            <td><input class="input form-control" name="os" type="number" value="{{student.OS}}"></td>
-        </tr>
-        <tr>
-            <td>6</td>
-            <td>DS LAB</td>
-            <td><input class="input form-control" name="ds_lab_credits" type="text" value="{{student.c22}}"></td>
-            <td><input class="input form-control" name="ds_lab" type="number" value="{{student.DS_LAB}}"></td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td>JAVA LAB</td>
-            <td><input class="input form-control" name="java_lab_credits" type="text" value="{{student.c23}}"></td>
-            <td><input class="input form-control" name="java_lab" type="number" value="{{student.JAVA_LAB}}" ></td>
-        </tr>
-        <tr>
-            <td>8</td>
-            <td>OS LAB</td>
-            <td><input class="input form-control" name="os_lab_credits" type="text" value="{{student.c24}}"></td>
-            <td><input class="input form-control" name="os_lab" type="number" value="{{student.OS_LAB}}"></td>
-        </tr>
-        <tr>
-            <td>9</td>
-            <td>GS</td>
-            <td><input class="input form-control" name="gs_credits" type="text" value="{{student.c25}}"></td>
-            <td><input class="input form-control" name="gs" type="number" value="{{student.GS}}"></td>
-        </tr>
-        {% elif sem == "sem4" %}
-        <tr>
-            <td>1</td>
-            <td>ASOT</td>
-            <td><input class="input form-control" name="asot_credits" type="text" value="{{student.c26}}"></td>
-            <td><input class="input form-control" name="asot" type="number" value="{{student.ASOT}}"></td>
-        </tr>
-            <td>2</td>
-            <td>DBMS</td>
-            <td><input class="input form-control" name="dbms_credits" type="text" value="{{student.c27}}"></td>
-            <td><input class="input form-control" name="dbms" type="number" value="{{student.DBMS}}"></td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>WT</td>
-            <td><input class="input form-control" name="wt_credits" type="text" value="{{student.c28}}"></td>
-            <td><input class="input form-control" name="wt" type="number" value="{{student.WT}}"></td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>DAA</td>
-            <td><input class="input form-control" name="daa_credits" type="text" value="{{student.c29}}"></td>
-            <td><input class="input form-control" name="daa" type="number" value="{{student.DAA}}"></td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>CC</td>
-            <td><input class="input form-control" name="cc_credits" type="text" value="{{student.c30}}"></td>
-            <td><input class="input form-control" name="cc" type="number" value="{{student.CC}}"></td>
-        </tr>
-        <tr>
-            <td>6</td>
-            <td>DBMS LAB</td>
-            <td><input class="input form-control" name="dbms_lab_credits" type="text" value="{{student.c31}}"></td>
-            <td><input class="input form-control" name="dbms_lab" type="number" value="{{student.DBMS_LAB}}"></td>
-        </tr>
-        <tr>
-            <td>7</td>
-            <td>WT LAB</td>
-            <td><input class="input form-control" name="wt_lab_credits" type="text" value="{{student.c32}}"></td>
-            <td><input class="input form-control" name="wt_lab" type="number" value="{{student.WT_LAB}}" ></td>
-        </tr>
-        <tr>
-            <td>8</td>
-            <td>DAA LAB</td>
-            <td><input class="input form-control" name="daa_lab_credits" type="text" value="{{student.c33}}"></td>
-            <td><input class="input form-control" name="daa_lab" type="number" value="{{student.DAA_LAB}}"></td>
-        </tr>
-        <tr>
-            <td>9</td>
-            <td>ES</td>
-            <td><input class="input form-control" name="es_credits" type="text" value="{{student.c34}}"></td>
-            <td><input class="input form-control" name="es" type="number" value="{{student.ES}}"></td>
-        </tr>
-        {%endif%}
-</table>
+    <table class="table tab table-hover">
+            <tr><th>S.No</th><th>Subject</th><th>Credits</th></tr>
+            <tr><td>1</td><td>LANM</td><td><input name="lanm_credits" type="text" value="{{student.c1}}"></td></tr>
+            <tr><td>2</td><td>EC</td><td><input type="text" name="ec_credits" value="{{student.c2}}"></td></tr>
+            <tr><td>3</td><td>BEEE</td><td><input type="text" name="beee_credits" value="{{student.c3}}"></td></tr>
+            <tr><td>4</td><td>PPS</td><td><input type="text" name="pps_credits"value="{{student.c4}}"></td></tr>
+            <tr><td>5</td><td>PPS LAB</td><td><input type="text" name="pps_lab_credits"value="{{student.c5}}"></td></tr>
+            <tr><td>6</td><td>EC LAB</td><td><input type="text" name="ec_lab_credits" value="{{student.c6}}"></td></tr>
+            <tr><td>7</td><td>BEEE LAB</td><td><input type="text" name="beee_lab_credits" value="{{student.c7}}"></td></tr>
+            <tr><td>8</td><td>IT WORKSHOP</td><td><input type="text"  name="it_credits" value="{{student.c8}}"></td></tr>
+    </table>
 </div>
-<center>
-<input type="submit" class="btn" value="Save Changes" style="background-color:#ff2e63;">
-</center>
-</form>
+{% endif %}
 
-<script>
-    a=document.getElementById('results')
-    a.style.backgroundColor="#f2f2f2";
-  </script>
+
+
+{% if sem == "sem2" %}
+<center>
+    <h4 class="text-success fw-bolder text-decoration-underline">Obtained Credits {{ans}}</h4>
+</center>
+<div class="conta">
+    <table class="table tab table-hover">
+            <tr><th>S.No</th><th>Subject</th><th>Credits</th></tr>
+            <tr><td>1</td><td>ENG</td><td><input name="eng_credits" type="text" value="{{student.c9}}"></td></tr>
+            <tr><td>2</td><td>P & S</td><td><input type="text" name="pands_credits" value="{{student.c10}}"></td></tr>
+            <tr><td>3</td><td>SCP</td><td><input type="text" name="scp_credits" value="{{student.c11}}"></td></tr>
+            <tr><td>4</td><td>PYTHON</td><td><input type="text" name="python_credits"value="{{student.c12}}"></td></tr>
+            <tr><td>5</td><td>EG</td><td><input type="text" name="eg_credits"value="{{student.c13}}"></td></tr>
+            <tr><td>6</td><td>ENG LAB</td><td><input type="text" name="eng_lab_credits" value="{{student.c14}}"></td></tr>
+            <tr><td>7</td><td>SCP LAB</td><td><input type="text" name="scp_lab_credits" value="{{student.c15}}"></td></tr>
+            <tr><td>8</td><td>PYTHON LAB</td><td><input type="text"  name="python_lab_credits" value="{{student.c16}}"></td></tr>
+    </table>
+</div>
+{% endif %}
+
+
+
+{% if sem == "sem3" %}
+<center>
+    <h4 class="text-success fw-bolder text-decoration-underline">Obtained Credits {{ans}}</h4>
+</center>
+<div class="conta">
+    <table class="table tab table-hover">
+            <tr><th>S.No</th><th>Subject</th><th>Credits</th></tr>
+            <tr><td>1</td><td>DM</td><td><input name="dm_credits" type="text" value="{{student.c17}}"></td></tr>
+            <tr><td>2</td><td>COA</td><td><input type="text" name="coa_credits" value="{{student.c18}}"></td></tr>
+            <tr><td>3</td><td>DS</td><td><input type="text" name="ds_credits" value="{{student.c19}}"></td></tr>
+            <tr><td>4</td><td>JAVA</td><td><input type="text" name="java_credits"value="{{student.c20}}"></td></tr>
+            <tr><td>5</td><td>OS</td><td><input type="text" name="os_credits"value="{{student.c21}}"></td></tr>
+            <tr><td>6</td><td>DS LAB</td><td><input type="text" name="ds_lab_credits" value="{{student.c22}}"></td></tr>
+            <tr><td>7</td><td>JAVA LAB</td><td><input type="text" name="java_lab_credits" value="{{student.c23}}"></td></tr>
+            <tr><td>8</td><td>OS LAB</td><td><input type="text"  name="os_lab_credits" value="{{student.c24}}"></td></tr>
+            <tr><td>9</td><td>GS</td><td><input type="text"  name="gs_credits" value="{{student.c25}}"></td></tr>
+    </table>
+</div>
+{% endif %}
+
+
+
+{% if sem == "sem4" %}
+<center>
+    <h4 class="text-success fw-bolder text-decoration-underline">Obtained Credits {{ans}}</h4>
+</center>
+<div class="conta">
+    <table class="table tab table-hover">
+            <tr><th>S.No</th><th>Subject</th><th>Credits</th></tr>
+            <tr><td>1</td><td>ASOT</td><td><input name="asot_credits" type="text" value="{{student.c26}}"></td></tr>
+            <tr><td>2</td><td>DBMS</td><td><input type="text" name="dbms_credits" value="{{student.c27}}"></td></tr>
+            <tr><td>3</td><td>WT</td><td><input type="text" name="wt_credits" value="{{student.c28}}"></td></tr>
+            <tr><td>4</td><td>DAA</td><td><input type="text" name="daa_credits"value="{{student.c29}}"></td></tr>
+            <tr><td>5</td><td>CC</td><td><input type="text" name="cc_credits"value="{{student.c30}}"></td></tr>
+            <tr><td>6</td><td>DBMS LAB</td><td><input type="text" name="dbms_lab_credits" value="{{student.c31}}"></td></tr>
+            <tr><td>7</td><td>WT LAB</td><td><input type="text" name="wt_lab_credits" value="{{student.c32}}"></td></tr>
+            <tr><td>8</td><td>DAA LAB</td><td><input type="text"  name="daa_lab_credits" value="{{student.c33}}"></td></tr>
+            <tr><td>9</td><td>ES</td><td><input type="text"  name="es_credits" value="{{student.c34}}"></td></tr>
+    </table>
+</div>
+{% endif %}
+<input type="submit" class="btn text-white bg-success" style="width:120px;" value="Save Changes">
+</center>
 {%endblock%}
+
+
+
+{% block table %}
+{% if sem == "sem1" %}
+<div class="outer">
+<table class="table table-bordered" style="width:100vw;">
+<tr class="tr"><th>Username</th><th>LANM</th><th>EC</th><th>BEEE</th><th>PPS</th><th>PPS LAB</th><th>BEEE LAB</th><th>EC LAB</th><th>IT WORKSHOP</th><th>Save</th></tr>
+{% for user in semm%}
+    {% if user.username == student.username %}
+        <tr>
+        <td>{{user.username}}</td>
+        <td><input type="text" name="lanm" value="{{user.LANM}}"></td>
+        <td><input type="text" name="ec" value="{{user.EC}}"></td>
+        <td><input type="text" name="beee" value="{{user.BEEE}}"></td>
+        <td><input type="text" name="pps" value="{{user.PPS}}"></td>
+        <td><input type="text" name="pps_lab" value="{{user.PPS_LAB}}"></td>
+        <td><input type="text" name="beee_lab" value="{{user.BEEE_LAB}}"></td>
+        <td><input type="text" name="ec_lab" value="{{user.EC_LAB}}"></td>
+        <td><input type="text" name="it" value="{{user.IT_WORKSHOP}}"></td>
+        <td><input type="submit" class="btn text-white bg-success" style="height:30px;padding-bottom:10px;" value="Save"></td>
+        </tr>
+    {% endif %}
+    {% if user.username != student.username %}
+        <tr>
+        <td>{{user.username}}</td>
+        <td>{{user.LANM}}</td>
+        <td>{{user.EC}}</td>
+        <td>{{user.BEEE}}</td>
+        <td>{{user.PPS}}</td>
+        <td>{{user.PPS_LAB}}</td>
+        <td>{{user.BEEE_LAB}}</td>
+        <td>{{user.EC_LAB}}</td>
+        <td>{{user.IT_WORKSHOP}}</td>
+        <td></td>
+        </tr>
+    {% endif %}
+{% endfor %}
+</table>
+{% endif %}
+
+
+
+
+
+{% if sem == "sem2" %}
+        <table class="table table-bordered" style="width:100vw;">
+       <tr class="tr"><th>Username</th><th>ENG</th><th>P & S</th><th>SCP</th><th>PYTHON</th><th>EG</th><th>ENG LAB</th><th>SCP LAB</th><th>PYTHON LAB</th><th>Save</th></tr>
+        {% for user in semm%}
+            {% if user.username == student.username %}
+                <tr>
+                <td>{{user.username}}</td>
+                <td><input type="text" name="eng" value="{{user.ENG}}"></td>
+                <td><input type="text" name="pands" value="{{user.PandS}}"></td>
+                <td><input type="text" name="scp" value="{{user.SCP}}"></td>
+                <td><input type="text" name="python" value="{{user.PYTHON}}"></td>
+                <td><input type="text" name="eg" value="{{user.EG}}"></td>
+                <td><input type="text" name="eng_lab" value="{{user.ENG_LAB}}"></td>
+                <td><input type="text" name="scp_lab" value="{{user.SCP_LAB}}"></td>
+                <td><input type="text" name="python_lab" value="{{user.PYTHON_LAB}}"></td>
+                <td><input type="submit" class="btn text-white bg-success" style="height:30px;padding-bottom:10px;" value="Save"></td>
+                </tr>
+            {% endif %}
+            {% if user.username != student.username %}
+            <tr>
+                <td>{{user.username}}</td>
+                <td>{{user.ENG}}</td>
+                <td>{{user.PandS}}</td>
+                <td>{{user.SCP}}</td>
+                <td>{{user.PYTHON}}</td>
+                <td>{{user.EG}}</td>
+                <td>{{user.ENG_LAB}}</td>
+                <td>{{user.SCP_LAB}}</td>
+                <td>{{user.PYTHON_LAB}}</td>
+                <td></td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </table>
+    {% endif %}
+
+
+
+
+
+    {% if sem == "sem3" %}
+        <table class="table table-bordered" style="width:100vw;">
+       <tr class="tr"> <th>Username</th><th>DM</th><th>COA</th><th>DS</th><th>JAVA</th><th>OS</th><th>DS LAB</th><th>JAVA LAB</th><th>OS LAB</th><th>GS</th><th>Save</th></tr>
+        {% for user in semm%}
+            {% if user.username == student.username %}
+                <tr>
+                <td>{{user.username}}</td>
+                <td><input type="text" name="dm" value="{{user.DM}}"></td>
+                <td><input type="text" name="coa" value="{{user.COA}}"></td>
+                <td><input type="text" name="ds" value="{{user.DS}}"></td>
+                <td><input type="text" name="java" value="{{user.JAVA}}"></td>
+                <td><input type="text" name="os" value="{{user.OS}}"></td>
+                <td><input type="text" name="ds_lab" value="{{user.DS_LAB}}"></td>
+                <td><input type="text" name="java_lab" value="{{user.JAVA_LAB}}"></td>
+                <td><input type="text" name="os_lab" value="{{user.OS_LAB}}"></td>
+                <td><input type="text" name="gs" value="{{user.GS}}"></td>
+                <td><input type="submit" class="btn text-white bg-success" style="height:30px;padding-bottom:10px;" value="Save"></td>
+                </tr>
+            {% endif %}
+            {% if user.username != student.username %}
+            <tr>
+                <td>{{user.username}}</td>
+                <td>{{user.DM}}</td>
+                <td>{{user.COA}}</td>
+                <td>{{user.DS}}</td>
+                <td>{{user.JAVA}}</td>
+                <td>{{user.OS}}</td>
+                <td>{{user.DS_LAB}}</td>
+                <td>{{user.JAVA_LAB}}</td>
+                <td>{{user.OS_LAB}}</td>
+                <td>{{user.GS}}</td>
+                <td></td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </table>
+    {% endif %}
+
+
+
+
+    {% if sem == "sem4" %}
+        <table class="table table-bordered" style="width:100vw;">
+      <tr class="tr">  <th>Username</th><th>ASOT</th><th>DBMS</th><th>WT</th><th>DAA</th><th>CC</th><th>DBMS LAB</th><th>WT LAB</th><th>DAA LAB</th><th>ES</th><th>Save</th></tr>
+        {% for user in semm%}
+            {% if user.username == student.username %}
+                <tr>
+                <td>{{user.username}}</td>
+                <td><input type="text" name="asot" value="{{user.ASOT}}"></td>
+                <td><input type="text" name="dbms" value="{{user.DBMS}}"></td>
+                <td><input type="text" name="wt" value="{{user.WT}}"></td>
+                <td><input type="text" name="daa" value="{{user.DAA}}"></td>
+                <td><input type="text" name="cc" value="{{user.CC}}"></td>
+                <td><input type="text" name="dbms_lab" value="{{user.DBMS_LAB}}"></td>
+                <td><input type="text" name="wt_lab" value="{{user.WT_LAB}}"></td>
+                <td><input type="text" name="daa_lab" value="{{user.DAA_LAB}}"></td>
+                <td><input type="text" name="es" value="{{user.ES}}"></td>
+                <td><input type="submit" class="btn text-white bg-success" style="height:30px;padding-bottom:10px;" value="Save"></td>
+                </tr>
+            {% endif %}
+            {% if user.username != student.username %}
+            <tr>
+                <td>{{user.username}}</td>
+                <td>{{user.ASOT}}</td>
+                <td>{{user.DBMS}}</td>
+                <td>{{user.WT}}</td>
+                <td>{{user.DAA}}</td>
+                <td>{{user.CC}}</td>
+                <td>{{user.DBMS_LAB}}</td>
+                <td>{{user.WT_LAB}}</td>
+                <td>{{user.DAA_LAB}}</td>
+                <td>{{user.ES}}</td>
+                <td></td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </table>
+    </div>
+    {% endif %}
+</form>
+{% endblock %}

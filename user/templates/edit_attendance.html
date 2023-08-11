@@ -46,16 +46,6 @@
 </center>
 {% endfor%}
 {% endif %}
-<div class="btn-group">
-    <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:#ff2e63;">
-      Students
-    </button>
-    <ul class="dropdown-menu">
-        {% for user in users%}
-        <li><a class="dropdown-item" href="{% url 'edituserattendance' pk=user.username%}">{{user.username}}</a></li>
-        {% endfor%}
-    </ul>
-</div>
 </center>
 {% block cont%}
 <form action='/editattendance' method='post'>
@@ -108,7 +98,7 @@
     </tr>
     <tr> 
         <td>9</td>
-        <td>ENG</td>
+        <td>ENG LAB</td>
         <td><input class="input form-control-sm" name="eng_lab"type="number" value={{attendance.ENG_LAB_TOTAL}}></td>
     </tr>
 </table>
@@ -120,6 +110,8 @@
 <script>
     a=document.getElementById('attendance')
     a.style.backgroundColor="#f2f2f2";
+    b=document.getElementById('total')
+    b.style.backgroundColor="#f2f2f2";
   </script>
 {%endblock%}
 {% endblock%}

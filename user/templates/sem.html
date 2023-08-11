@@ -1,5 +1,59 @@
 {% extends 'admin.html'%}
+{% block style %}
+<style>
+img{
+    width:25px;
+  }
+    .search {
+        margin:10px;
+        width: 100%;
+        position: relative;
+        display: flex;
+      }
+      .searchTerm {
+        width: 100%;
+        border: 3px solid #0d6efd;
+        border-right: none;
+        padding: 5px;
+        height: 36px;
+        border-radius: 5px 0 0 5px;
+        outline: none;
+        color: #ccc;
+      }
+      .searchTerm:focus{
+        color: #0d6efd;
+      }
+      .searchButton {
+        width: 40px;
+        height: 36px;
+        border: 1px solid #0d6efd;
+        background: #0d6efd;
+        text-align: center;
+        color: #fff;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+        font-size: 20px;
+      }
+      .wrap{
+        width: 80vw;
+      }
+.tabe{
+    width:100vw;
+    margin:0px;
+}
+.tr{
+    background-color:#0d6efd;
+}
+</style>
+{% endblock %}
 {%block media%}
+.outer{
+    width:100vw;
+    overflow-x:auto;
+}
+.tabe{
+    width:900px;
+}
 .conta{
     width:90vw;
     overflow-x:auto;
@@ -13,19 +67,24 @@
 }
 {%endblock%}
 {% block content %}
-<center>
-<div class="btn-group">
-    <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="background-color:#ff2e63;">
-      Students
-    </button>
-    <ul class="dropdown-menu">
-        {% for user in users%}
-        <li><a class="dropdown-item" href="{% url 'edituserresults' pk=user.username sem=sem %}">{{user.username}}</a></li>
-        {% endfor%}
-    </ul>
-</div>
+
+
+{% if messages %}
+{% for message in messages%}
+   <center>
+<div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert" style="width:90vw;position:relative;color:black;top:30px;">
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+</center>
+{% endfor%}
+{% endif %}
+
+
 {% block cont%}
-<div class="conta">
+<center>
+    <h4 class="text-success fw-bolder text-decoration-underline">Maximum Credits {{ans}}</h4>
+    <div class="conta">
     <table class="table tab table-hover">
         <tr>
             <th>S.No</th><th>Subject</th><th>Credits</th>
@@ -40,10 +99,156 @@
     </table>
 </div>
 </center>
+{%endblock%}
+<center><h4 class="text-success fw-bolder text-decoration-underline mt-5">Subject Wise Student's GPA {{ans}}</h4></center>
+{% comment %} <center><h3 class="text-success fw-bold">Student Results</h3></center> {% endcomment %}
+{% block table %}
+{% if sem == "sem1" %}
+<center>
+    <form action='/sem1' method='post'>
+        {% csrf_token %}
+        <div class="wrap">
+            <div class="search">
+                <input type="text" name="query" class="searchTerm" value="{{query}}" placeholder="Search By Username,Subject etc..">
+                <button type="submit" class="searchButton">
+                    <img src="../static/img/icons8-send-96.png">
+                </button>
+            </div>
+        </form>
+    </center>
+    <div class="outer">
+    <table class="table tabe table-bordered">
+        <tr class="tr"><th>Username</th><th>LANM</th><th>EC</th><th>BEEE</th><th>PPS</th><th>PPS LAB</th><th>BEEE LAB</th><th>EC LAB</th><th>IT WORKSHOP</th><th>Edit</th></tr>
+        {% for user in semm%}
+            <tr>
+            <td>{{user.username}}</td>
+            <td>{{user.LANM}}</td>
+            <td>{{user.EC}}</td>
+            <td>{{user.BEEE}}</td>
+            <td>{{user.PPS}}</td>
+            <td>{{user.PPS_LAB}}</td>
+            <td>{{user.BEEE_LAB}}</td>
+            <td>{{user.EC_LAB}}</td>
+            <td>{{user.IT_WORKSHOP}}</td>
+            <td><a class="dropdown-item" href="{% url 'edituserresults' pk=user.username sem=sem %}"><img style="width:20px;"src="../static/img/edit.gif"></a></td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% endif %}
 
+
+
+
+    {% if sem == "sem2" %}
+    <center>
+        <form action='/sem2' method='post'>
+            {% csrf_token %}
+        <div class="wrap">
+            <div class="search">
+                <input type="text" name="query" class="searchTerm" value="{{query}}" placeholder="Search By Username,Subject etc..">
+                <button type="submit" class="searchButton">
+                    <img src="../static/img/icons8-send-96.png">
+                </button>
+            </div>
+        </form>
+        </center>
+        <table class="table tabe table-bordered">
+        <tr class="tr"><th>Username</th><th>ENG</th><th>P & S</th><th>SCP</th><th>PYTHON</th><th>EG</th><th>ENG LAB</th><th>SCP LAB</th><th>PYTHON LAB</th><th>Edit</th></tr>
+        {% for user in semm%}
+            <tr>
+            <td>{{user.username}}</td>
+            <td>{{user.ENG}}</td>
+            <td>{{user.PandS}}</td>
+            <td>{{user.SCP}}</td>
+            <td>{{user.PYTHON}}</td>
+            <td>{{user.EG}}</td>
+            <td>{{user.ENG_LAB}}</td>
+            <td>{{user.SCP_LAB}}</td>
+            <td>{{user.PYTHON_LAB}}</td>
+            <td><a class="dropdown-item" href="{% url 'edituserresults' pk=user.username sem=sem %}"><img style="width:25px;"src="../static/img/edit.gif"></a></td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% endif %}
+
+
+
+
+    {% if sem == "sem3" %}
+    <center>
+        <form action='/sem3' method='post'>
+            {% csrf_token %}
+        <div class="wrap">
+            <div class="search">
+                <input type="text" name="query" class="searchTerm" value="{{query}}" placeholder="Search By Username,Subject etc..">
+                <button type="submit" class="searchButton">
+                    <img src="../static/img/icons8-send-96.png">
+                </button>
+            </div>
+        </form>
+        </center>
+        <table class="table tabe table-bordered">
+       <tr class="tr"><th>Username</th><th>DM</th><th>COA</th><th>DS</th><th>JAVA</th><th>OS</th><th>DS LAB</th><th>JAVA LAB</th><th>OS LAB</th><th>GS</th><th>Edit</th></tr>
+        {% for user in semm%}
+            <tr>
+            <td>{{user.username}}</td>
+            <td>{{user.DM}}</td>
+            <td>{{user.COA}}</td>
+            <td>{{user.DS}}</td>
+            <td>{{user.JAVA}}</td>
+            <td>{{user.OS}}</td>
+            <td>{{user.DS_LAB}}</td>
+            <td>{{user.JAVA_LAB}}</td>
+            <td>{{user.OS_LAB}}</td>
+            <td>{{user.GS}}</td>
+            <td><a class="dropdown-item" href="{% url 'edituserresults' pk=user.username sem=sem %}"><img style="width:25px;"src="../static/img/edit.gif"></a></td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% endif %}
+
+
+
+
+    {% if sem == "sem4" %}
+    <center>
+        <form action='/sem4' method='post'>
+            {% csrf_token %}
+        <div class="wrap">
+            <div class="search">
+                <input type="text" name="query" class="searchTerm" value="{{query}}" placeholder="Search By Username,Subject etc..">
+                <button type="submit" class="searchButton">
+                    <img src="../static/img/icons8-send-96.png">
+                </button>
+            </div>
+        </form>
+        </center>
+        <table class="table tabe table-bordered">
+        <tr class="tr"><th>Username</th><th>ASOT</th><th>DBMS</th><th>WT</th><th>DAA</th><th>CC</th><th>DBMS LAB</th><th>WT LAB</th><th>DAA LAB</th><th>ES</th><th>Edit</th></tr>
+        {% for user in semm%}
+            <tr>
+            <td>{{user.username}}</td>
+            <td>{{user.ASOT}}</td>
+            <td>{{user.DBMS}}</td>
+            <td>{{user.WT}}</td>
+            <td>{{user.DAA}}</td>
+            <td>{{user.CC}}</td>
+            <td>{{user.DBMS_LAB}}</td>
+            <td>{{user.WT_LAB}}</td>
+            <td>{{user.DAA_LAB}}</td>
+            <td>{{user.ES}}</td>
+            <td><a class="dropdown-item" href="{% url 'edituserresults' pk=user.username sem=sem %}"><img style="width:25px;"src="../static/img/edit.gif"></a></td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+    {% endif %}
+{% endblock %}
 <script>
+    search=document.getElementById
     a=document.getElementById('results')
     a.style.backgroundColor="#f2f2f2";
   </script>
-{%endblock%}
-{% endblock%}
+  <div style="height:100px;">
+</div>
+    {% endblock%}

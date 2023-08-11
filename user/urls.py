@@ -41,8 +41,7 @@ urlpatterns = [
     path('contact_students',views.contact_students),
     path('send_message_faculty/<str:pk>',views.send_message_faculty),
     path('message_sent_faculty/<str:pk>',views.message_sent_faculty),
+    path('displayuserattendance',views.displayuserattendance)
 ]
-
-
 
 # <a href="{% url 'edituser' pk=user.username %}">

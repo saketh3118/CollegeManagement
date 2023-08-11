@@ -77,9 +77,25 @@
               <li class="nav-item">
                 <a class="nav-link btn list" id="timetable"style="color:black;border:0px;" href="/timetable" id="liveToastBtn"><strong>Time Table</strong></a>
               </li>
-              <li class="nav-item">
+              {% comment %} <li class="nav-item">
                 <a class="nav-link btn list" id="attendance"style="color:black;border:0px;" href="/editattendance" id="liveToastBtn"><strong>Attendance</strong></a>
-              </li>
+              </li> {% endcomment %}
+
+
+
+              <center>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle text-dark dropitem" id="attendance" href="#" style="border-radius:10px;" id="academics" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <strong>Attendance</strong>
+                  </a>
+                  <ul class="dropdown-menu" id="drop" style="background-color:#fff;">
+                    <li><a class="dropdown-item dropitem btn" id="total" href="/editattendance">Total Classes</a></li>
+                    <li><a class="dropdown-item dropitem btn" id="student" href="/displayuserattendance">Student's Attendance</a></li>
+                  </ul>
+                </li>
+              </center>
+
+
               <li class="nav-item dropdown logout" style="position:relative;left:40vw; border-radius:20px;">
                 <button class="btn dropdown-toggle text-dark" data-bs-toggle="dropdown" style="background-color:#fff;border:2px solid black;"aria-expanded="false">
                  <p style="font-size:130%;display:inline;">&equiv;</p> {{uname}}

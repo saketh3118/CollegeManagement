@@ -1,11 +1,40 @@
+{% extends 'admin.html' %}
+
+{% block sty%}
+.foot{
+    background-color:lightgrey;
+}
+.td{
+    font-weight: bold;
+}
+input{
+    width:80px;
+    text-align:center;
+}
+.outer{
+    width:100vw;
+}
+{%endblock%}
+{% block media %}
+input{
+    width:60px;
+}
+.outer{
+    width:100vw;
+    overflow-x:auto;
+}
+table{
+    width:900px;
+}
+{% endblock%}
+{% comment %} 
 {% extends 'edit_attendance.html'%}
 {% block cont%}
-<form action='/edituserattendance/{{pk}}' method='post'>
-    {% csrf_token %}
-    <center>
-        <b><span style="font-size:120%;margin-left:10px;">Username : <span style="color:#0d6efd;">{{stu.username}}</span></span><br></b>
-        <b><span style="font-size:120%;margin-left:10px;">Name : <span style="color:#0d6efd;">{{stu.name}}</span></span><br></b>
-<div class="box">
+{% csrf_token %}
+<center>
+    <b><span style="font-size:120%;margin-left:10px;">Username : <span style="color:#0d6efd;">{{stu.username}}</span></span><br></b>
+    <b><span style="font-size:120%;margin-left:10px;">Name : <span style="color:#0d6efd;">{{stu.name}}</span></span><br></b>
+    <div class="box">
 <table class="table tabe table-striped" >
     
     <tr>
@@ -77,5 +106,77 @@
 <script>
     a=document.getElementById('attendance')
     a.style.backgroundColor="#f2f2f2";
+</script>
+{% endblock%} {% endcomment %}
+
+
+
+
+
+{% block content %}
+<center>
+    <h2 class="fw-bold text-success text-decoration-underline">Students Attendance</h2>
+    </center>
+<form action='/edituserattendance/{{pk}}' method='post'>
+    {% csrf_token%}
+<div class="outer">
+<table class="table table-bordered">
+    <tr style="background-color:#0d6efd;">
+        <th>S.No</th><th>Username</th><th>DM</th> <th>CNS</th> <th>EEA</th><th>GB</th><th>CD</th><th>QA</th><th>DM LAB</th><th>CD LAB</th><th>ENG LAB</th><th>Edit</th>
+     </tr>
+     <tr>
+        <td>0</td>
+         <td>{{stu.username}}</td>
+         <td><input type="text" name="dm" value="{{stu.DM}}"></td>
+         <td><input type="text" name="cns" value="{{stu.CNS}}"></td>
+         <td><input type="text" name="eea" value="{{stu.EEA}}"></td>
+         <td><input type="text" name="gb" value="{{stu.GB}}"></td>
+         <td><input type="text" name="cd" value="{{stu.CD}}"></td>
+         <td><input type="text" name="qa" value="{{stu.QA}}"></td>
+         <td><input type="text" name="dm_lab" value="{{stu.DM_LAB}}"></td>
+         <td><input type="text" name="cd_lab" value="{{stu.CD_LAB}}"></td>
+         <td><input type="text" name="eng_lab" value="{{stu.ENG_LAB}}"></td>
+         <td><input class="btn btn-success p-0" style="height:30px;" type="submit" value="Save"></td>
+        </tr>
+     {% for u in users %}
+        <tr>
+            {% comment %} <td>{{stu}}</td> {% endcomment %}
+        <td>{{forloop.counter}}</td>
+        <td>{{u.username}}</td>
+        <td>{{u.DM}}</td>
+        <td>{{u.CNS}}</td>
+        <td>{{u.EEA}}</td>
+        <td>{{u.GB}}</td>
+        <td>{{u.CD}}</td>
+        <td>{{u.QA}}</td>
+        <td>{{u.DM_LAB}}</td>
+        <td>{{u.CD_LAB}}</td>
+        <td>{{u.ENG_LAB}}</td>
+        <td></td>
+       </tr>
+     {% endfor %}
+     <tr class="foot">
+        <td class="td" style="font-size:80%;">Total Classes</td>
+        <td class="td">-</td>
+        <td class="td">{{total.DM_TOTAL}}</td>
+        <td class="td">{{total.CNS_TOTAL}}</td>
+        <td class="td">{{total.EEA_TOTAL}}</td>
+        <td class="td">{{total.GB_TOTAL}}</td>
+        <td class="td">{{total.CD_TOTAL}}</td>
+        <td class="td">{{total.QA_TOTAL}}</td>
+        <td class="td">{{total.DM_LAB_TOTAL}}</td>
+        <td class="td">{{total.CD_LAB_TOTAL}}</td>
+        <td class="td">{{total.ENG_LAB_TOTAL}}</td>
+        <td></td>
+     </tr>
+</table>
+</div>
+</form>
+
+<script>
+    a=document.getElementById('attendance')
+    a.style.backgroundColor="#f2f2f2";
+    b=document.getElementById('student')
+    b.style.backgroundColor="#f2f2f2";
   </script>
-{% endblock%}
+{% endblock %}

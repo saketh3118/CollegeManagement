@@ -334,14 +334,10 @@ def addusers(request):
     if request.method=='POST':
         query=request.POST.get('query')
         querySet=LoginDetails.objects.filter(
-            Q(username__startswith=query) |
-            Q(name__startswith=query) |
-            Q(dept__startswith=query) | 
-            Q(usertype__startswith=query) |
-            Q(username__endswith=query) |
-            Q(name__endswith=query) |
-            Q(dept__endswith=query) | 
-            Q(usertype__endswith=query) )
+            Q(username__icontains=query) | 
+            Q(name__icontains=query) |
+            Q(usertype__icontains=query) |
+            Q(dept__icontains=query))
         return render(request,'addusers.html',{'lg':querySet,'queryy':query,'adduser':'no','uname':request.session.get('uname'),'name':request.session.get('name')})
     return render(request,'addusers.html',{'queryy':'','lg':lg,'adduser':'no','uname':request.session.get('uname'),'name':request.session.get('name')})
 def adduserdetails(request):
@@ -358,7 +354,7 @@ def adduserdetails(request):
         instant=LoginDetails.objects.filter(username=username)
         if usertype == 'Student':
             for inst in instant:
-                Semester.objects.create(username=inst,ASOT=0,DBMS=0,WT=0,DAA=0,CC=0,DBMS_LAB=0,WT_LAB=0,DAA_LAB=0,ES=0,c26=0,c27=0,c28=0,c29=0,c30=0,c31=0,c32=0,c33=0,c34=0,DM=0,COA=0,DS=0,JAVA=0,OS=0,DS_LAB=0,JAVA_LAB=0,OS_LAB=0,GS=0,c17=0,c18=0,c19=0,c20=0,c21=0,c22=0,c23=0,c24=0,c25=0,ENG=0,PandS=0,SCP=0,PYTHON=0,EG=0,ENG_LAB=0,SCP_LAB=0,PYTHON_LAB=0,c9=0,c10=0,c11=0,c12=0,c13=0,c14=0,c15=0,c16=0,LANM=0,EC=0,BEEE=0,PPS=0,PPS_LAB=0,EC_LAB=0,BEEE_LAB=0,IT_WORKSHOP=0,c1=0,c2=0,c3=0,c4=0,c5=0,c6=0,c7=0,c8=0)
+                Semester.objects.create(username=inst,ASOT=0,DBMS=0,WT=0,DAA=0,CC=0,DBMS_LAB=0,WT_LAB=0,DAA_LAB=0,ES=0,DM=0,COA=0,DS=0,JAVA=0,OS=0,DS_LAB=0,JAVA_LAB=0,OS_LAB=0,GS=0,ENG=0,PandS=0,SCP=0,PYTHON=0,EG=0,ENG_LAB=0,SCP_LAB=0,PYTHON_LAB=0,LANM=0,EC=0,BEEE=0,PPS=0,PPS_LAB=0,EC_LAB=0,BEEE_LAB=0,IT_WORKSHOP=0)
                 Attendance.objects.create(username=inst)
                 Mid1.objects.create(username=inst)
                 Mid2.objects.create(username=inst.username,name=inst.name)
@@ -402,7 +398,7 @@ def deleteuser(request,pk):
         Mid2.objects.get(username=pk).delete()
         Semester.objects.get(username=pk).delete()
     LoginDetails.objects.get(username=pk).delete()
-    messages.success(request,'Success!User Details has Deleted')
+    messages.success(request,'Success! '+pk+' Details has been Deleted')
     return render(request,'addusers.html',{'lg':lg,'adduser':'no','count':c,'sub':sub,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def listofsems(request):
     return render(request,'listOfSems.html',{'uname':request.session.get('uname'),'name':request.session.get('name')})
@@ -412,7 +408,9 @@ def listofsems(request):
 def edituserresults(request,pk,sem):
     users=LoginDetails.objects.filter(usertype="Student").order_by('username')
     stu=LoginDetails.objects.get(username=pk)
+    ans=""
     if sem=="sem1":
+        ans="Semester 1"
         try:
             student=Semester.objects.get(username=pk)
         except:
@@ -435,8 +433,8 @@ def edituserresults(request,pk,sem):
             student.IT_WORKSHOP=request.POST.get('it')
             student.c8=request.POST.get('it_credits')
             student.save()
-            messages.success(request,'Success! '+stu.username+' Semester I Results has Updated')
     elif sem=="sem2":
+        ans="Semester 2"
         try:
             student=Semester.objects.get(username=pk)
         except:
@@ -461,6 +459,7 @@ def edituserresults(request,pk,sem):
             student.save()
             messages.success(request,'Success! '+stu.username+' Semester II Results has Updated')
     elif sem=="sem3":
+        ans="Semester 3"
         try:
             student=Semester.objects.get(username=pk)
         except:
@@ -487,6 +486,7 @@ def edituserresults(request,pk,sem):
             student.save()
             messages.success(request,'Success! '+stu.username+' Semester III Results has Updated')
     elif sem=="sem4":
+        ans="Semester 4"
         try:
             student=Semester.objects.get(username=pk)
         except:
@@ -512,23 +512,92 @@ def edituserresults(request,pk,sem):
             student.c34=request.POST.get('es_credits')
             student.save()
             messages.success(request,'Success! '+stu.username+' Semester IV Results has Updated')
-    return render(request,'editresults.html',{'stu':stu,'username':pk,'sem':sem,'users':users,'student':student,'uname':request.session.get('uname'),'name':request.session.get('name')})
+    if request.method=='POST':
+        if sem=='sem1':
+            messages.success(request,'Success! '+stu.username+' Semester I Results has Updated')
+            return redirect('/sem1')
+        if sem=='sem2':
+            return redirect('/sem2')
+        if sem=='sem3':
+            return redirect('/sem3')
+        if sem=='sem4':
+            return redirect('/sem4')
+    return render(request,'editresults.html',{'ans':ans,'semm':Semester.objects.all(),'stu':stu,'username':pk,'sem':sem,'users':users,'student':student,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def sem1(request):
     users=LoginDetails.objects.filter(usertype="Student").order_by('username')
+    semm=Semester.objects.all()
     subjects=[["LANM",4],["EC",4],["BEEE",3],["PPS",3],["PPS_LAB",3],["BEE_LAB",1.5],["EC_LAB",1],["IT_WORKSHOP",1.5]]
-    return render(request,'sem.html',{'users':users,'sem':'sem1','subjects':subjects,'uname':request.session.get('uname'),'name':request.session.get('name')})
+    if request.method=='POST':
+        query=request.POST.get('query')
+        se=Semester.objects.filter(
+            Q(LANM__icontains=query) |
+            Q(username__username__icontains=query) |
+            Q(EC__icontains=query) |
+            Q(BEEE__icontains=query) |
+            Q(PPS__icontains=query) |
+            Q(PPS_LAB__icontains=query) |
+            Q(BEEE_LAB__icontains=query) |
+            Q(EC_LAB__icontains=query) |
+            Q(IT_WORKSHOP__icontains=query)
+        )
+        return render(request,'sem.html',{'ans':'Semester 1','query':query,'semm':se,'users':users,'sem':'sem1','subjects':subjects,'uname':request.session.get('uname'),'name':request.session.get('name')})
+    return render(request,'sem.html',{'ans':'Semester 1','semm':semm,'users':users,'sem':'sem1','subjects':subjects,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def sem2(request):
     users=LoginDetails.objects.filter(usertype="Student").order_by('username')
     subjects=[["ENG",3],["PandS",3],["SCP",4],["PYTHON",4],["EG",3],["ENG_LAB",1],["SCP_LAB",1],["PYTHON_LAB",2]]
-    return render(request,'sem.html',{'users':users,'sem':'sem2','subjects':subjects,'uname':request.session.get('uname'),'name':request.session.get('name')})
+    if request.method=='POST':
+        query=request.POST.get('query')
+        se=Semester.objects.filter(
+            Q(ENG__icontains=query) |
+            Q(username__username__icontains=query) |
+            Q(PandS__icontains=query) |
+            Q(SCP__icontains=query) |
+            Q(PYTHON__icontains=query) |
+            Q(EG__icontains=query) |
+            Q(ENG_LAB__icontains=query) |
+            Q(SCP_LAB__icontains=query) |
+            Q(PYTHON_LAB__icontains=query)
+        )
+        return render(request,'sem.html',{'ans':'Semester 2','query':query,'semm':se,'users':users,'sem':'sem2','subjects':subjects,'uname':request.session.get('uname'),'name':request.session.get('name')})
+    return render(request,'sem.html',{'ans':'Semester 2','semm':Semester.objects.all(),'users':users,'sem':'sem2','subjects':subjects,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def sem3(request):
     subjects=[["DM",3],["COA",3],["DS",3],["JAVA",3],["OS",3],["DS_LAB",1.5],["JAVA_LAB",1.5],["OS_LAB",2],["GS",0]]
     users=LoginDetails.objects.filter(usertype="Student").order_by('username')
-    return render(request,'sem.html',{'users':users,'sem':'sem3','subjects':subjects,'uname':request.session.get('uname'),'name':request.session.get('name')})
+    if request.method=='POST':
+        query=request.POST.get('query')
+        se=Semester.objects.filter(
+            Q(username__username__icontains=query) |
+            Q(DM__icontains=query) |
+            Q(COA__icontains=query) |
+            Q(DS__icontains=query) |
+            Q(JAVA__icontains=query) |
+            Q(OS__icontains=query) |
+            Q(DS_LAB__icontains=query) |
+            Q(JAVA_LAB__icontains=query) |
+            Q(OS_LAB__icontains=query) |
+            Q(GS__icontains=query)
+        )
+        return render(request,'sem.html',{'ans':'Semester 3','query':query,'semm':se,'users':users,'sem':'sem3','subjects':subjects,'uname':request.session.get('uname'),'name':request.session.get('name')})
+    return render(request,'sem.html',{'ans':'Semester 3','semm':Semester.objects.all(),'users':users,'sem':'sem3','subjects':subjects,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def sem4(request):
     subjects=[["ASOT",3],["DBMS",3],["WT",3],["DAA",3],["CC",3],["DBMS LAB",2],["WT LAB",1.5],["DAA LAB",1.5],["ES",0]]
     users=LoginDetails.objects.filter(usertype="Student").order_by('username')
-    return render(request,'sem.html',{'users':users,'sem':'sem4','subjects':subjects,'uname':request.session.get('uname'),'name':request.session.get('name')})
+    if request.method=='POST':
+        query=request.POST.get('query')
+        se=Semester.objects.filter(
+            Q(username__username__icontains=query) |
+            Q(ASOT__icontains=query) |
+            Q(DBMS__icontains=query) |
+            Q(WT__icontains=query) |
+            Q(DAA__icontains=query) |
+            Q(CC__icontains=query) |
+            Q(DBMA_LAB__icontains=query) |
+            Q(WT_LAB__icontains=query) |
+            Q(DAA_LAB__icontains=query) |
+            Q(ES__icontains=query)
+        )
+        return render(request,'sem.html',{'ans':'Semester 4','query':query,'semm':se,'users':users,'sem':'sem3','subjects':subjects,'uname':request.session.get('uname'),'name':request.session.get('name')})
+    return render(request,'sem.html',{'ans':'Semester 4','semm':Semester.objects.all(),'users':users,'sem':'sem4','subjects':subjects,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def timetable(request):
     try:
         d1=TimeTable.objects.get(Day="MONDAY")
@@ -653,8 +722,27 @@ def editattendance(request):
         attendance.save()
         messages.success(request,'Success! Total Number of Classes has been Updated')
     return render(request,'edit_attendance.html',{'users':users,'subjects':subjects,'attendance':attendance,'uname':request.session.get('uname'),'name':request.session.get('name')})
+def displayuserattendance(request):
+    attendance=Attendance.objects.all().order_by("username")
+    total=TotalAttendance.objects.get(Dept="CSE")
+    if request.method=='POST':
+        query=request.POST.get('query')
+        attendance=Attendance.objects.filter(
+            Q(username__username__icontains=query) |
+            Q(DM__icontains=query) |
+            Q(CNS__icontains=query) |
+            Q(EEA__icontains=query) |
+            Q(GB__icontains=query) |
+            Q(CD__icontains=query) |
+            Q(QA__icontains=query) |
+            Q(DM_LAB__icontains=query) |
+            Q(CD_LAB__icontains=query) |
+            Q(ENG_LAB__icontains=query)
+        )
+        return render(request,'displayuserattendance.html',{'query':query,'total':total,'users':attendance,'uname':request.session.get('uname'),'name':request.session.get('name')})
+    return render(request,'displayuserattendance.html',{'total':total,'users':attendance,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def edituserattendance(request,pk):
-    users=LoginDetails.objects.filter(usertype="Student").order_by('username')
+    users=Attendance.objects.filter(~Q(username=pk)).order_by('username')
     total=TotalAttendance.objects.get(Dept="CSE")
     user=LoginDetails.objects.get(username=pk)
     try:
@@ -681,7 +769,8 @@ def edituserattendance(request,pk):
         attendance.CD_LAB=cd_lab
         attendance.ENG_LAB=eng_lab
         attendance.save()
-        messages.success(request,'Success! '+user.username+' Attendance has been Updated')
-    return render(request,'edituserattendance.html',{'stu':user,'pk':pk,'users':users,'attendance':attendance,'total':total,'uname':request.session.get('uname'),'name':request.session.get('name')})
+        messages.success(request,"Success! "+pk+" Attendance has been Updated")
+        return render(request,'displayuserattendance.html',{'total':TotalAttendance.objects.get(Dept="CSE"),'users':Attendance.objects.all().order_by("username"),'uname':request.session.get('uname'),'name':request.session.get('name')})
+    return render(request,'edituserattendance.html',{'users':users,'stu':attendance,'pk':pk,'total':total,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def logoutadmin(request):
     return render(request,'logoutadmin.html')
