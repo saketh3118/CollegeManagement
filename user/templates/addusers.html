@@ -2,10 +2,10 @@
 
 
 {% block sty%}
-.a{
+{% comment %} .a{
   margin-left:100px;
   float:bottom-left;
-}
+} {% endcomment %}
 img{
   width:25px;
 }
@@ -79,11 +79,12 @@ table{
 </center>
 {% endfor%}
 {% endif %}
-
-<h2 class="my-2 text-primary" style="display:inline;">User LoginDetails</h2>
-<a href="/adduserdetails" class="a">
-  <button class="btn btn-primary">Add Users</button>
-</a>
+<center>
+  <h2 class="fw-bold text-success text-decoration-underline">UserLogin Details</h2>
+  <a href="/adduserdetails" class="">
+    <button class="btn btn-secondary">Add Users</button>
+  </a>
+</center>
 <form action='/addusers' method='post'>
   {% csrf_token%}
   <div class="wrap">
