@@ -150,8 +150,8 @@ class Mid1(models.Model):
     def __str__(self):
         return self.username
 class Mid2(models.Model):
-    username=models.CharField(max_length=30,default="")
-    name=models.CharField(max_length=50,default="",primary_key=True)
+    username=models.CharField(max_length=30,default="",primary_key=True)
+    name=models.CharField(max_length=50,default="")
     Java_Programming_Cse=models.CharField(max_length=10,blank=True)
     Data_Structures_Cse=models.CharField(max_length=10,blank=True)
     Web_Technologies_Cse=models.CharField(max_length=10,blank=True)

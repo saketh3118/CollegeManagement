@@ -246,34 +246,6 @@ def mid2(request):
 def marks(request):
     uname=request.session.get('uname')
     fac=LoginDetails.objects.get(username=uname)
-    # students=LoginDetails.objects.filter(usertype="Student").order_by('username')
-    # M1=Mid1.objects.all().order_by('username')
-    # M2=Mid2.objects.all().order_by('username')
-    # if request.method=="POST":
-    #     sub=fac.dept
-    #     for student in students:
-    #         try:
-    #             m1=Mid1.objects.create(username=student.username,name=student.name)
-    #         except:
-    #             m1=Mid1.objects.get(username=student.username)
-    #         try:
-    #             m2=Mid2.objects.create(username=student.username,name=student.name)
-    #         except:
-    #             m2=Mid2.objects.get(name=student.name)
-    #         if sub=="Java_Programming_Cse":
-    #             m1.Java_Programming_Cse=request.POST.get(student.username)
-    #             m2.Java_Programming_Cse=request.POST.get(student.name)
-    #             # M1=Mid1.objects.values_list('username','name','Java_Programming_Cse')
-    #         elif sub=="Data_Structures_Cse":
-    #             m1.Data_Structures_Cse=request.POST.get(student.username)
-    #             m2.Data_Structures_Cse=request.POST.get(student.name)
-    #             # M1=Mid1.objects.values_list('username','name','Data_Structures_Cse')
-    #         elif sub=="Web_Technologies_Cse":
-    #             m1.Web_Technologies_Cse=request.POST.get(student.username)
-    #             m2.Web_Technologies_Cse=request.POST.get(student.name)
-    #             # M1=Mid1.objects.values_list('username','name','Web_Technologies_Cse')
-    #         m1.save()
-    #         m2.save()
     return render(request,'marks.html',{'sub':fac.dept,'fac':fac})
 def midmarks1(request):
     stu=LoginDetails.objects.filter(usertype="Student")
@@ -305,11 +277,11 @@ def midmarks2(request):
         for student in students:
             m2=Mid2.objects.get(username=student.username)
             if sub=="Java_Programming_Cse":
-                m2.Java_Programming_Cse=request.POST.get(student.name)
+                m2.Java_Programming_Cse=request.POST.get(student.username)
             elif sub=="Data_Structures_Cse":
-                m2.Data_Structures_Cse=request.POST.get(student.name)
+                m2.Data_Structures_Cse=request.POST.get(student.username)
             elif sub=="Web_Technologies_Cse":
-                m2.Web_Technologies_Cse=request.POST.get(student.name)
+                m2.Web_Technologies_Cse=request.POST.get(student.username)
             m2.save()
         messages.success(request,"Successfully Updated Mid 2 Marks")
         students=Mid2.objects.all().order_by('username')
@@ -381,17 +353,17 @@ def savechanges(request):
         usertype=request.POST.get('usertype')
         dept=request.POST.get('dept')
         m1=Mid1.objects.get(username=username)
-        m2=Mid2.objects.filter(username=username)
+        m2=Mid2.objects.get(username=username)
         user=LoginDetails.objects.get(username=username)
         m1.name=name
-        m2[0].name=name
+        m2.name=name
         user.username=username
         user.name=name
         user.dept=dept
         user.usertype=usertype
         user.save()
         m1.save()
-        m2[0].save()
+        m2.save()
         messages.success(request,'Success!User Details has edited Successfully')
     return render(request,'addusers.html',{'lg':lg,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def deleteuser(request,pk):
