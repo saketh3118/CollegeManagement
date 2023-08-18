@@ -25,8 +25,8 @@
                 {% if sub == "Data_Structures_Cse" %}
                       {% for student in students%}
                       <tr>
-                          <th scope="row">{{student}}</th>
-                          <td>{{student}}</td>
+                          <th scope="row">{{student.name}}</th>
+                          <td>{{student.username}}</td>
                           <td><input type="number" class="input" name="{{student.username}}" value="{{student.Data_Structures_Cse}}"class="text-black"></td>
                       </tr>
                       {% endfor %}
@@ -34,8 +34,8 @@
                 {% if sub == "Web_Technologies_Cse" %}
                       {% for student in students%}
                       <tr>
-                          <th scope="row">{{student}}</th>
-                          <td>{{student}}</td>
+                          <th scope="row">{{student.name}}</th>
+                          <td>{{student.username}}</td>
                           <td><input type="number" class="input" name="{{student.username}}" value="{{student.Web_Technologies_Cse}}"class="text-primary bg-black text-white"></td>
                       </tr>
                       {% endfor %}
