@@ -356,7 +356,7 @@ def adduserdetails(request):
             for inst in instant:
                 Semester.objects.create(username=inst,ASOT=0,DBMS=0,WT=0,DAA=0,CC=0,DBMS_LAB=0,WT_LAB=0,DAA_LAB=0,ES=0,DM=0,COA=0,DS=0,JAVA=0,OS=0,DS_LAB=0,JAVA_LAB=0,OS_LAB=0,GS=0,ENG=0,PandS=0,SCP=0,PYTHON=0,EG=0,ENG_LAB=0,SCP_LAB=0,PYTHON_LAB=0,LANM=0,EC=0,BEEE=0,PPS=0,PPS_LAB=0,EC_LAB=0,BEEE_LAB=0,IT_WORKSHOP=0)
                 Attendance.objects.create(username=inst)
-                Mid1.objects.create(username=inst)
+                Mid1.objects.create(username=inst,name=inst.name)
                 Mid2.objects.create(username=inst.username,name=inst.name)
         messages.success(request,'Success!User Details has been Added')
         return render(request,'addusers.html',{'lg':lg,'adduser':'no','count':c,'sub':sub,'uname':request.session.get('uname'),'name':request.session.get('name')})
@@ -380,12 +380,18 @@ def savechanges(request):
         username=request.POST.get('username')
         usertype=request.POST.get('usertype')
         dept=request.POST.get('dept')
+        m1=Mid1.objects.get(username=username)
+        m2=Mid2.objects.filter(username=username)
         user=LoginDetails.objects.get(username=username)
+        m1.name=name
+        m2[0].name=name
         user.username=username
         user.name=name
         user.dept=dept
         user.usertype=usertype
         user.save()
+        m1.save()
+        m2[0].save()
         messages.success(request,'Success!User Details has edited Successfully')
     return render(request,'addusers.html',{'lg':lg,'uname':request.session.get('uname'),'name':request.session.get('name')})
 def deleteuser(request,pk):
