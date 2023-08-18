@@ -16,8 +16,8 @@
                 {% if sub == "Java_Programming_Cse"%}
                         {% for student in students%}
                         <tr>
-                            <th scope="row">{{student}}</th>
-                            <td>{{student}}</td>
+                            <th scope="row">{{student.name}}</th>
+                            <td>{{student.username}}</td>
                             <td><input type="number" class="input" name="{{student.name}}" value="{{student.Java_Programming_Cse}}"class="text-black"></td>
                         </tr>
                         {% endfor %}
